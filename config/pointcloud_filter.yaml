@@ -1,0 +1,17 @@
+pointcloud_filter:
+  ros__parameters:
+    input_topic: /merged_pointcloud
+    pose_topic: /zx200/global_pose
+    # Maximum pose/cloud header stamp difference. 0 disables the check.
+    max_pose_time_diff_sec: 2.0
+    output_topic: /merged_pointcloud_filtered
+    # pointcloud2: sensor_msgs/msg/PointCloud2; mesh: shape_msgs/msg/Mesh
+    output_format: pointcloud2
+    # 1 (coarse) ... 5 (fine). Mesh voxel sizes: 0.8, 0.6, 0.4, 0.2, 0.1 m.
+    mesh_resolution: 3
+    publish_period_sec: 10.0
+    # XY crop radius around the backhoe, in metres. Height is unrestricted.
+    radius_m: 10.0
+    voxel_size: 0.1
+    sor_mean_k: 20
+    sor_stddev_mul: 2.0
