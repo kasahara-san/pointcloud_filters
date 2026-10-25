@@ -1,0 +1,127 @@
+{
+  "mode": "pointcloud2",
+  "domain": "221",
+  "input_count": 163,
+  "outputs": [
+    {
+      "elapsed_sec": 12.748070466099307,
+      "points": 6354,
+      "stamp_ns": 1792739284497137195,
+      "frame": "map"
+    },
+    {
+      "elapsed_sec": 22.74773349100724,
+      "points": 6522,
+      "stamp_ns": 1792739294364908875,
+      "frame": "map"
+    },
+    {
+      "elapsed_sec": 32.73885147715919,
+      "points": 6657,
+      "stamp_ns": 1792739304340907146,
+      "frame": "map"
+    },
+    {
+      "elapsed_sec": 42.740939868148416,
+      "points": 6677,
+      "stamp_ns": 1792739314413609532,
+      "frame": "map"
+    },
+    {
+      "elapsed_sec": 52.747093121986836,
+      "points": 7018,
+      "stamp_ns": 1792739324499594733,
+      "frame": "map"
+    },
+    {
+      "elapsed_sec": 62.739986296975985,
+      "points": 6586,
+      "stamp_ns": 1792739334320131948,
+      "frame": "map"
+    },
+    {
+      "elapsed_sec": 72.73554625012912,
+      "points": 6477,
+      "stamp_ns": 1792739337389720548,
+      "frame": "map"
+    }
+  ],
+  "removed": [
+    {
+      "elapsed_sec": 12.771059217164293,
+      "points": 31,
+      "stamp_ns": 1792739284497137195,
+      "frame": "map"
+    },
+    {
+      "elapsed_sec": 22.77114066411741,
+      "points": 2,
+      "stamp_ns": 1792739294364908875,
+      "frame": "map"
+    },
+    {
+      "elapsed_sec": 32.75836494099349,
+      "points": 2,
+      "stamp_ns": 1792739304340907146,
+      "frame": "map"
+    },
+    {
+      "elapsed_sec": 42.764078767970204,
+      "points": 12,
+      "stamp_ns": 1792739314413609532,
+      "frame": "map"
+    },
+    {
+      "elapsed_sec": 52.76951554603875,
+      "points": 11,
+      "stamp_ns": 1792739324499594733,
+      "frame": "map"
+    },
+    {
+      "elapsed_sec": 62.76178117399104,
+      "points": 4,
+      "stamp_ns": 1792739334320131948,
+      "frame": "map"
+    },
+    {
+      "elapsed_sec": 72.75618540798314,
+      "points": 1,
+      "stamp_ns": 1792739337389720548,
+      "frame": "map"
+    }
+  ],
+  "headers": [],
+  "markers": [],
+  "assertions": [],
+  "launch_pid": 1517533,
+  "first_input_sec": 5.169371081981808,
+  "last_input_sec": 65.41400607302785,
+  "sigint_elapsed_sec": 77.82456300617196,
+  "launch_returncode": 0,
+  "events": [
+    {
+      "kind": "filter_ready",
+      "elapsed_sec": 2.7549627241678536
+    },
+    {
+      "kind": "bag_started",
+      "elapsed_sec": 2.757136314176023
+    },
+    {
+      "kind": "bag_finished_cleanly",
+      "elapsed_sec": 65.78205292718485
+    }
+  ],
+  "checks": {
+    "ready_before_bag_started": true,
+    "bag_finished_cleanly": true,
+    "all_163_inputs_received": true,
+    "at_least_five_outputs": true,
+    "removed_count_matches_outputs": true,
+    "actual_robot_points_removed": true,
+    "map_frame_preserved": true,
+    "launch_clean_shutdown": true
+  },
+  "failures": [],
+  "elapsed_sec": 78.78577266517095
+}

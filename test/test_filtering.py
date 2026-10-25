@@ -51,6 +51,17 @@ def test_statistical_filter_removes_outlier_inside_crop():
     assert len(indices) > 100
 
 
+def test_self_removal_precedes_voxel_and_statistical_filter():
+    """A robot representative cannot displace nearby terrain in the same voxel."""
+    points = np.array([[.01, .01, .01], [.02, .02, .02], [1., 0., 0.]])
+    indices, counts = filter_indices(
+        points, [0, 0], FilterParameters(), self_mask=np.array([True, False, False]))
+    np.testing.assert_array_equal(indices, [1, 2])
+    assert counts['radius'] == 3
+    assert counts['self_removed'] == 1
+    assert counts['self_filter'] == 2
+
+
 @pytest.mark.parametrize('points', [
     np.empty((0, 3)),
     np.array([[np.nan, 0.0, 0.0], [0.0, np.inf, 0.0]]),

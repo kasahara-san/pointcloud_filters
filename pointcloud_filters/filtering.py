@@ -29,7 +29,7 @@ class FilterParameters:
             raise ValueError('sor_mean_k must be an integer >= 1')
 
 
-def filter_indices(points, center_xy, parameters):
+def filter_indices(points, center_xy, parameters, self_mask=None):
     """Return retained input indices and stage counts without changing input data."""
     points = np.asarray(points, dtype=np.float64)
     if points.ndim != 2 or points.shape[1] != 3:
@@ -42,9 +42,17 @@ def filter_indices(points, center_xy, parameters):
     distances_xy = np.hypot(points[indices, 0] - center_xy[0],
                             points[indices, 1] - center_xy[1])
     stats = dict(input=len(points), finite=len(indices), radius=0,
-                 voxel=0, sor=0, output=0)
+                 self_removed=0, self_filter=0, voxel=0, sor=0, output=0)
     indices = indices[distances_xy <= parameters.radius_m]
     stats['radius'] = len(indices)
+    if self_mask is not None:
+        self_mask = np.asarray(self_mask)
+        if self_mask.shape != (len(points),) or self_mask.dtype != np.bool_:
+            raise ValueError('self_mask must be a boolean array of length N')
+        before = len(indices)
+        indices = indices[~self_mask[indices]]
+        stats['self_removed'] = before - len(indices)
+    stats['self_filter'] = len(indices)
     if parameters.voxel_size > 0 and len(indices):
         keys = np.floor(points[indices] / parameters.voxel_size)
         _, first = np.unique(keys, axis=0, return_index=True)

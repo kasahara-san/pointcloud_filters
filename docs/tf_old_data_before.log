@@ -1,0 +1,66 @@
+1792913086.229249 [223]    python3: selected interface "lo" is not multicast-capable: disabling multicast
+[INFO] [1792913086.280283551] [pointcloud_filter]: /tf_repro/cloud -> /tf_repro/filtered, output_format=pointcloud2, mesh_resolution=3, period=10.000s (wall time), parameters=FilterParameters(radius_m=10.0, voxel_size=0.1, sor_mean_k=20, sor_stddev_mul=2.0)
+[INFO] [1792913086.280565343] [pointcloud_filter]: XY center: /tf_repro/pose (geometry_msgs/msg/PoseStamped); max_pose_time_diff_sec=0.5
+[INFO] [1792913086.280799818] [pointcloud_filter]: self_filter=False; joint_states=/zx200/joint_states; missing pose frame=world; padding=0.15m
+[INFO] [1792913086.281034774] [pointcloud_filter]: base->CAD origin: xyz=[0.0, 0.0, 0.0]m rpy=[0.0, 0.0, 0.0]rad
+[INFO] [1792913086.281255342] [pointcloud_filter]: Ready for point clouds.
+Warning: TF_OLD_DATA ignoring data from the past for frame base_link_3d at time 1000.000000 according to authority default_authority
+Possible reasons are listed at http://wiki.ros.org/tf/Errors%20explained
+         at line 294 in ./src/buffer_core.cpp
+Warning: TF_OLD_DATA ignoring data from the past for frame base_link_3d at time 1000.000000 according to authority default_authority
+Possible reasons are listed at http://wiki.ros.org/tf/Errors%20explained
+         at line 294 in ./src/buffer_core.cpp
+Warning: TF_OLD_DATA ignoring data from the past for frame base_link_3d at time 1000.000000 according to authority default_authority
+Possible reasons are listed at http://wiki.ros.org/tf/Errors%20explained
+         at line 294 in ./src/buffer_core.cpp
+Warning: TF_OLD_DATA ignoring data from the past for frame base_link_3d at time 1000.000000 according to authority default_authority
+Possible reasons are listed at http://wiki.ros.org/tf/Errors%20explained
+         at line 294 in ./src/buffer_core.cpp
+Warning: TF_OLD_DATA ignoring data from the past for frame base_link_3d at time 1000.000000 according to authority default_authority
+Possible reasons are listed at http://wiki.ros.org/tf/Errors%20explained
+         at line 294 in ./src/buffer_core.cpp
+Warning: TF_OLD_DATA ignoring data from the past for frame base_link_3d at time 1000.000000 according to authority default_authority
+Possible reasons are listed at http://wiki.ros.org/tf/Errors%20explained
+         at line 294 in ./src/buffer_core.cpp
+Warning: TF_OLD_DATA ignoring data from the past for frame base_link_3d at time 1000.000000 according to authority default_authority
+Possible reasons are listed at http://wiki.ros.org/tf/Errors%20explained
+         at line 294 in ./src/buffer_core.cpp
+Warning: TF_OLD_DATA ignoring data from the past for frame base_link_3d at time 1000.000000 according to authority default_authority
+Possible reasons are listed at http://wiki.ros.org/tf/Errors%20explained
+         at line 294 in ./src/buffer_core.cpp
+Warning: TF_OLD_DATA ignoring data from the past for frame base_link_3d at time 1000.000000 according to authority default_authority
+Possible reasons are listed at http://wiki.ros.org/tf/Errors%20explained
+         at line 294 in ./src/buffer_core.cpp
+Warning: TF_OLD_DATA ignoring data from the past for frame base_link_3d at time 1000.000000 according to authority default_authority
+Possible reasons are listed at http://wiki.ros.org/tf/Errors%20explained
+         at line 294 in ./src/buffer_core.cpp
+Warning: TF_OLD_DATA ignoring data from the past for frame base_link_3d at time 1000.000000 according to authority default_authority
+Possible reasons are listed at http://wiki.ros.org/tf/Errors%20explained
+         at line 294 in ./src/buffer_core.cpp
+Warning: TF_OLD_DATA ignoring data from the past for frame base_link_3d at time 1000.000000 according to authority default_authority
+Possible reasons are listed at http://wiki.ros.org/tf/Errors%20explained
+         at line 294 in ./src/buffer_core.cpp
+Warning: TF_OLD_DATA ignoring data from the past for frame base_link_3d at time 1000.000000 according to authority default_authority
+Possible reasons are listed at http://wiki.ros.org/tf/Errors%20explained
+         at line 294 in ./src/buffer_core.cpp
+Warning: TF_OLD_DATA ignoring data from the past for frame base_link_3d at time 1000.000000 according to authority default_authority
+Possible reasons are listed at http://wiki.ros.org/tf/Errors%20explained
+         at line 294 in ./src/buffer_core.cpp
+Warning: TF_OLD_DATA ignoring data from the past for frame base_link_3d at time 1000.000000 according to authority default_authority
+Possible reasons are listed at http://wiki.ros.org/tf/Errors%20explained
+         at line 294 in ./src/buffer_core.cpp
+Warning: TF_OLD_DATA ignoring data from the past for frame base_link_3d at time 1000.000000 according to authority default_authority
+Possible reasons are listed at http://wiki.ros.org/tf/Errors%20explained
+         at line 294 in ./src/buffer_core.cpp
+Warning: TF_OLD_DATA ignoring data from the past for frame base_link_3d at time 1000.000000 according to authority default_authority
+Possible reasons are listed at http://wiki.ros.org/tf/Errors%20explained
+         at line 294 in ./src/buffer_core.cpp
+Warning: TF_OLD_DATA ignoring data from the past for frame base_link_3d at time 1000.000000 according to authority default_authority
+Possible reasons are listed at http://wiki.ros.org/tf/Errors%20explained
+         at line 294 in ./src/buffer_core.cpp
+Warning: TF_OLD_DATA ignoring data from the past for frame base_link_3d at time 1000.000000 according to authority default_authority
+Possible reasons are listed at http://wiki.ros.org/tf/Errors%20explained
+         at line 294 in ./src/buffer_core.cpp
+Warning: TF_OLD_DATA ignoring data from the past for frame base_link_3d at time 1000.000000 according to authority default_authority
+Possible reasons are listed at http://wiki.ros.org/tf/Errors%20explained
+         at line 294 in ./src/buffer_core.cpp

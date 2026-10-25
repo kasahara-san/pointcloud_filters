@@ -44,6 +44,24 @@ Visualization Manager:
         Durability Policy: Transient Local
       Namespaces: {}
       Value: true
+    - Class: rviz_default_plugins/PointCloud2
+      Name: Removed robot points (red)
+      Enabled: true
+      Topic:
+        Value: /merged_pointcloud_filtered/self_removed
+        Depth: 1
+        History Policy: Keep Last
+        Reliability Policy: Reliable
+        Durability Policy: Volatile
+      Position Transformer: XYZ
+      Color Transformer: FlatColor
+      Color: 255; 60; 40
+      Alpha: 1
+      Style: Flat Squares
+      Size (Pixels): 4
+      Size (m): 0.08
+      Decay Time: 0
+      Value: true
   Enabled: true
   Global Options:
     Background Color: 32; 32; 32
@@ -57,11 +75,11 @@ Visualization Manager:
   Views:
     Current:
       Class: rviz_default_plugins/Orbit
-      Distance: 180
+      Distance: 35
       Focal Point:
-        X: 25
-        Y: 40
-        Z: 0
+        X: 20
+        Y: 22
+        Z: 1.5
       Pitch: 0.8
       Yaw: 0.8
       Near Clip Distance: 0.01

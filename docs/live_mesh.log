@@ -1,0 +1,28 @@
+    0.301 [INFO] [launch]: All log files can be found below /tmp/pcf_live_mesh_scale13_roslog/2026-10-25-16-36-20-251910-kasahara-PC-1527738
+    0.301 [INFO] [launch]: Default logging verbosity is set to INFO
+    0.349 [INFO] [pointcloud_filter-1]: process started with pid [1527746]
+    0.671 [pointcloud_filter-1] 1792913780.622789 [222] pointcloud: selected interface "lo" is not multicast-capable: disabling multicast
+    2.165 [pointcloud_filter-1] [INFO] [1792913782.116609760] [pointcloud_filter]: /merged_pointcloud -> /merged_pointcloud_filtered, output_format=mesh, mesh_resolution=3, period=10.000s (wall time), parameters=FilterParameters(radius_m=10.0, voxel_size=0.1, sor_mean_k=20, sor_stddev_mul=2.0)
+    2.165 [pointcloud_filter-1] [INFO] [1792913782.116963262] [pointcloud_filter]: XY center: /zx200/global_pose (geometry_msgs/msg/PoseStamped); max_pose_time_diff_sec=0.5
+    2.166 [pointcloud_filter-1] [INFO] [1792913782.117245366] [pointcloud_filter]: self_filter=True; joint_states=/zx200/joint_states; missing pose frame=world; padding=0.3m; scale=1.3
+    2.166 [pointcloud_filter-1] [INFO] [1792913782.117505725] [pointcloud_filter]: base->CAD origin: xyz=[-0.17, 0.3, -3.21]m rpy=[0.0, 0.0, 0.0]rad
+    2.166 [pointcloud_filter-1] [INFO] [1792913782.117759964] [pointcloud_filter]: TF input: /tf_static; use_dynamic_tf=False
+    2.166 [pointcloud_filter-1] [INFO] [1792913782.118020079] [pointcloud_filter]: Mesh coordinates use the input frame; metadata topic: /merged_pointcloud_filtered/header
+    2.167 [pointcloud_filter-1] [INFO] [1792913782.118275833] [pointcloud_filter]: Ready for point clouds.
+    2.168 [INFO] [ros2-2]: process started with pid [1527794]
+    2.380 [ros2-2] stdin is not a terminal device. Keyboard handling disabled.1792913782.331535 [222]       ros2: selected interface "lo" is not multicast-capable: disabling multicast
+    2.384 [ros2-2] [INFO] [1792913782.335780246] [rosbag2_storage]: Opened database '/home/kasahara/SIP_PROJECTS/ros2_tms_ws/src/pointcloud_filters/rosbag/rosbag2_2026_10_25-08_46_47/rosbag2_2026_10_25-08_46_47_0.db3' for READ_ONLY.
+    2.384 [ros2-2] [INFO] [1792913782.335820535] [rosbag2_player]: Set rate to 1
+    2.387 [ros2-2] [INFO] [1792913782.338411519] [rosbag2_player]: Sleep 2000000000 ns
+    4.387 [ros2-2] [INFO] [1792913784.338683436] [rosbag2_storage]: Opened database '/home/kasahara/SIP_PROJECTS/ros2_tms_ws/src/pointcloud_filters/rosbag/rosbag2_2026_10_25-08_46_47/rosbag2_2026_10_25-08_46_47_0.db3' for READ_ONLY.
+   12.514 [pointcloud_filter-1] [INFO] [1792913792.462520163] [pointcloud_filter]: points: input=64534 finite=64534 radius=6616 self_removed=1222 voxel=5394 sor=5270 output=5270; center_xy=(20.234, 21.543);  mesh_sampled=2510 vertices=2174 triangles=4022; processing=0.420s
+   22.575 [pointcloud_filter-1] [INFO] [1792913802.524842311] [pointcloud_filter]: points: input=65064 finite=65064 radius=6758 self_removed=1267 voxel=5491 sor=5364 output=5364; center_xy=(20.232, 21.537);  mesh_sampled=2573 vertices=2257 triangles=4190; processing=0.480s
+   32.531 [pointcloud_filter-1] [INFO] [1792913812.481089395] [pointcloud_filter]: points: input=66269 finite=66269 radius=6998 self_removed=1127 voxel=5871 sor=5750 output=5750; center_xy=(20.232, 21.534);  mesh_sampled=2700 vertices=2240 triangles=4111; processing=0.438s
+   42.461 [pointcloud_filter-1] [INFO] [1792913822.411658005] [pointcloud_filter]: points: input=66585 finite=66585 radius=6892 self_removed=1085 voxel=5807 sor=5660 output=5660; center_xy=(20.185, 21.570);  mesh_sampled=2630 vertices=2175 triangles=4013; processing=0.368s
+   52.514 [pointcloud_filter-1] [INFO] [1792913832.463613906] [pointcloud_filter]: points: input=67980 finite=67980 radius=7300 self_removed=965 voxel=6335 sor=6148 output=6148; center_xy=(20.183, 21.564);  mesh_sampled=2839 vertices=2241 triangles=4087; processing=0.420s
+   62.548 [pointcloud_filter-1] [INFO] [1792913842.496891381] [pointcloud_filter]: points: input=66111 finite=66111 radius=6797 self_removed=1128 voxel=5669 sor=5596 output=5596; center_xy=(20.238, 21.537);  mesh_sampled=2602 vertices=2228 triangles=4129; processing=0.453s
+   65.089 [INFO] [ros2-2]: process has finished cleanly [pid 1527794]
+   72.469 [pointcloud_filter-1] [INFO] [1792913852.415596127] [pointcloud_filter]: points: input=65455 finite=65455 radius=6729 self_removed=1069 voxel=5660 sor=5550 output=5550; center_xy=(20.232, 21.536);  mesh_sampled=2519 vertices=2124 triangles=3913; processing=0.372s
+   77.106 [WARNING] [launch]: user interrupted with ctrl-c (SIGINT)
+   77.613 [INFO] [pointcloud_filter-1]: sending signal 'SIGINT' to process[pointcloud_filter-1]
+   78.061 [INFO] [pointcloud_filter-1]: process has finished cleanly [pid 1527746]

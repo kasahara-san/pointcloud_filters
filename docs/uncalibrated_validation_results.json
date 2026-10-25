@@ -1,0 +1,3695 @@
+{
+  "status": "passed",
+  "bag_path": "/home/kasahara/SIP_PROJECTS/ros2_tms_ws/src/pointcloud_filters/rosbag/rosbag2_2026_10_25-08_46_47",
+  "parameters_file": "/home/kasahara/SIP_PROJECTS/ros2_tms_ws/src/pointcloud_filters/config/pointcloud_filter.yaml",
+  "robot_description": "/home/kasahara/SIP_PROJECTS/ros2_tms_ws/src/pointcloud_filters/robot/zx200.urdf",
+  "filter_parameters": {
+    "radius_m": 10.0,
+    "voxel_size": 0.1,
+    "sor_mean_k": 20,
+    "sor_stddev_mul": 2.0
+  },
+  "self_filter_padding": 0.15,
+  "required_joints": [
+    "swing_joint",
+    "boom_joint",
+    "arm_joint",
+    "bucket_joint"
+  ],
+  "model_origin_xyz": [
+    0.0,
+    0.0,
+    0.0
+  ],
+  "base_from_model": [
+    [
+      1.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    [
+      0.0,
+      1.0,
+      0.0,
+      0.0
+    ],
+    [
+      0.0,
+      0.0,
+      1.0,
+      0.0
+    ],
+    [
+      0.0,
+      0.0,
+      0.0,
+      1.0
+    ]
+  ],
+  "topic_counts": {
+    "/zx200/joint_states": 17741,
+    "/tf_static": 5,
+    "/zx200/global_pose": 5423,
+    "/merged_pointcloud": 163
+  },
+  "static_transforms": [
+    {
+      "parent": "map",
+      "child": "HAP22/lidar_frame",
+      "translation": [
+        35.045,
+        31.815,
+        4.864
+      ],
+      "quaternion_xyzw": [
+        0.1560547434521139,
+        0.06528680570954927,
+        -0.9194166905386353,
+        0.3550457705779944
+      ]
+    },
+    {
+      "parent": "world",
+      "child": "map",
+      "translation": [
+        21395.1661,
+        14034.4613,
+        28.558
+      ],
+      "quaternion_xyzw": [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ]
+    },
+    {
+      "parent": "map",
+      "child": "HAP20/lidar_frame",
+      "translation": [
+        22.165,
+        0.68,
+        4.766
+      ],
+      "quaternion_xyzw": [
+        -0.0999677113461415,
+        0.09058351209462231,
+        0.7178132027411437,
+        0.6830412066598321
+      ]
+    },
+    {
+      "parent": "map",
+      "child": "HAP21/lidar_frame",
+      "translation": [
+        10.931,
+        7.925,
+        4.795
+      ],
+      "quaternion_xyzw": [
+        -0.048954324681647385,
+        0.13484172854936702,
+        0.40004133198219954,
+        0.9052005938148131
+      ]
+    },
+    {
+      "parent": "map",
+      "child": "HAP23/lidar_frame",
+      "translation": [
+        38.318,
+        4.487,
+        4.699
+      ],
+      "quaternion_xyzw": [
+        -0.1393778031848368,
+        0.030228845700113534,
+        0.8952262618171669,
+        0.4221729325997452
+      ]
+    }
+  ],
+  "frames_checked": 163,
+  "total_self_removed": 1464,
+  "output_points_min_max": [
+    6242,
+    7191
+  ],
+  "max_pose_time_difference_sec": 0.016953242,
+  "max_joint_time_difference_sec": 0.013929792000000002,
+  "filter_runtime_sec_median_max": [
+    0.042856415966525674,
+    0.04873252101242542
+  ],
+  "residual_model_points": 0,
+  "mesh_checks": [
+    {
+      "mesh_sampled": 840,
+      "vertices": 686,
+      "triangles": 1240,
+      "frame": 0,
+      "resolution": 1,
+      "processing_sec": 0.10331822000443935
+    },
+    {
+      "mesh_sampled": 834,
+      "vertices": 678,
+      "triangles": 1253,
+      "frame": 81,
+      "resolution": 1,
+      "processing_sec": 0.10697710094973445
+    },
+    {
+      "mesh_sampled": 846,
+      "vertices": 681,
+      "triangles": 1256,
+      "frame": 162,
+      "resolution": 1,
+      "processing_sec": 0.10538682690821588
+    },
+    {
+      "mesh_sampled": 1391,
+      "vertices": 1148,
+      "triangles": 2110,
+      "frame": 0,
+      "resolution": 2,
+      "processing_sec": 0.1257403299678117
+    },
+    {
+      "mesh_sampled": 1406,
+      "vertices": 1171,
+      "triangles": 2149,
+      "frame": 81,
+      "resolution": 2,
+      "processing_sec": 0.12996792397461832
+    },
+    {
+      "mesh_sampled": 1410,
+      "vertices": 1176,
+      "triangles": 2179,
+      "frame": 162,
+      "resolution": 2,
+      "processing_sec": 0.1787258218973875
+    },
+    {
+      "mesh_sampled": 2993,
+      "vertices": 2436,
+      "triangles": 4512,
+      "frame": 0,
+      "resolution": 3,
+      "processing_sec": 0.20560435205698013
+    },
+    {
+      "mesh_sampled": 3006,
+      "vertices": 2372,
+      "triangles": 4401,
+      "frame": 81,
+      "resolution": 3,
+      "processing_sec": 0.203676420962438
+    },
+    {
+      "mesh_sampled": 2917,
+      "vertices": 2423,
+      "triangles": 4498,
+      "frame": 162,
+      "resolution": 3,
+      "processing_sec": 0.19826623192057014
+    },
+    {
+      "mesh_sampled": 5903,
+      "vertices": 5184,
+      "triangles": 9353,
+      "frame": 0,
+      "resolution": 4,
+      "processing_sec": 0.32630046200938523
+    },
+    {
+      "mesh_sampled": 5939,
+      "vertices": 5193,
+      "triangles": 9369,
+      "frame": 81,
+      "resolution": 4,
+      "processing_sec": 0.3799192178994417
+    },
+    {
+      "mesh_sampled": 5890,
+      "vertices": 5169,
+      "triangles": 9324,
+      "frame": 162,
+      "resolution": 4,
+      "processing_sec": 0.33391280099749565
+    },
+    {
+      "mesh_sampled": 6384,
+      "vertices": 5608,
+      "triangles": 10040,
+      "frame": 0,
+      "resolution": 5,
+      "processing_sec": 0.3892394579015672
+    },
+    {
+      "mesh_sampled": 6511,
+      "vertices": 5639,
+      "triangles": 10023,
+      "frame": 81,
+      "resolution": 5,
+      "processing_sec": 0.4683538689278066
+    },
+    {
+      "mesh_sampled": 6437,
+      "vertices": 5647,
+      "triangles": 9987,
+      "frame": 162,
+      "resolution": 5,
+      "processing_sec": 0.4374606101773679
+    }
+  ],
+  "frames": [
+    {
+      "input": 66330,
+      "finite": 66330,
+      "radius": 6645,
+      "self_removed": 5,
+      "self_filter": 6640,
+      "voxel": 6640,
+      "sor": 6417,
+      "output": 6417,
+      "frame": 0,
+      "stamp_ns": 1792739277144854378,
+      "center_xyz": [
+        20.23390000037398,
+        21.53769999983524,
+        3.9380000002756717
+      ],
+      "pose_time_difference_sec": 0.005683018000000001,
+      "max_joint_time_difference_sec": 0.000277758,
+      "processing_sec": 0.048184767831116915,
+      "residual_model_points": 0
+    },
+    {
+      "input": 66168,
+      "finite": 66168,
+      "radius": 6555,
+      "self_removed": 3,
+      "self_filter": 6552,
+      "voxel": 6552,
+      "sor": 6329,
+      "output": 6329,
+      "frame": 1,
+      "stamp_ns": 1792739277584967664,
+      "center_xyz": [
+        20.23589999977048,
+        21.53769999983524,
+        3.9380000002756717
+      ],
+      "pose_time_difference_sec": 0.005393405,
+      "max_joint_time_difference_sec": 0.000140139,
+      "processing_sec": 0.04179948405362666,
+      "residual_model_points": 0
+    },
+    {
+      "input": 65193,
+      "finite": 65193,
+      "radius": 6510,
+      "self_removed": 2,
+      "self_filter": 6508,
+      "voxel": 6508,
+      "sor": 6279,
+      "output": 6279,
+      "frame": 2,
+      "stamp_ns": 1792739277922408369,
+      "center_xyz": [
+        20.23390000037398,
+        21.539700000163066,
+        3.9380000002756717
+      ],
+      "pose_time_difference_sec": 0.008363991000000001,
+      "max_joint_time_difference_sec": 0.0017363790000000001,
+      "processing_sec": 0.041210721945390105,
+      "residual_model_points": 0
+    },
+    {
+      "input": 65107,
+      "finite": 65107,
+      "radius": 6507,
+      "self_removed": 3,
+      "self_filter": 6504,
+      "voxel": 6504,
+      "sor": 6270,
+      "output": 6270,
+      "frame": 3,
+      "stamp_ns": 1792739278282518400,
+      "center_xyz": [
+        20.23589999977048,
+        21.536699999671328,
+        3.9399999996721746
+      ],
+      "pose_time_difference_sec": 0.007546257000000001,
+      "max_joint_time_difference_sec": 0.002588425,
+      "processing_sec": 0.04161957395263016,
+      "residual_model_points": 0
+    },
+    {
+      "input": 64899,
+      "finite": 64899,
+      "radius": 6505,
+      "self_removed": 3,
+      "self_filter": 6502,
+      "voxel": 6502,
+      "sor": 6272,
+      "output": 6272,
+      "frame": 4,
+      "stamp_ns": 1792739278694810013,
+      "center_xyz": [
+        20.23589999977048,
+        21.538699999999153,
+        3.9399999996721746
+      ],
+      "pose_time_difference_sec": 0.004738602000000001,
+      "max_joint_time_difference_sec": 0.000293367,
+      "processing_sec": 0.04087731218896806,
+      "residual_model_points": 0
+    },
+    {
+      "input": 64923,
+      "finite": 64923,
+      "radius": 6503,
+      "self_removed": 3,
+      "self_filter": 6500,
+      "voxel": 6500,
+      "sor": 6268,
+      "output": 6268,
+      "frame": 5,
+      "stamp_ns": 1792739278984016852,
+      "center_xyz": [
+        20.23589999977048,
+        21.535700000438737,
+        3.935999999947846
+      ],
+      "pose_time_difference_sec": 0.0066091000000000006,
+      "max_joint_time_difference_sec": 0.001088128,
+      "processing_sec": 0.041426256066188216,
+      "residual_model_points": 0
+    },
+    {
+      "input": 63550,
+      "finite": 63550,
+      "radius": 6509,
+      "self_removed": 3,
+      "self_filter": 6506,
+      "voxel": 6506,
+      "sor": 6266,
+      "output": 6266,
+      "frame": 6,
+      "stamp_ns": 1792739279366016308,
+      "center_xyz": [
+        20.23589999977048,
+        21.539700000163066,
+        3.934000000551343
+      ],
+      "pose_time_difference_sec": 0.004607461,
+      "max_joint_time_difference_sec": 0.0009116800000000001,
+      "processing_sec": 0.041662679985165596,
+      "residual_model_points": 0
+    },
+    {
+      "input": 63109,
+      "finite": 63109,
+      "radius": 6522,
+      "self_removed": 3,
+      "self_filter": 6519,
+      "voxel": 6519,
+      "sor": 6281,
+      "output": 6281,
+      "frame": 7,
+      "stamp_ns": 1792739279662627081,
+      "center_xyz": [
+        20.23589999977048,
+        21.54269999972348,
+        3.9250000000074508
+      ],
+      "pose_time_difference_sec": 0.007426821,
+      "max_joint_time_difference_sec": 0.00247833,
+      "processing_sec": 0.04150385595858097,
+      "residual_model_points": 0
+    },
+    {
+      "input": 63613,
+      "finite": 63613,
+      "radius": 6500,
+      "self_removed": 2,
+      "self_filter": 6498,
+      "voxel": 6498,
+      "sor": 6264,
+      "output": 6264,
+      "frame": 8,
+      "stamp_ns": 1792739280050914377,
+      "center_xyz": [
+        20.239900000426132,
+        21.534700000274825,
+        3.942
+      ],
+      "pose_time_difference_sec": 0.000755825,
+      "max_joint_time_difference_sec": 0.001273079,
+      "processing_sec": 0.04084339994005859,
+      "residual_model_points": 0
+    },
+    {
+      "input": 61884,
+      "finite": 61884,
+      "radius": 6471,
+      "self_removed": 1,
+      "self_filter": 6470,
+      "voxel": 6470,
+      "sor": 6242,
+      "output": 6242,
+      "frame": 9,
+      "stamp_ns": 1792739280444458023,
+      "center_xyz": [
+        20.231900000046153,
+        21.538699999999153,
+        3.9399999996721746
+      ],
+      "pose_time_difference_sec": 0.006137409000000001,
+      "max_joint_time_difference_sec": 0.0006487530000000001,
+      "processing_sec": 0.04052107105962932,
+      "residual_model_points": 0
+    },
+    {
+      "input": 61568,
+      "finite": 61568,
+      "radius": 6480,
+      "self_removed": 1,
+      "self_filter": 6479,
+      "voxel": 6479,
+      "sor": 6247,
+      "output": 6247,
+      "frame": 10,
+      "stamp_ns": 1792739280714446884,
+      "center_xyz": [
+        20.240899999658723,
+        21.534700000274825,
+        3.9450000004917385
+      ],
+      "pose_time_difference_sec": 0.004349897,
+      "max_joint_time_difference_sec": 0.0006705690000000001,
+      "processing_sec": 0.04036198905669153,
+      "residual_model_points": 0
+    },
+    {
+      "input": 60358,
+      "finite": 60358,
+      "radius": 6517,
+      "self_removed": 1,
+      "self_filter": 6516,
+      "voxel": 6516,
+      "sor": 6287,
+      "output": 6287,
+      "frame": 11,
+      "stamp_ns": 1792739281010409166,
+      "center_xyz": [
+        20.23390000037398,
+        21.543699999887394,
+        3.955000000268221
+      ],
+      "pose_time_difference_sec": 0.00034410100000000003,
+      "max_joint_time_difference_sec": 0.000716513,
+      "processing_sec": 0.04041061596944928,
+      "residual_model_points": 0
+    },
+    {
+      "input": 60386,
+      "finite": 60386,
+      "radius": 6580,
+      "self_removed": 2,
+      "self_filter": 6578,
+      "voxel": 6578,
+      "sor": 6351,
+      "output": 6351,
+      "frame": 12,
+      "stamp_ns": 1792739281453425713,
+      "center_xyz": [
+        20.239900000426132,
+        21.544700000051307,
+        3.9380000002756717
+      ],
+      "pose_time_difference_sec": 0.003302919,
+      "max_joint_time_difference_sec": 0.001750248,
+      "processing_sec": 0.04078840813599527,
+      "residual_model_points": 0
+    },
+    {
+      "input": 59623,
+      "finite": 59623,
+      "radius": 6693,
+      "self_removed": 11,
+      "self_filter": 6682,
+      "voxel": 6682,
+      "sor": 6445,
+      "output": 6445,
+      "frame": 13,
+      "stamp_ns": 1792739281831671858,
+      "center_xyz": [
+        20.240899999658723,
+        21.544700000051307,
+        3.9450000004917385
+      ],
+      "pose_time_difference_sec": 5.4986000000000005e-05,
+      "max_joint_time_difference_sec": 0.0019089290000000002,
+      "processing_sec": 0.04140746686607599,
+      "residual_model_points": 0
+    },
+    {
+      "input": 59615,
+      "finite": 59615,
+      "radius": 6787,
+      "self_removed": 20,
+      "self_filter": 6767,
+      "voxel": 6767,
+      "sor": 6539,
+      "output": 6539,
+      "frame": 14,
+      "stamp_ns": 1792739282153223003,
+      "center_xyz": [
+        20.23589999977048,
+        21.544700000051307,
+        3.9270000003352763
+      ],
+      "pose_time_difference_sec": 0.002926039,
+      "max_joint_time_difference_sec": 0.001882072,
+      "processing_sec": 0.041998449014499784,
+      "residual_model_points": 0
+    },
+    {
+      "input": 62763,
+      "finite": 62763,
+      "radius": 6870,
+      "self_removed": 26,
+      "self_filter": 6844,
+      "voxel": 6844,
+      "sor": 6605,
+      "output": 6605,
+      "frame": 15,
+      "stamp_ns": 1792739282553862559,
+      "center_xyz": [
+        20.23390000037398,
+        21.54570000021522,
+        3.9210000002831222
+      ],
+      "pose_time_difference_sec": 0.0037934,
+      "max_joint_time_difference_sec": 0.001274589,
+      "processing_sec": 0.04341994016431272,
+      "residual_model_points": 0
+    },
+    {
+      "input": 64656,
+      "finite": 64656,
+      "radius": 6848,
+      "self_removed": 29,
+      "self_filter": 6819,
+      "voxel": 6819,
+      "sor": 6579,
+      "output": 6579,
+      "frame": 16,
+      "stamp_ns": 1792739282964814523,
+      "center_xyz": [
+        20.23589999977048,
+        21.546700000379133,
+        3.917999999791384
+      ],
+      "pose_time_difference_sec": 0.005826215,
+      "max_joint_time_difference_sec": 0.000292004,
+      "processing_sec": 0.042921935906633735,
+      "residual_model_points": 0
+    },
+    {
+      "input": 65419,
+      "finite": 65419,
+      "radius": 6781,
+      "self_removed": 30,
+      "self_filter": 6751,
+      "voxel": 6751,
+      "sor": 6518,
+      "output": 6518,
+      "frame": 17,
+      "stamp_ns": 1792739283444833617,
+      "center_xyz": [
+        20.237900000098307,
+        21.546700000379133,
+        3.9200000001192095
+      ],
+      "pose_time_difference_sec": 0.0052529410000000006,
+      "max_joint_time_difference_sec": 0.00027137600000000004,
+      "processing_sec": 0.04242533119395375,
+      "residual_model_points": 0
+    },
+    {
+      "input": 64953,
+      "finite": 64953,
+      "radius": 6722,
+      "self_removed": 28,
+      "self_filter": 6694,
+      "voxel": 6694,
+      "sor": 6461,
+      "output": 6461,
+      "frame": 18,
+      "stamp_ns": 1792739283747199535,
+      "center_xyz": [
+        20.23390000037398,
+        21.544700000051307,
+        3.917999999791384
+      ],
+      "pose_time_difference_sec": 0.003343163,
+      "max_joint_time_difference_sec": 0.002093326,
+      "processing_sec": 0.04248807206749916,
+      "residual_model_points": 0
+    },
+    {
+      "input": 65576,
+      "finite": 65576,
+      "radius": 6664,
+      "self_removed": 27,
+      "self_filter": 6637,
+      "voxel": 6637,
+      "sor": 6396,
+      "output": 6396,
+      "frame": 19,
+      "stamp_ns": 1792739284130886634,
+      "center_xyz": [
+        20.231900000046153,
+        21.543699999887394,
+        3.9200000001192095
+      ],
+      "pose_time_difference_sec": 0.00017199400000000002,
+      "max_joint_time_difference_sec": 0.0012351480000000001,
+      "processing_sec": 0.04122998402453959,
+      "residual_model_points": 0
+    },
+    {
+      "input": 64534,
+      "finite": 64534,
+      "radius": 6616,
+      "self_removed": 31,
+      "self_filter": 6585,
+      "voxel": 6585,
+      "sor": 6354,
+      "output": 6354,
+      "frame": 20,
+      "stamp_ns": 1792739284497137195,
+      "center_xyz": [
+        20.23390000037398,
+        21.54269999972348,
+        3.9200000001192095
+      ],
+      "pose_time_difference_sec": 0.006495725000000001,
+      "max_joint_time_difference_sec": 0.002033004,
+      "processing_sec": 0.04362018103711307,
+      "residual_model_points": 0
+    },
+    {
+      "input": 63889,
+      "finite": 63889,
+      "radius": 6642,
+      "self_removed": 29,
+      "self_filter": 6613,
+      "voxel": 6613,
+      "sor": 6378,
+      "output": 6378,
+      "frame": 21,
+      "stamp_ns": 1792739284886706390,
+      "center_xyz": [
+        20.237900000098307,
+        21.543699999887394,
+        3.9210000002831222
+      ],
+      "pose_time_difference_sec": 0.0038799280000000004,
+      "max_joint_time_difference_sec": 0.00160281,
+      "processing_sec": 0.04144749604165554,
+      "residual_model_points": 0
+    },
+    {
+      "input": 63825,
+      "finite": 63825,
+      "radius": 6623,
+      "self_removed": 28,
+      "self_filter": 6595,
+      "voxel": 6595,
+      "sor": 6364,
+      "output": 6364,
+      "frame": 22,
+      "stamp_ns": 1792739285276883897,
+      "center_xyz": [
+        20.231900000046153,
+        21.54070000032698,
+        3.917999999791384
+      ],
+      "pose_time_difference_sec": 0.006244080000000001,
+      "max_joint_time_difference_sec": 0.001781306,
+      "processing_sec": 0.04110178700648248,
+      "residual_model_points": 0
+    },
+    {
+      "input": 64111,
+      "finite": 64111,
+      "radius": 6614,
+      "self_removed": 30,
+      "self_filter": 6584,
+      "voxel": 6584,
+      "sor": 6354,
+      "output": 6354,
+      "frame": 23,
+      "stamp_ns": 1792739285621847316,
+      "center_xyz": [
+        20.229899999718327,
+        21.54170000049089,
+        3.917999999791384
+      ],
+      "pose_time_difference_sec": 0.008760871,
+      "max_joint_time_difference_sec": 0.001218756,
+      "processing_sec": 0.04103421699255705,
+      "residual_model_points": 0
+    },
+    {
+      "input": 64486,
+      "finite": 64486,
+      "radius": 6669,
+      "self_removed": 30,
+      "self_filter": 6639,
+      "voxel": 6639,
+      "sor": 6405,
+      "output": 6405,
+      "frame": 24,
+      "stamp_ns": 1792739286060863577,
+      "center_xyz": [
+        20.23390000037398,
+        21.539700000163066,
+        3.9210000002831222
+      ],
+      "pose_time_difference_sec": 0.009693263,
+      "max_joint_time_difference_sec": 0.001138284,
+      "processing_sec": 0.04218574007973075,
+      "residual_model_points": 0
+    },
+    {
+      "input": 66585,
+      "finite": 66585,
+      "radius": 6717,
+      "self_removed": 30,
+      "self_filter": 6687,
+      "voxel": 6687,
+      "sor": 6460,
+      "output": 6460,
+      "frame": 25,
+      "stamp_ns": 1792739286469972844,
+      "center_xyz": [
+        20.229899999718327,
+        21.54070000032698,
+        3.9210000002831222
+      ],
+      "pose_time_difference_sec": 0.000588685,
+      "max_joint_time_difference_sec": 0.000125857,
+      "processing_sec": 0.042574089020490646,
+      "residual_model_points": 0
+    },
+    {
+      "input": 66572,
+      "finite": 66572,
+      "radius": 6673,
+      "self_removed": 31,
+      "self_filter": 6642,
+      "voxel": 6642,
+      "sor": 6415,
+      "output": 6415,
+      "frame": 26,
+      "stamp_ns": 1792739286773746153,
+      "center_xyz": [
+        20.23589999977048,
+        21.54070000032698,
+        3.9189999999552967
+      ],
+      "pose_time_difference_sec": 0.0036742800000000003,
+      "max_joint_time_difference_sec": 0.0013888070000000001,
+      "processing_sec": 0.04199450300075114,
+      "residual_model_points": 0
+    },
+    {
+      "input": 65480,
+      "finite": 65480,
+      "radius": 6632,
+      "self_removed": 31,
+      "self_filter": 6601,
+      "voxel": 6601,
+      "sor": 6371,
+      "output": 6371,
+      "frame": 27,
+      "stamp_ns": 1792739287109069904,
+      "center_xyz": [
+        20.231900000046153,
+        21.54170000049089,
+        3.923999999843538
+      ],
+      "pose_time_difference_sec": 0.001568411,
+      "max_joint_time_difference_sec": 0.0005598910000000001,
+      "processing_sec": 0.04181147878989577,
+      "residual_model_points": 0
+    },
+    {
+      "input": 66726,
+      "finite": 66726,
+      "radius": 6663,
+      "self_removed": 27,
+      "self_filter": 6636,
+      "voxel": 6636,
+      "sor": 6401,
+      "output": 6401,
+      "frame": 28,
+      "stamp_ns": 1792739287480041337,
+      "center_xyz": [
+        20.231900000046153,
+        21.54269999972348,
+        3.9250000000074508
+      ],
+      "pose_time_difference_sec": 0.009806054,
+      "max_joint_time_difference_sec": 0.00034759,
+      "processing_sec": 0.041853902861475945,
+      "residual_model_points": 0
+    },
+    {
+      "input": 67441,
+      "finite": 67441,
+      "radius": 6678,
+      "self_removed": 26,
+      "self_filter": 6652,
+      "voxel": 6652,
+      "sor": 6424,
+      "output": 6424,
+      "frame": 29,
+      "stamp_ns": 1792739287882917311,
+      "center_xyz": [
+        20.237900000098307,
+        21.544700000051307,
+        3.9260000001713635
+      ],
+      "pose_time_difference_sec": 0.007182395,
+      "max_joint_time_difference_sec": 0.002189467,
+      "processing_sec": 0.041439025895670056,
+      "residual_model_points": 0
+    },
+    {
+      "input": 66890,
+      "finite": 66890,
+      "radius": 6640,
+      "self_removed": 29,
+      "self_filter": 6611,
+      "voxel": 6611,
+      "sor": 6377,
+      "output": 6377,
+      "frame": 30,
+      "stamp_ns": 1792739288284124463,
+      "center_xyz": [
+        20.237900000098307,
+        21.544700000051307,
+        3.9270000003352763
+      ],
+      "pose_time_difference_sec": 0.005933895000000001,
+      "max_joint_time_difference_sec": 0.001032849,
+      "processing_sec": 0.04209640296176076,
+      "residual_model_points": 0
+    },
+    {
+      "input": 67665,
+      "finite": 67665,
+      "radius": 6696,
+      "self_removed": 28,
+      "self_filter": 6668,
+      "voxel": 6668,
+      "sor": 6432,
+      "output": 6432,
+      "frame": 31,
+      "stamp_ns": 1792739288647590812,
+      "center_xyz": [
+        20.237900000098307,
+        21.544700000051307,
+        3.9270000003352763
+      ],
+      "pose_time_difference_sec": 0.002605006,
+      "max_joint_time_difference_sec": 0.001778772,
+      "processing_sec": 0.04211654793471098,
+      "residual_model_points": 0
+    },
+    {
+      "input": 68339,
+      "finite": 68339,
+      "radius": 6719,
+      "self_removed": 27,
+      "self_filter": 6692,
+      "voxel": 6692,
+      "sor": 6452,
+      "output": 6452,
+      "frame": 32,
+      "stamp_ns": 1792739289001622807,
+      "center_xyz": [
+        20.231900000046153,
+        21.543699999887394,
+        3.922000000447035
+      ],
+      "pose_time_difference_sec": 0.008441127000000001,
+      "max_joint_time_difference_sec": 0.001949963,
+      "processing_sec": 0.041691793128848076,
+      "residual_model_points": 0
+    },
+    {
+      "input": 67395,
+      "finite": 67395,
+      "radius": 6684,
+      "self_removed": 20,
+      "self_filter": 6664,
+      "voxel": 6664,
+      "sor": 6424,
+      "output": 6424,
+      "frame": 33,
+      "stamp_ns": 1792739289331237104,
+      "center_xyz": [
+        20.23390000037398,
+        21.538699999999153,
+        3.9200000001192095
+      ],
+      "pose_time_difference_sec": 1.5805000000000002e-05,
+      "max_joint_time_difference_sec": 0.0014340840000000002,
+      "processing_sec": 0.04233788000419736,
+      "residual_model_points": 0
+    },
+    {
+      "input": 66625,
+      "finite": 66625,
+      "radius": 6644,
+      "self_removed": 12,
+      "self_filter": 6632,
+      "voxel": 6632,
+      "sor": 6404,
+      "output": 6404,
+      "frame": 34,
+      "stamp_ns": 1792739289714499722,
+      "center_xyz": [
+        20.23390000037398,
+        21.54269999972348,
+        3.9200000001192095
+      ],
+      "pose_time_difference_sec": 0.003916463,
+      "max_joint_time_difference_sec": 0.0006058260000000001,
+      "processing_sec": 0.041473253862932324,
+      "residual_model_points": 0
+    },
+    {
+      "input": 66092,
+      "finite": 66092,
+      "radius": 6667,
+      "self_removed": 11,
+      "self_filter": 6656,
+      "voxel": 6656,
+      "sor": 6432,
+      "output": 6432,
+      "frame": 35,
+      "stamp_ns": 1792739290132308377,
+      "center_xyz": [
+        20.23390000037398,
+        21.54070000032698,
+        3.9270000003352763
+      ],
+      "pose_time_difference_sec": 3.2016e-05,
+      "max_joint_time_difference_sec": 0.0019584190000000003,
+      "processing_sec": 0.04225356504321098,
+      "residual_model_points": 0
+    },
+    {
+      "input": 64999,
+      "finite": 64999,
+      "radius": 6640,
+      "self_removed": 10,
+      "self_filter": 6630,
+      "voxel": 6630,
+      "sor": 6409,
+      "output": 6409,
+      "frame": 36,
+      "stamp_ns": 1792739290464754761,
+      "center_xyz": [
+        20.231900000046153,
+        21.536699999671328,
+        3.9250000000074508
+      ],
+      "pose_time_difference_sec": 0.005943998000000001,
+      "max_joint_time_difference_sec": 0.000349453,
+      "processing_sec": 0.04165477491915226,
+      "residual_model_points": 0
+    },
+    {
+      "input": 63889,
+      "finite": 63889,
+      "radius": 6645,
+      "self_removed": 6,
+      "self_filter": 6639,
+      "voxel": 6639,
+      "sor": 6416,
+      "output": 6416,
+      "frame": 37,
+      "stamp_ns": 1792739290785971186,
+      "center_xyz": [
+        20.23390000037398,
+        21.536699999671328,
+        3.929999999895692
+      ],
+      "pose_time_difference_sec": 0.004214373,
+      "max_joint_time_difference_sec": 0.0008650880000000001,
+      "processing_sec": 0.042114000068977475,
+      "residual_model_points": 0
+    },
+    {
+      "input": 63623,
+      "finite": 63623,
+      "radius": 6664,
+      "self_removed": 2,
+      "self_filter": 6662,
+      "voxel": 6662,
+      "sor": 6437,
+      "output": 6437,
+      "frame": 38,
+      "stamp_ns": 1792739291113072726,
+      "center_xyz": [
+        20.23390000037398,
+        21.534700000274825,
+        3.9270000003352763
+      ],
+      "pose_time_difference_sec": 0.0023285370000000003,
+      "max_joint_time_difference_sec": 0.002067803,
+      "processing_sec": 0.041838976088911295,
+      "residual_model_points": 0
+    },
+    {
+      "input": 63307,
+      "finite": 63307,
+      "radius": 6713,
+      "self_removed": 1,
+      "self_filter": 6712,
+      "voxel": 6712,
+      "sor": 6489,
+      "output": 6489,
+      "frame": 39,
+      "stamp_ns": 1792739291490689398,
+      "center_xyz": [
+        20.23390000037398,
+        21.535700000438737,
+        3.931000000059605
+      ],
+      "pose_time_difference_sec": 0.000492246,
+      "max_joint_time_difference_sec": 0.00090481,
+      "processing_sec": 0.043182813096791506,
+      "residual_model_points": 0
+    },
+    {
+      "input": 63204,
+      "finite": 63204,
+      "radius": 6676,
+      "self_removed": 0,
+      "self_filter": 6676,
+      "voxel": 6676,
+      "sor": 6446,
+      "output": 6446,
+      "frame": 40,
+      "stamp_ns": 1792739291891465000,
+      "center_xyz": [
+        20.227900000321824,
+        21.536699999671328,
+        3.9289999997317793
+      ],
+      "pose_time_difference_sec": 0.000872165,
+      "max_joint_time_difference_sec": 0.0013396460000000001,
+      "processing_sec": 0.041669319150969386,
+      "residual_model_points": 0
+    },
+    {
+      "input": 63064,
+      "finite": 63064,
+      "radius": 6674,
+      "self_removed": 1,
+      "self_filter": 6673,
+      "voxel": 6673,
+      "sor": 6440,
+      "output": 6440,
+      "frame": 41,
+      "stamp_ns": 1792739292291688230,
+      "center_xyz": [
+        20.23390000037398,
+        21.532699999947,
+        3.9289999997317793
+      ],
+      "pose_time_difference_sec": 0.0016153530000000001,
+      "max_joint_time_difference_sec": 0.0019331980000000001,
+      "processing_sec": 0.04162811301648617,
+      "residual_model_points": 0
+    },
+    {
+      "input": 61773,
+      "finite": 61773,
+      "radius": 6694,
+      "self_removed": 2,
+      "self_filter": 6692,
+      "voxel": 6692,
+      "sor": 6465,
+      "output": 6465,
+      "frame": 42,
+      "stamp_ns": 1792739292576892517,
+      "center_xyz": [
+        20.23589999977048,
+        21.536699999671328,
+        3.9330000003874304
+      ],
+      "pose_time_difference_sec": 0.006265863,
+      "max_joint_time_difference_sec": 0.001778332,
+      "processing_sec": 0.04172112396918237,
+      "residual_model_points": 0
+    },
+    {
+      "input": 61639,
+      "finite": 61639,
+      "radius": 6742,
+      "self_removed": 1,
+      "self_filter": 6741,
+      "voxel": 6741,
+      "sor": 6510,
+      "output": 6510,
+      "frame": 43,
+      "stamp_ns": 1792739292929662750,
+      "center_xyz": [
+        20.23390000037398,
+        21.534700000274825,
+        3.9289999997317793
+      ],
+      "pose_time_difference_sec": 0.0009584420000000001,
+      "max_joint_time_difference_sec": 0.00011010800000000001,
+      "processing_sec": 0.04273132490925491,
+      "residual_model_points": 0
+    },
+    {
+      "input": 62567,
+      "finite": 62567,
+      "radius": 6747,
+      "self_removed": 1,
+      "self_filter": 6746,
+      "voxel": 6746,
+      "sor": 6516,
+      "output": 6516,
+      "frame": 44,
+      "stamp_ns": 1792739293268007766,
+      "center_xyz": [
+        20.23390000037398,
+        21.536699999671328,
+        3.9289999997317793
+      ],
+      "pose_time_difference_sec": 0.002611439,
+      "max_joint_time_difference_sec": 0.0015948980000000002,
+      "processing_sec": 0.0422485270537436,
+      "residual_model_points": 0
+    },
+    {
+      "input": 63582,
+      "finite": 63582,
+      "radius": 6733,
+      "self_removed": 1,
+      "self_filter": 6732,
+      "voxel": 6732,
+      "sor": 6507,
+      "output": 6507,
+      "frame": 45,
+      "stamp_ns": 1792739293596093523,
+      "center_xyz": [
+        20.23390000037398,
+        21.535700000438737,
+        3.929999999895692
+      ],
+      "pose_time_difference_sec": 0.005900026,
+      "max_joint_time_difference_sec": 0.0009010950000000001,
+      "processing_sec": 0.041842610808089375,
+      "residual_model_points": 0
+    },
+    {
+      "input": 64707,
+      "finite": 64707,
+      "radius": 6762,
+      "self_removed": 1,
+      "self_filter": 6761,
+      "voxel": 6761,
+      "sor": 6532,
+      "output": 6532,
+      "frame": 46,
+      "stamp_ns": 1792739293996513156,
+      "center_xyz": [
+        20.231900000046153,
+        21.535700000438737,
+        3.9289999997317793
+      ],
+      "pose_time_difference_sec": 0.005862363000000001,
+      "max_joint_time_difference_sec": 0.0014063200000000002,
+      "processing_sec": 0.041713346960023046,
+      "residual_model_points": 0
+    },
+    {
+      "input": 65064,
+      "finite": 65064,
+      "radius": 6758,
+      "self_removed": 2,
+      "self_filter": 6756,
+      "voxel": 6756,
+      "sor": 6522,
+      "output": 6522,
+      "frame": 47,
+      "stamp_ns": 1792739294364908875,
+      "center_xyz": [
+        20.231900000046153,
+        21.536699999671328,
+        3.931000000059605
+      ],
+      "pose_time_difference_sec": 0.005259481000000001,
+      "max_joint_time_difference_sec": 0.00023168800000000002,
+      "processing_sec": 0.04247966012917459,
+      "residual_model_points": 0
+    },
+    {
+      "input": 65366,
+      "finite": 65366,
+      "radius": 6734,
+      "self_removed": 2,
+      "self_filter": 6732,
+      "voxel": 6732,
+      "sor": 6492,
+      "output": 6492,
+      "frame": 48,
+      "stamp_ns": 1792739294701275777,
+      "center_xyz": [
+        20.23390000037398,
+        21.536699999671328,
+        3.931000000059605
+      ],
+      "pose_time_difference_sec": 0.009062989,
+      "max_joint_time_difference_sec": 0.001543929,
+      "processing_sec": 0.04308930202387273,
+      "residual_model_points": 0
+    },
+    {
+      "input": 65598,
+      "finite": 65598,
+      "radius": 6793,
+      "self_removed": 3,
+      "self_filter": 6790,
+      "voxel": 6790,
+      "sor": 6548,
+      "output": 6548,
+      "frame": 49,
+      "stamp_ns": 1792739295101764114,
+      "center_xyz": [
+        20.23390000037398,
+        21.53769999983524,
+        3.9320000002235176
+      ],
+      "pose_time_difference_sec": 0.008900596,
+      "max_joint_time_difference_sec": 0.0020759610000000003,
+      "processing_sec": 0.04195801611058414,
+      "residual_model_points": 0
+    },
+    {
+      "input": 65335,
+      "finite": 65335,
+      "radius": 6793,
+      "self_removed": 4,
+      "self_filter": 6789,
+      "voxel": 6789,
+      "sor": 6540,
+      "output": 6540,
+      "frame": 50,
+      "stamp_ns": 1792739295470062630,
+      "center_xyz": [
+        20.23390000037398,
+        21.53769999983524,
+        3.929999999895692
+      ],
+      "pose_time_difference_sec": 0.00012932000000000002,
+      "max_joint_time_difference_sec": 0.000420664,
+      "processing_sec": 0.04319758713245392,
+      "residual_model_points": 0
+    },
+    {
+      "input": 64381,
+      "finite": 64381,
+      "radius": 6728,
+      "self_removed": 4,
+      "self_filter": 6724,
+      "voxel": 6724,
+      "sor": 6466,
+      "output": 6466,
+      "frame": 51,
+      "stamp_ns": 1792739295873608140,
+      "center_xyz": [
+        20.237900000098307,
+        21.536699999671328,
+        3.9320000002235176
+      ],
+      "pose_time_difference_sec": 0.016953242,
+      "max_joint_time_difference_sec": 0.013929792000000002,
+      "processing_sec": 0.04133266885764897,
+      "residual_model_points": 0
+    },
+    {
+      "input": 65220,
+      "finite": 65220,
+      "radius": 6778,
+      "self_removed": 3,
+      "self_filter": 6775,
+      "voxel": 6775,
+      "sor": 6517,
+      "output": 6517,
+      "frame": 52,
+      "stamp_ns": 1792739296212976526,
+      "center_xyz": [
+        20.23390000037398,
+        21.536699999671328,
+        3.923999999843538
+      ],
+      "pose_time_difference_sec": 0.0028674430000000003,
+      "max_joint_time_difference_sec": 0.002190978,
+      "processing_sec": 0.042218863032758236,
+      "residual_model_points": 0
+    },
+    {
+      "input": 65220,
+      "finite": 65220,
+      "radius": 6785,
+      "self_removed": 2,
+      "self_filter": 6783,
+      "voxel": 6783,
+      "sor": 6529,
+      "output": 6529,
+      "frame": 53,
+      "stamp_ns": 1792739296520388978,
+      "center_xyz": [
+        20.23390000037398,
+        21.536699999671328,
+        3.928000000499189
+      ],
+      "pose_time_difference_sec": 0.009831061,
+      "max_joint_time_difference_sec": 0.000180285,
+      "processing_sec": 0.0422703200019896,
+      "residual_model_points": 0
+    },
+    {
+      "input": 64500,
+      "finite": 64500,
+      "radius": 6759,
+      "self_removed": 1,
+      "self_filter": 6758,
+      "voxel": 6758,
+      "sor": 6513,
+      "output": 6513,
+      "frame": 54,
+      "stamp_ns": 1792739296842727520,
+      "center_xyz": [
+        20.231900000046153,
+        21.53769999983524,
+        3.928000000499189
+      ],
+      "pose_time_difference_sec": 0.007878039,
+      "max_joint_time_difference_sec": 0.002378788,
+      "processing_sec": 0.041977894958108664,
+      "residual_model_points": 0
+    },
+    {
+      "input": 63098,
+      "finite": 63098,
+      "radius": 6682,
+      "self_removed": 1,
+      "self_filter": 6681,
+      "voxel": 6681,
+      "sor": 6429,
+      "output": 6429,
+      "frame": 55,
+      "stamp_ns": 1792739297079676012,
+      "center_xyz": [
+        20.23390000037398,
+        21.53769999983524,
+        3.9349999997839333
+      ],
+      "pose_time_difference_sec": 0.009493919,
+      "max_joint_time_difference_sec": 6.482100000000001e-05,
+      "processing_sec": 0.04196191905066371,
+      "residual_model_points": 0
+    },
+    {
+      "input": 62879,
+      "finite": 62879,
+      "radius": 6671,
+      "self_removed": 1,
+      "self_filter": 6670,
+      "voxel": 6670,
+      "sor": 6414,
+      "output": 6414,
+      "frame": 56,
+      "stamp_ns": 1792739297443623144,
+      "center_xyz": [
+        20.23390000037398,
+        21.538699999999153,
+        3.9349999997839333
+      ],
+      "pose_time_difference_sec": 0.006497766,
+      "max_joint_time_difference_sec": 0.0015240680000000002,
+      "processing_sec": 0.04162658494897187,
+      "residual_model_points": 0
+    },
+    {
+      "input": 63114,
+      "finite": 63114,
+      "radius": 6699,
+      "self_removed": 1,
+      "self_filter": 6698,
+      "voxel": 6698,
+      "sor": 6433,
+      "output": 6433,
+      "frame": 57,
+      "stamp_ns": 1792739297844789683,
+      "center_xyz": [
+        20.23589999977048,
+        21.539700000163066,
+        3.931000000059605
+      ],
+      "pose_time_difference_sec": 0.005338272000000001,
+      "max_joint_time_difference_sec": 0.000347326,
+      "processing_sec": 0.04150243219919503,
+      "residual_model_points": 0
+    },
+    {
+      "input": 62562,
+      "finite": 62562,
+      "radius": 6640,
+      "self_removed": 2,
+      "self_filter": 6638,
+      "voxel": 6638,
+      "sor": 6382,
+      "output": 6382,
+      "frame": 58,
+      "stamp_ns": 1792739298125924350,
+      "center_xyz": [
+        20.23390000037398,
+        21.54269999972348,
+        3.9320000002235176
+      ],
+      "pose_time_difference_sec": 0.004648944,
+      "max_joint_time_difference_sec": 0.000811273,
+      "processing_sec": 0.04180583287961781,
+      "residual_model_points": 0
+    },
+    {
+      "input": 62657,
+      "finite": 62657,
+      "radius": 6636,
+      "self_removed": 2,
+      "self_filter": 6634,
+      "voxel": 6634,
+      "sor": 6378,
+      "output": 6378,
+      "frame": 59,
+      "stamp_ns": 1792739298458197529,
+      "center_xyz": [
+        20.237900000098307,
+        21.536699999671328,
+        3.9380000002756717
+      ],
+      "pose_time_difference_sec": 0.007971721000000001,
+      "max_joint_time_difference_sec": 0.001002352,
+      "processing_sec": 0.041376168141141534,
+      "residual_model_points": 0
+    },
+    {
+      "input": 64591,
+      "finite": 64591,
+      "radius": 6641,
+      "self_removed": 1,
+      "self_filter": 6640,
+      "voxel": 6640,
+      "sor": 6392,
+      "output": 6392,
+      "frame": 60,
+      "stamp_ns": 1792739298818023758,
+      "center_xyz": [
+        20.239900000426132,
+        21.539700000163066,
+        3.929999999895692
+      ],
+      "pose_time_difference_sec": 0.007888104,
+      "max_joint_time_difference_sec": 0.0022690930000000002,
+      "processing_sec": 0.04115131194703281,
+      "residual_model_points": 0
+    },
+    {
+      "input": 64865,
+      "finite": 64865,
+      "radius": 6674,
+      "self_removed": 1,
+      "self_filter": 6673,
+      "voxel": 6673,
+      "sor": 6422,
+      "output": 6422,
+      "frame": 61,
+      "stamp_ns": 1792739299137926455,
+      "center_xyz": [
+        20.237900000098307,
+        21.535700000438737,
+        3.934000000551343
+      ],
+      "pose_time_difference_sec": 0.005487184,
+      "max_joint_time_difference_sec": 0.00135266,
+      "processing_sec": 0.042000961024314165,
+      "residual_model_points": 0
+    },
+    {
+      "input": 64181,
+      "finite": 64181,
+      "radius": 6680,
+      "self_removed": 1,
+      "self_filter": 6679,
+      "voxel": 6679,
+      "sor": 6441,
+      "output": 6441,
+      "frame": 62,
+      "stamp_ns": 1792739299462833503,
+      "center_xyz": [
+        20.23589999977048,
+        21.532699999947,
+        3.916000000394881
+      ],
+      "pose_time_difference_sec": 0.007750711,
+      "max_joint_time_difference_sec": 0.002271926,
+      "processing_sec": 0.04402933595702052,
+      "residual_model_points": 0
+    },
+    {
+      "input": 65957,
+      "finite": 65957,
+      "radius": 6731,
+      "self_removed": 2,
+      "self_filter": 6729,
+      "voxel": 6729,
+      "sor": 6493,
+      "output": 6493,
+      "frame": 63,
+      "stamp_ns": 1792739299853801564,
+      "center_xyz": [
+        20.240899999658723,
+        21.530700000550496,
+        3.937000000111759
+      ],
+      "pose_time_difference_sec": 0.00371936,
+      "max_joint_time_difference_sec": 0.001304561,
+      "processing_sec": 0.04241985408589244,
+      "residual_model_points": 0
+    },
+    {
+      "input": 65424,
+      "finite": 65424,
+      "radius": 6810,
+      "self_removed": 2,
+      "self_filter": 6808,
+      "voxel": 6808,
+      "sor": 6571,
+      "output": 6571,
+      "frame": 64,
+      "stamp_ns": 1792739300195082482,
+      "center_xyz": [
+        20.237900000098307,
+        21.535700000438737,
+        3.922999999679625
+      ],
+      "pose_time_difference_sec": 0.004962499,
+      "max_joint_time_difference_sec": 6.5807e-05,
+      "processing_sec": 0.044279220048338175,
+      "residual_model_points": 0
+    },
+    {
+      "input": 66231,
+      "finite": 66231,
+      "radius": 6921,
+      "self_removed": 2,
+      "self_filter": 6919,
+      "voxel": 6919,
+      "sor": 6682,
+      "output": 6682,
+      "frame": 65,
+      "stamp_ns": 1792739300529100735,
+      "center_xyz": [
+        20.229899999718327,
+        21.535700000438737,
+        3.923999999843538
+      ],
+      "pose_time_difference_sec": 0.002111902,
+      "max_joint_time_difference_sec": 0.000509958,
+      "processing_sec": 0.04312044312246144,
+      "residual_model_points": 0
+    },
+    {
+      "input": 67324,
+      "finite": 67324,
+      "radius": 6946,
+      "self_removed": 2,
+      "self_filter": 6944,
+      "voxel": 6944,
+      "sor": 6704,
+      "output": 6704,
+      "frame": 66,
+      "stamp_ns": 1792739300907628948,
+      "center_xyz": [
+        20.23390000037398,
+        21.530700000550496,
+        3.935999999947846
+      ],
+      "pose_time_difference_sec": 0.002543604,
+      "max_joint_time_difference_sec": 0.0016924160000000002,
+      "processing_sec": 0.04535941197536886,
+      "residual_model_points": 0
+    },
+    {
+      "input": 65660,
+      "finite": 65660,
+      "radius": 6932,
+      "self_removed": 3,
+      "self_filter": 6929,
+      "voxel": 6929,
+      "sor": 6683,
+      "output": 6683,
+      "frame": 67,
+      "stamp_ns": 1792739301177506591,
+      "center_xyz": [
+        20.23390000037398,
+        21.534700000274825,
+        3.937000000111759
+      ],
+      "pose_time_difference_sec": 0.0074079110000000005,
+      "max_joint_time_difference_sec": 0.001844343,
+      "processing_sec": 0.04455885011702776,
+      "residual_model_points": 0
+    },
+    {
+      "input": 64831,
+      "finite": 64831,
+      "radius": 6890,
+      "self_removed": 2,
+      "self_filter": 6888,
+      "voxel": 6888,
+      "sor": 6642,
+      "output": 6642,
+      "frame": 68,
+      "stamp_ns": 1792739301572863579,
+      "center_xyz": [
+        20.225899999994,
+        21.535700000438737,
+        3.935999999947846
+      ],
+      "pose_time_difference_sec": 0.002731667,
+      "max_joint_time_difference_sec": 0.002333728,
+      "processing_sec": 0.04342713602818549,
+      "residual_model_points": 0
+    },
+    {
+      "input": 64872,
+      "finite": 64872,
+      "radius": 6908,
+      "self_removed": 2,
+      "self_filter": 6906,
+      "voxel": 6906,
+      "sor": 6663,
+      "output": 6663,
+      "frame": 69,
+      "stamp_ns": 1792739301933313739,
+      "center_xyz": [
+        20.231900000046153,
+        21.538699999999153,
+        3.9289999997317793
+      ],
+      "pose_time_difference_sec": 0.001107092,
+      "max_joint_time_difference_sec": 0.0017920710000000001,
+      "processing_sec": 0.04332622606307268,
+      "residual_model_points": 0
+    },
+    {
+      "input": 62171,
+      "finite": 62171,
+      "radius": 6805,
+      "self_removed": 3,
+      "self_filter": 6802,
+      "voxel": 6802,
+      "sor": 6556,
+      "output": 6556,
+      "frame": 70,
+      "stamp_ns": 1792739302247982097,
+      "center_xyz": [
+        20.231900000046153,
+        21.531699999783086,
+        3.937000000111759
+      ],
+      "pose_time_difference_sec": 0.002625259,
+      "max_joint_time_difference_sec": 0.0016661570000000001,
+      "processing_sec": 0.043556483928114176,
+      "residual_model_points": 0
+    },
+    {
+      "input": 61940,
+      "finite": 61940,
+      "radius": 6761,
+      "self_removed": 3,
+      "self_filter": 6758,
+      "voxel": 6758,
+      "sor": 6522,
+      "output": 6522,
+      "frame": 71,
+      "stamp_ns": 1792739302606005809,
+      "center_xyz": [
+        20.23390000037398,
+        21.535700000438737,
+        3.934000000551343
+      ],
+      "pose_time_difference_sec": 0.004642097,
+      "max_joint_time_difference_sec": 0.000900487,
+      "processing_sec": 0.04369315900839865,
+      "residual_model_points": 0
+    },
+    {
+      "input": 62449,
+      "finite": 62449,
+      "radius": 6765,
+      "self_removed": 3,
+      "self_filter": 6762,
+      "voxel": 6762,
+      "sor": 6522,
+      "output": 6522,
+      "frame": 72,
+      "stamp_ns": 1792739302890243417,
+      "center_xyz": [
+        20.231900000046153,
+        21.534700000274825,
+        3.9399999996721746
+      ],
+      "pose_time_difference_sec": 0.000143816,
+      "max_joint_time_difference_sec": 0.000579424,
+      "processing_sec": 0.04389271489344537,
+      "residual_model_points": 0
+    },
+    {
+      "input": 63147,
+      "finite": 63147,
+      "radius": 6785,
+      "self_removed": 2,
+      "self_filter": 6783,
+      "voxel": 6783,
+      "sor": 6540,
+      "output": 6540,
+      "frame": 73,
+      "stamp_ns": 1792739303258036622,
+      "center_xyz": [
+        20.231900000046153,
+        21.53769999983524,
+        3.931000000059605
+      ],
+      "pose_time_difference_sec": 0.007622734000000001,
+      "max_joint_time_difference_sec": 0.001204758,
+      "processing_sec": 0.04412803193554282,
+      "residual_model_points": 0
+    },
+    {
+      "input": 63569,
+      "finite": 63569,
+      "radius": 6746,
+      "self_removed": 2,
+      "self_filter": 6744,
+      "voxel": 6744,
+      "sor": 6496,
+      "output": 6496,
+      "frame": 74,
+      "stamp_ns": 1792739303637369815,
+      "center_xyz": [
+        20.231900000046153,
+        21.534700000274825,
+        3.934000000551343
+      ],
+      "pose_time_difference_sec": 0.005277128000000001,
+      "max_joint_time_difference_sec": 0.001826176,
+      "processing_sec": 0.044634869089350104,
+      "residual_model_points": 0
+    },
+    {
+      "input": 64096,
+      "finite": 64096,
+      "radius": 6773,
+      "self_removed": 3,
+      "self_filter": 6770,
+      "voxel": 6770,
+      "sor": 6526,
+      "output": 6526,
+      "frame": 75,
+      "stamp_ns": 1792739304007570442,
+      "center_xyz": [
+        20.229899999718327,
+        21.534700000274825,
+        3.934000000551343
+      ],
+      "pose_time_difference_sec": 0.003035718,
+      "max_joint_time_difference_sec": 0.0020301110000000002,
+      "processing_sec": 0.045040843077003956,
+      "residual_model_points": 0
+    },
+    {
+      "input": 65056,
+      "finite": 65056,
+      "radius": 6918,
+      "self_removed": 2,
+      "self_filter": 6916,
+      "voxel": 6916,
+      "sor": 6657,
+      "output": 6657,
+      "frame": 76,
+      "stamp_ns": 1792739304340907146,
+      "center_xyz": [
+        20.231900000046153,
+        21.536699999671328,
+        3.9349999997839333
+      ],
+      "pose_time_difference_sec": 0.008344372000000001,
+      "max_joint_time_difference_sec": 0.001251519,
+      "processing_sec": 0.04718070803210139,
+      "residual_model_points": 0
+    },
+    {
+      "input": 66269,
+      "finite": 66269,
+      "radius": 6998,
+      "self_removed": 2,
+      "self_filter": 6996,
+      "voxel": 6996,
+      "sor": 6747,
+      "output": 6747,
+      "frame": 77,
+      "stamp_ns": 1792739304653762959,
+      "center_xyz": [
+        20.231900000046153,
+        21.533700000110912,
+        3.934000000551343
+      ],
+      "pose_time_difference_sec": 0.003388339,
+      "max_joint_time_difference_sec": 0.00137261,
+      "processing_sec": 0.04543354385532439,
+      "residual_model_points": 0
+    },
+    {
+      "input": 66585,
+      "finite": 66585,
+      "radius": 6935,
+      "self_removed": 5,
+      "self_filter": 6930,
+      "voxel": 6930,
+      "sor": 6682,
+      "output": 6682,
+      "frame": 78,
+      "stamp_ns": 1792739305058527093,
+      "center_xyz": [
+        20.23390000037398,
+        21.53769999983524,
+        3.9390000004395844
+      ],
+      "pose_time_difference_sec": 0.00781586,
+      "max_joint_time_difference_sec": 0.000704521,
+      "processing_sec": 0.04375317809171975,
+      "residual_model_points": 0
+    },
+    {
+      "input": 66466,
+      "finite": 66466,
+      "radius": 6871,
+      "self_removed": 6,
+      "self_filter": 6865,
+      "voxel": 6865,
+      "sor": 6590,
+      "output": 6590,
+      "frame": 79,
+      "stamp_ns": 1792739305436863655,
+      "center_xyz": [
+        20.23390000037398,
+        21.53769999983524,
+        3.937000000111759
+      ],
+      "pose_time_difference_sec": 0.004525381,
+      "max_joint_time_difference_sec": 0.0017561330000000002,
+      "processing_sec": 0.04327665898017585,
+      "residual_model_points": 0
+    },
+    {
+      "input": 65453,
+      "finite": 65453,
+      "radius": 6898,
+      "self_removed": 4,
+      "self_filter": 6894,
+      "voxel": 6894,
+      "sor": 6635,
+      "output": 6635,
+      "frame": 80,
+      "stamp_ns": 1792739305752763688,
+      "center_xyz": [
+        20.23390000037398,
+        21.538699999999153,
+        3.937000000111759
+      ],
+      "pose_time_difference_sec": 0.002148379,
+      "max_joint_time_difference_sec": 0.00236885,
+      "processing_sec": 0.0446169211063534,
+      "residual_model_points": 0
+    },
+    {
+      "input": 65645,
+      "finite": 65645,
+      "radius": 6811,
+      "self_removed": 5,
+      "self_filter": 6806,
+      "voxel": 6806,
+      "sor": 6546,
+      "output": 6546,
+      "frame": 81,
+      "stamp_ns": 1792739306172328125,
+      "center_xyz": [
+        20.23589999977048,
+        21.536699999671328,
+        3.9349999997839333
+      ],
+      "pose_time_difference_sec": 0.001774727,
+      "max_joint_time_difference_sec": 0.0021019470000000003,
+      "processing_sec": 0.04371184390038252,
+      "residual_model_points": 0
+    },
+    {
+      "input": 66650,
+      "finite": 66650,
+      "radius": 6737,
+      "self_removed": 4,
+      "self_filter": 6733,
+      "voxel": 6733,
+      "sor": 6502,
+      "output": 6502,
+      "frame": 82,
+      "stamp_ns": 1792739306592244905,
+      "center_xyz": [
+        20.237900000098307,
+        21.539700000163066,
+        3.9409999998360874
+      ],
+      "pose_time_difference_sec": 0.001607092,
+      "max_joint_time_difference_sec": 0.002046342,
+      "processing_sec": 0.042147950967773795,
+      "residual_model_points": 0
+    },
+    {
+      "input": 66192,
+      "finite": 66192,
+      "radius": 6770,
+      "self_removed": 5,
+      "self_filter": 6765,
+      "voxel": 6765,
+      "sor": 6529,
+      "output": 6529,
+      "frame": 83,
+      "stamp_ns": 1792739306999593748,
+      "center_xyz": [
+        20.23390000037398,
+        21.533700000110912,
+        3.9289999997317793
+      ],
+      "pose_time_difference_sec": 0.00894607,
+      "max_joint_time_difference_sec": 0.00011392300000000001,
+      "processing_sec": 0.04194867890328169,
+      "residual_model_points": 0
+    },
+    {
+      "input": 66588,
+      "finite": 66588,
+      "radius": 6783,
+      "self_removed": 3,
+      "self_filter": 6780,
+      "voxel": 6780,
+      "sor": 6553,
+      "output": 6553,
+      "frame": 84,
+      "stamp_ns": 1792739307415284493,
+      "center_xyz": [
+        20.23589999977048,
+        21.533700000110912,
+        3.9399999996721746
+      ],
+      "pose_time_difference_sec": 0.005104224,
+      "max_joint_time_difference_sec": 0.000120662,
+      "processing_sec": 0.0429536160081625,
+      "residual_model_points": 0
+    },
+    {
+      "input": 67011,
+      "finite": 67011,
+      "radius": 6734,
+      "self_removed": 4,
+      "self_filter": 6730,
+      "voxel": 6730,
+      "sor": 6498,
+      "output": 6498,
+      "frame": 85,
+      "stamp_ns": 1792739307821464161,
+      "center_xyz": [
+        20.223899999666173,
+        21.543699999887394,
+        3.9390000004395844
+      ],
+      "pose_time_difference_sec": 0.009099279,
+      "max_joint_time_difference_sec": 0.0008318220000000001,
+      "processing_sec": 0.04242457705549896,
+      "residual_model_points": 0
+    },
+    {
+      "input": 67271,
+      "finite": 67271,
+      "radius": 6768,
+      "self_removed": 6,
+      "self_filter": 6762,
+      "voxel": 6762,
+      "sor": 6533,
+      "output": 6533,
+      "frame": 86,
+      "stamp_ns": 1792739308209627605,
+      "center_xyz": [
+        20.23390000037398,
+        21.543699999887394,
+        3.9250000000074508
+      ],
+      "pose_time_difference_sec": 0.000981845,
+      "max_joint_time_difference_sec": 1.2515000000000001e-05,
+      "processing_sec": 0.04362160316668451,
+      "residual_model_points": 0
+    },
+    {
+      "input": 68117,
+      "finite": 68117,
+      "radius": 6917,
+      "self_removed": 5,
+      "self_filter": 6912,
+      "voxel": 6912,
+      "sor": 6695,
+      "output": 6695,
+      "frame": 87,
+      "stamp_ns": 1792739308644673179,
+      "center_xyz": [
+        20.231900000046153,
+        21.57169999982034,
+        3.9320000002235176
+      ],
+      "pose_time_difference_sec": 0.005695997,
+      "max_joint_time_difference_sec": 0.00043067500000000005,
+      "processing_sec": 0.04399530799128115,
+      "residual_model_points": 0
+    },
+    {
+      "input": 67104,
+      "finite": 67104,
+      "radius": 6963,
+      "self_removed": 4,
+      "self_filter": 6959,
+      "voxel": 6959,
+      "sor": 6739,
+      "output": 6739,
+      "frame": 88,
+      "stamp_ns": 1792739308947344316,
+      "center_xyz": [
+        20.21389999988969,
+        21.568700000259923,
+        3.9540000001043083
+      ],
+      "pose_time_difference_sec": 0.0030559550000000004,
+      "max_joint_time_difference_sec": 0.002229942,
+      "processing_sec": 0.045808125054463744,
+      "residual_model_points": 0
+    },
+    {
+      "input": 66913,
+      "finite": 66913,
+      "radius": 7014,
+      "self_removed": 7,
+      "self_filter": 7007,
+      "voxel": 7007,
+      "sor": 6764,
+      "output": 6764,
+      "frame": 89,
+      "stamp_ns": 1792739309388764676,
+      "center_xyz": [
+        20.190899999844987,
+        21.57570000047599,
+        3.9450000004917385
+      ],
+      "pose_time_difference_sec": 0.0018226590000000001,
+      "max_joint_time_difference_sec": 0.000902469,
+      "processing_sec": 0.047349438071250916,
+      "residual_model_points": 0
+    },
+    {
+      "input": 68014,
+      "finite": 68014,
+      "radius": 7193,
+      "self_removed": 3,
+      "self_filter": 7190,
+      "voxel": 7190,
+      "sor": 6949,
+      "output": 6949,
+      "frame": 90,
+      "stamp_ns": 1792739309848175525,
+      "center_xyz": [
+        20.192900000172813,
+        21.573700000148165,
+        3.949000000216067
+      ],
+      "pose_time_difference_sec": 0.002056015,
+      "max_joint_time_difference_sec": 0.00122648,
+      "processing_sec": 0.04823423293419182,
+      "residual_model_points": 0
+    },
+    {
+      "input": 68497,
+      "finite": 68497,
+      "radius": 7288,
+      "self_removed": 5,
+      "self_filter": 7283,
+      "voxel": 7283,
+      "sor": 7060,
+      "output": 7060,
+      "frame": 91,
+      "stamp_ns": 1792739310253382446,
+      "center_xyz": [
+        20.18290000039633,
+        21.564700000535595,
+        3.9510000005438926
+      ],
+      "pose_time_difference_sec": 0.002938262,
+      "max_joint_time_difference_sec": 0.0017626590000000002,
+      "processing_sec": 0.04756627790629864,
+      "residual_model_points": 0
+    },
+    {
+      "input": 67295,
+      "finite": 67295,
+      "radius": 7277,
+      "self_removed": 6,
+      "self_filter": 7271,
+      "voxel": 7271,
+      "sor": 7052,
+      "output": 7052,
+      "frame": 92,
+      "stamp_ns": 1792739310632938470,
+      "center_xyz": [
+        20.172899999688525,
+        21.573700000148165,
+        3.9349999997839333
+      ],
+      "pose_time_difference_sec": 0.0009157970000000001,
+      "max_joint_time_difference_sec": 0.002199593,
+      "processing_sec": 0.04632352292537689,
+      "residual_model_points": 0
+    },
+    {
+      "input": 67838,
+      "finite": 67838,
+      "radius": 7347,
+      "self_removed": 7,
+      "self_filter": 7340,
+      "voxel": 7340,
+      "sor": 7143,
+      "output": 7143,
+      "frame": 93,
+      "stamp_ns": 1792739310906757829,
+      "center_xyz": [
+        20.17889999974068,
+        21.566699999932098,
+        3.9440000003278257
+      ],
+      "pose_time_difference_sec": 0.0033559740000000003,
+      "max_joint_time_difference_sec": 0.001599968,
+      "processing_sec": 0.04650898789986968,
+      "residual_model_points": 0
+    },
+    {
+      "input": 68115,
+      "finite": 68115,
+      "radius": 7324,
+      "self_removed": 11,
+      "self_filter": 7313,
+      "voxel": 7313,
+      "sor": 7123,
+      "output": 7123,
+      "frame": 94,
+      "stamp_ns": 1792739311331504131,
+      "center_xyz": [
+        20.180900000068505,
+        21.55870000048344,
+        3.9529999999403955
+      ],
+      "pose_time_difference_sec": 0.000162962,
+      "max_joint_time_difference_sec": 0.0009388500000000001,
+      "processing_sec": 0.04872886720113456,
+      "residual_model_points": 0
+    },
+    {
+      "input": 67247,
+      "finite": 67247,
+      "radius": 7229,
+      "self_removed": 13,
+      "self_filter": 7216,
+      "voxel": 7216,
+      "sor": 7031,
+      "output": 7031,
+      "frame": 95,
+      "stamp_ns": 1792739311739754790,
+      "center_xyz": [
+        20.18690000012066,
+        21.561700000043857,
+        3.956999999664724
+      ],
+      "pose_time_difference_sec": 0.007394138000000001,
+      "max_joint_time_difference_sec": 0.00017729800000000002,
+      "processing_sec": 0.045941890915855765,
+      "residual_model_points": 0
+    },
+    {
+      "input": 64618,
+      "finite": 64618,
+      "radius": 7108,
+      "self_removed": 13,
+      "self_filter": 7095,
+      "voxel": 7095,
+      "sor": 6917,
+      "output": 6917,
+      "frame": 96,
+      "stamp_ns": 1792739312070994660,
+      "center_xyz": [
+        20.18290000039633,
+        21.55469999982779,
+        3.9529999999403955
+      ],
+      "pose_time_difference_sec": 0.0008071020000000001,
+      "max_joint_time_difference_sec": 0.001215505,
+      "processing_sec": 0.048018228029832244,
+      "residual_model_points": 0
+    },
+    {
+      "input": 63353,
+      "finite": 63353,
+      "radius": 7011,
+      "self_removed": 12,
+      "self_filter": 6999,
+      "voxel": 6999,
+      "sor": 6803,
+      "output": 6803,
+      "frame": 97,
+      "stamp_ns": 1792739312404866305,
+      "center_xyz": [
+        20.184899999792833,
+        21.56270000020777,
+        3.9510000005438926
+      ],
+      "pose_time_difference_sec": 0.005225451000000001,
+      "max_joint_time_difference_sec": 0.00024609,
+      "processing_sec": 0.04498058487661183,
+      "residual_model_points": 0
+    },
+    {
+      "input": 64428,
+      "finite": 64428,
+      "radius": 6973,
+      "self_removed": 14,
+      "self_filter": 6959,
+      "voxel": 6959,
+      "sor": 6753,
+      "output": 6753,
+      "frame": 98,
+      "stamp_ns": 1792739312860274015,
+      "center_xyz": [
+        20.18690000012066,
+        21.572699999984252,
+        3.9480000000521542
+      ],
+      "pose_time_difference_sec": 0.010168787,
+      "max_joint_time_difference_sec": 0.0006058270000000001,
+      "processing_sec": 0.04734984692186117,
+      "residual_model_points": 0
+    },
+    {
+      "input": 63406,
+      "finite": 63406,
+      "radius": 6859,
+      "self_removed": 10,
+      "self_filter": 6849,
+      "voxel": 6849,
+      "sor": 6629,
+      "output": 6629,
+      "frame": 99,
+      "stamp_ns": 1792739313298285916,
+      "center_xyz": [
+        20.180900000068505,
+        21.566699999932098,
+        3.9409999998360874
+      ],
+      "pose_time_difference_sec": 0.007735959000000001,
+      "max_joint_time_difference_sec": 0.0009583910000000001,
+      "processing_sec": 0.04550229501910508,
+      "residual_model_points": 0
+    },
+    {
+      "input": 64355,
+      "finite": 64355,
+      "radius": 6946,
+      "self_removed": 11,
+      "self_filter": 6935,
+      "voxel": 6935,
+      "sor": 6719,
+      "output": 6719,
+      "frame": 100,
+      "stamp_ns": 1792739313662069455,
+      "center_xyz": [
+        20.184899999792833,
+        21.56270000020777,
+        3.9390000004395844
+      ],
+      "pose_time_difference_sec": 0.008049991000000001,
+      "max_joint_time_difference_sec": 0.0023612470000000003,
+      "processing_sec": 0.04400753998197615,
+      "residual_model_points": 0
+    },
+    {
+      "input": 65890,
+      "finite": 65890,
+      "radius": 6974,
+      "self_removed": 11,
+      "self_filter": 6963,
+      "voxel": 6963,
+      "sor": 6754,
+      "output": 6754,
+      "frame": 101,
+      "stamp_ns": 1792739314041688446,
+      "center_xyz": [
+        20.18690000012066,
+        21.566699999932098,
+        3.9450000004917385
+      ],
+      "pose_time_difference_sec": 0.00847117,
+      "max_joint_time_difference_sec": 0.002084134,
+      "processing_sec": 0.04408080503344536,
+      "residual_model_points": 0
+    },
+    {
+      "input": 66585,
+      "finite": 66585,
+      "radius": 6892,
+      "self_removed": 12,
+      "self_filter": 6880,
+      "voxel": 6880,
+      "sor": 6677,
+      "output": 6677,
+      "frame": 102,
+      "stamp_ns": 1792739314413609532,
+      "center_xyz": [
+        20.184899999792833,
+        21.569700000423836,
+        3.943000000163913
+      ],
+      "pose_time_difference_sec": 0.003394549,
+      "max_joint_time_difference_sec": 0.00154965,
+      "processing_sec": 0.04321825201623142,
+      "residual_model_points": 0
+    },
+    {
+      "input": 66310,
+      "finite": 66310,
+      "radius": 6849,
+      "self_removed": 13,
+      "self_filter": 6836,
+      "voxel": 6836,
+      "sor": 6610,
+      "output": 6610,
+      "frame": 103,
+      "stamp_ns": 1792739314814262758,
+      "center_xyz": [
+        20.18690000012066,
+        21.568700000259923,
+        3.9459999997243287
+      ],
+      "pose_time_difference_sec": 0.00415148,
+      "max_joint_time_difference_sec": 0.000863976,
+      "processing_sec": 0.043324537109583616,
+      "residual_model_points": 0
+    },
+    {
+      "input": 66664,
+      "finite": 66664,
+      "radius": 6840,
+      "self_removed": 12,
+      "self_filter": 6828,
+      "voxel": 6828,
+      "sor": 6605,
+      "output": 6605,
+      "frame": 104,
+      "stamp_ns": 1792739315281227755,
+      "center_xyz": [
+        20.180900000068505,
+        21.564700000535595,
+        3.9440000003278257
+      ],
+      "pose_time_difference_sec": 0.009320067000000001,
+      "max_joint_time_difference_sec": 0.001550719,
+      "processing_sec": 0.0424636690877378,
+      "residual_model_points": 0
+    },
+    {
+      "input": 65480,
+      "finite": 65480,
+      "radius": 6804,
+      "self_removed": 13,
+      "self_filter": 6791,
+      "voxel": 6791,
+      "sor": 6572,
+      "output": 6572,
+      "frame": 105,
+      "stamp_ns": 1792739315630860108,
+      "center_xyz": [
+        20.180900000068505,
+        21.561700000043857,
+        3.9440000003278257
+      ],
+      "pose_time_difference_sec": 6.6228e-05,
+      "max_joint_time_difference_sec": 0.005715985000000001,
+      "processing_sec": 0.043527364963665605,
+      "residual_model_points": 0
+    },
+    {
+      "input": 66973,
+      "finite": 66973,
+      "radius": 6831,
+      "self_removed": 15,
+      "self_filter": 6816,
+      "voxel": 6816,
+      "sor": 6595,
+      "output": 6595,
+      "frame": 106,
+      "stamp_ns": 1792739316115041330,
+      "center_xyz": [
+        20.180900000068505,
+        21.563700000371682,
+        3.9440000003278257
+      ],
+      "pose_time_difference_sec": 0.004607064,
+      "max_joint_time_difference_sec": 0.00010292500000000001,
+      "processing_sec": 0.042975609889253974,
+      "residual_model_points": 0
+    },
+    {
+      "input": 66517,
+      "finite": 66517,
+      "radius": 6816,
+      "self_removed": 12,
+      "self_filter": 6804,
+      "voxel": 6804,
+      "sor": 6600,
+      "output": 6600,
+      "frame": 107,
+      "stamp_ns": 1792739316453835760,
+      "center_xyz": [
+        20.18290000039633,
+        21.56270000020777,
+        3.9409999998360874
+      ],
+      "pose_time_difference_sec": 0.003271669,
+      "max_joint_time_difference_sec": 0.00129074,
+      "processing_sec": 0.04140192293561995,
+      "residual_model_points": 0
+    },
+    {
+      "input": 66726,
+      "finite": 66726,
+      "radius": 6792,
+      "self_removed": 12,
+      "self_filter": 6780,
+      "voxel": 6780,
+      "sor": 6574,
+      "output": 6574,
+      "frame": 108,
+      "stamp_ns": 1792739316913612183,
+      "center_xyz": [
+        20.18290000039633,
+        21.565699999768185,
+        3.9409999998360874
+      ],
+      "pose_time_difference_sec": 0.0029958840000000003,
+      "max_joint_time_difference_sec": 0.001498276,
+      "processing_sec": 0.04182477900758386,
+      "residual_model_points": 0
+    },
+    {
+      "input": 64584,
+      "finite": 64584,
+      "radius": 6591,
+      "self_removed": 12,
+      "self_filter": 6579,
+      "voxel": 6579,
+      "sor": 6378,
+      "output": 6378,
+      "frame": 109,
+      "stamp_ns": 1792739317245065185,
+      "center_xyz": [
+        20.180900000068505,
+        21.56770000009601,
+        3.943000000163913
+      ],
+      "pose_time_difference_sec": 0.0055313030000000004,
+      "max_joint_time_difference_sec": 4.643e-05,
+      "processing_sec": 0.04118746379390359,
+      "residual_model_points": 0
+    },
+    {
+      "input": 64682,
+      "finite": 64682,
+      "radius": 6636,
+      "self_removed": 12,
+      "self_filter": 6624,
+      "voxel": 6624,
+      "sor": 6423,
+      "output": 6423,
+      "frame": 110,
+      "stamp_ns": 1792739317563949048,
+      "center_xyz": [
+        20.18290000039633,
+        21.564700000535595,
+        3.9399999996721746
+      ],
+      "pose_time_difference_sec": 0.006657990000000001,
+      "max_joint_time_difference_sec": 0.001160697,
+      "processing_sec": 0.044437611009925604,
+      "residual_model_points": 0
+    },
+    {
+      "input": 63952,
+      "finite": 63952,
+      "radius": 6648,
+      "self_removed": 11,
+      "self_filter": 6637,
+      "voxel": 6637,
+      "sor": 6425,
+      "output": 6425,
+      "frame": 111,
+      "stamp_ns": 1792739317889011276,
+      "center_xyz": [
+        20.18290000039633,
+        21.560699999879944,
+        3.9409999998360874
+      ],
+      "pose_time_difference_sec": 0.001082482,
+      "max_joint_time_difference_sec": 0.00039066700000000003,
+      "processing_sec": 0.043427983997389674,
+      "residual_model_points": 0
+    },
+    {
+      "input": 63548,
+      "finite": 63548,
+      "radius": 6627,
+      "self_removed": 13,
+      "self_filter": 6614,
+      "voxel": 6614,
+      "sor": 6393,
+      "output": 6393,
+      "frame": 112,
+      "stamp_ns": 1792739318220080852,
+      "center_xyz": [
+        20.18290000039633,
+        21.561700000043857,
+        3.942
+      ],
+      "pose_time_difference_sec": 0.009488343,
+      "max_joint_time_difference_sec": 0.000118022,
+      "processing_sec": 0.041774081997573376,
+      "residual_model_points": 0
+    },
+    {
+      "input": 64722,
+      "finite": 64722,
+      "radius": 6653,
+      "self_removed": 9,
+      "self_filter": 6644,
+      "voxel": 6644,
+      "sor": 6427,
+      "output": 6427,
+      "frame": 113,
+      "stamp_ns": 1792739318620953909,
+      "center_xyz": [
+        20.18290000039633,
+        21.56270000020777,
+        3.9399999996721746
+      ],
+      "pose_time_difference_sec": 0.009971172,
+      "max_joint_time_difference_sec": 0.000333286,
+      "processing_sec": 0.04074292606674135,
+      "residual_model_points": 0
+    },
+    {
+      "input": 63962,
+      "finite": 63962,
+      "radius": 6723,
+      "self_removed": 11,
+      "self_filter": 6712,
+      "voxel": 6712,
+      "sor": 6498,
+      "output": 6498,
+      "frame": 114,
+      "stamp_ns": 1792739318930362048,
+      "center_xyz": [
+        20.18290000039633,
+        21.564700000535595,
+        3.9459999997243287
+      ],
+      "pose_time_difference_sec": 0.000222329,
+      "max_joint_time_difference_sec": 0.000679549,
+      "processing_sec": 0.042323102010414004,
+      "residual_model_points": 0
+    },
+    {
+      "input": 65903,
+      "finite": 65903,
+      "radius": 6705,
+      "self_removed": 11,
+      "self_filter": 6694,
+      "voxel": 6694,
+      "sor": 6471,
+      "output": 6471,
+      "frame": 115,
+      "stamp_ns": 1792739319339103858,
+      "center_xyz": [
+        20.17889999974068,
+        21.55870000048344,
+        3.9440000003278257
+      ],
+      "pose_time_difference_sec": 0.006667340000000001,
+      "max_joint_time_difference_sec": 0.00020974600000000002,
+      "processing_sec": 0.040990011068060994,
+      "residual_model_points": 0
+    },
+    {
+      "input": 65770,
+      "finite": 65770,
+      "radius": 6792,
+      "self_removed": 11,
+      "self_filter": 6781,
+      "voxel": 6781,
+      "sor": 6545,
+      "output": 6545,
+      "frame": 116,
+      "stamp_ns": 1792739319771072968,
+      "center_xyz": [
+        20.180900000068505,
+        21.561700000043857,
+        3.9440000003278257
+      ],
+      "pose_time_difference_sec": 0.000856829,
+      "max_joint_time_difference_sec": 0.00124329,
+      "processing_sec": 0.04155362909659743,
+      "residual_model_points": 0
+    },
+    {
+      "input": 66192,
+      "finite": 66192,
+      "radius": 6955,
+      "self_removed": 10,
+      "self_filter": 6945,
+      "voxel": 6945,
+      "sor": 6715,
+      "output": 6715,
+      "frame": 117,
+      "stamp_ns": 1792739320136803300,
+      "center_xyz": [
+        20.180900000068505,
+        21.564700000535595,
+        3.942
+      ],
+      "pose_time_difference_sec": 0.0045862640000000005,
+      "max_joint_time_difference_sec": 0.0016924960000000001,
+      "processing_sec": 0.04241191898472607,
+      "residual_model_points": 0
+    },
+    {
+      "input": 65758,
+      "finite": 65758,
+      "radius": 7160,
+      "self_removed": 10,
+      "self_filter": 7150,
+      "voxel": 7150,
+      "sor": 6914,
+      "output": 6914,
+      "frame": 118,
+      "stamp_ns": 1792739320521280657,
+      "center_xyz": [
+        20.18290000039633,
+        21.56270000020777,
+        3.942
+      ],
+      "pose_time_difference_sec": 0.009316191000000001,
+      "max_joint_time_difference_sec": 0.0007034970000000001,
+      "processing_sec": 0.044214724097400904,
+      "residual_model_points": 0
+    },
+    {
+      "input": 66807,
+      "finite": 66807,
+      "radius": 7265,
+      "self_removed": 10,
+      "self_filter": 7255,
+      "voxel": 7255,
+      "sor": 7011,
+      "output": 7011,
+      "frame": 119,
+      "stamp_ns": 1792739320866780164,
+      "center_xyz": [
+        20.184899999792833,
+        21.563700000371682,
+        3.942
+      ],
+      "pose_time_difference_sec": 0.003467992,
+      "max_joint_time_difference_sec": 0.001630701,
+      "processing_sec": 0.044712728122249246,
+      "residual_model_points": 0
+    },
+    {
+      "input": 65168,
+      "finite": 65168,
+      "radius": 7305,
+      "self_removed": 10,
+      "self_filter": 7295,
+      "voxel": 7295,
+      "sor": 7042,
+      "output": 7042,
+      "frame": 120,
+      "stamp_ns": 1792739321151324785,
+      "center_xyz": [
+        20.17889999974068,
+        21.563700000371682,
+        3.9450000004917385
+      ],
+      "pose_time_difference_sec": 0.0012006900000000001,
+      "max_joint_time_difference_sec": 0.0016278030000000001,
+      "processing_sec": 0.044760676100850105,
+      "residual_model_points": 0
+    },
+    {
+      "input": 65495,
+      "finite": 65495,
+      "radius": 7438,
+      "self_removed": 11,
+      "self_filter": 7427,
+      "voxel": 7427,
+      "sor": 7172,
+      "output": 7172,
+      "frame": 121,
+      "stamp_ns": 1792739321636800598,
+      "center_xyz": [
+        20.17889999974068,
+        21.56270000020777,
+        3.942
+      ],
+      "pose_time_difference_sec": 0.004355692,
+      "max_joint_time_difference_sec": 0.0016819740000000001,
+      "processing_sec": 0.04434656910598278,
+      "residual_model_points": 0
+    },
+    {
+      "input": 66314,
+      "finite": 66314,
+      "radius": 7460,
+      "self_removed": 11,
+      "self_filter": 7449,
+      "voxel": 7449,
+      "sor": 7191,
+      "output": 7191,
+      "frame": 122,
+      "stamp_ns": 1792739321962910841,
+      "center_xyz": [
+        20.18290000039633,
+        21.564700000535595,
+        3.95000000037998
+      ],
+      "pose_time_difference_sec": 0.007701863000000001,
+      "max_joint_time_difference_sec": 0.002236816,
+      "processing_sec": 0.048360268119722605,
+      "residual_model_points": 0
+    },
+    {
+      "input": 65512,
+      "finite": 65512,
+      "radius": 7352,
+      "self_removed": 12,
+      "self_filter": 7340,
+      "voxel": 7340,
+      "sor": 7084,
+      "output": 7084,
+      "frame": 123,
+      "stamp_ns": 1792739322360398079,
+      "center_xyz": [
+        20.180900000068505,
+        21.561700000043857,
+        3.9459999997243287
+      ],
+      "pose_time_difference_sec": 0.009735385000000001,
+      "max_joint_time_difference_sec": 0.000684482,
+      "processing_sec": 0.04873252101242542,
+      "residual_model_points": 0
+    },
+    {
+      "input": 65618,
+      "finite": 65618,
+      "radius": 7381,
+      "self_removed": 11,
+      "self_filter": 7370,
+      "voxel": 7370,
+      "sor": 7096,
+      "output": 7096,
+      "frame": 124,
+      "stamp_ns": 1792739322760898875,
+      "center_xyz": [
+        20.180900000068505,
+        21.56270000020777,
+        3.9469999998882415
+      ],
+      "pose_time_difference_sec": 0.009218992,
+      "max_joint_time_difference_sec": 0.001210661,
+      "processing_sec": 0.04467579396441579,
+      "residual_model_points": 0
+    },
+    {
+      "input": 67203,
+      "finite": 67203,
+      "radius": 7475,
+      "self_removed": 10,
+      "self_filter": 7465,
+      "voxel": 7465,
+      "sor": 7190,
+      "output": 7190,
+      "frame": 125,
+      "stamp_ns": 1792739323161921690,
+      "center_xyz": [
+        20.18290000039633,
+        21.560699999879944,
+        3.9459999997243287
+      ],
+      "pose_time_difference_sec": 0.008267652,
+      "max_joint_time_difference_sec": 0.002350323,
+      "processing_sec": 0.0450819309335202,
+      "residual_model_points": 0
+    },
+    {
+      "input": 66886,
+      "finite": 66886,
+      "radius": 7329,
+      "self_removed": 9,
+      "self_filter": 7320,
+      "voxel": 7320,
+      "sor": 7042,
+      "output": 7042,
+      "frame": 126,
+      "stamp_ns": 1792739323658329398,
+      "center_xyz": [
+        20.18290000039633,
+        21.564700000535595,
+        3.9459999997243287
+      ],
+      "pose_time_difference_sec": 0.008178049,
+      "max_joint_time_difference_sec": 0.000894577,
+      "processing_sec": 0.04463601903989911,
+      "residual_model_points": 0
+    },
+    {
+      "input": 67853,
+      "finite": 67853,
+      "radius": 7330,
+      "self_removed": 12,
+      "self_filter": 7318,
+      "voxel": 7318,
+      "sor": 7042,
+      "output": 7042,
+      "frame": 127,
+      "stamp_ns": 1792739324077677022,
+      "center_xyz": [
+        20.184899999792833,
+        21.56270000020777,
+        3.9450000004917385
+      ],
+      "pose_time_difference_sec": 0.007014031,
+      "max_joint_time_difference_sec": 0.0017027840000000002,
+      "processing_sec": 0.044443808030337095,
+      "residual_model_points": 0
+    },
+    {
+      "input": 67980,
+      "finite": 67980,
+      "radius": 7300,
+      "self_removed": 11,
+      "self_filter": 7289,
+      "voxel": 7289,
+      "sor": 7018,
+      "output": 7018,
+      "frame": 128,
+      "stamp_ns": 1792739324499594733,
+      "center_xyz": [
+        20.18290000039633,
+        21.563700000371682,
+        3.9450000004917385
+      ],
+      "pose_time_difference_sec": 0.009036352000000001,
+      "max_joint_time_difference_sec": 4.8024e-05,
+      "processing_sec": 0.04418281000107527,
+      "residual_model_points": 0
+    },
+    {
+      "input": 67997,
+      "finite": 67997,
+      "radius": 7245,
+      "self_removed": 14,
+      "self_filter": 7231,
+      "voxel": 7231,
+      "sor": 6978,
+      "output": 6978,
+      "frame": 129,
+      "stamp_ns": 1792739324973864843,
+      "center_xyz": [
+        20.18290000039633,
+        21.564700000535595,
+        3.9469999998882415
+      ],
+      "pose_time_difference_sec": 0.0036484250000000003,
+      "max_joint_time_difference_sec": 0.0012401760000000002,
+      "processing_sec": 0.04404693213291466,
+      "residual_model_points": 0
+    },
+    {
+      "input": 67428,
+      "finite": 67428,
+      "radius": 7152,
+      "self_removed": 14,
+      "self_filter": 7138,
+      "voxel": 7138,
+      "sor": 6892,
+      "output": 6892,
+      "frame": 130,
+      "stamp_ns": 1792739325330502928,
+      "center_xyz": [
+        20.18290000039633,
+        21.566699999932098,
+        3.9469999998882415
+      ],
+      "pose_time_difference_sec": 0.00037463400000000005,
+      "max_joint_time_difference_sec": 5.9141e-05,
+      "processing_sec": 0.0443124040029943,
+      "residual_model_points": 0
+    },
+    {
+      "input": 66743,
+      "finite": 66743,
+      "radius": 7157,
+      "self_removed": 14,
+      "self_filter": 7143,
+      "voxel": 7143,
+      "sor": 6894,
+      "output": 6894,
+      "frame": 131,
+      "stamp_ns": 1792739325709351354,
+      "center_xyz": [
+        20.184899999792833,
+        21.566699999932098,
+        3.9480000000521542
+      ],
+      "pose_time_difference_sec": 0.001297369,
+      "max_joint_time_difference_sec": 0.010944043,
+      "processing_sec": 0.04330992489121854,
+      "residual_model_points": 0
+    },
+    {
+      "input": 65970,
+      "finite": 65970,
+      "radius": 7074,
+      "self_removed": 13,
+      "self_filter": 7061,
+      "voxel": 7061,
+      "sor": 6808,
+      "output": 6808,
+      "frame": 132,
+      "stamp_ns": 1792739326075978923,
+      "center_xyz": [
+        20.18290000039633,
+        21.564700000535595,
+        3.9469999998882415
+      ],
+      "pose_time_difference_sec": 0.005795635,
+      "max_joint_time_difference_sec": 0.0008675820000000001,
+      "processing_sec": 0.04771183500997722,
+      "residual_model_points": 0
+    },
+    {
+      "input": 65662,
+      "finite": 65662,
+      "radius": 6924,
+      "self_removed": 16,
+      "self_filter": 6908,
+      "voxel": 6908,
+      "sor": 6667,
+      "output": 6667,
+      "frame": 133,
+      "stamp_ns": 1792739326409905669,
+      "center_xyz": [
+        20.17889999974068,
+        21.564700000535595,
+        3.942
+      ],
+      "pose_time_difference_sec": 0.000653386,
+      "max_joint_time_difference_sec": 0.000194686,
+      "processing_sec": 0.04208187898620963,
+      "residual_model_points": 0
+    },
+    {
+      "input": 65295,
+      "finite": 65295,
+      "radius": 6879,
+      "self_removed": 13,
+      "self_filter": 6866,
+      "voxel": 6866,
+      "sor": 6626,
+      "output": 6626,
+      "frame": 134,
+      "stamp_ns": 1792739326777038943,
+      "center_xyz": [
+        20.180900000068505,
+        21.564700000535595,
+        3.9469999998882415
+      ],
+      "pose_time_difference_sec": 0.006943627000000001,
+      "max_joint_time_difference_sec": 0.0018852250000000001,
+      "processing_sec": 0.04279721016064286,
+      "residual_model_points": 0
+    },
+    {
+      "input": 65515,
+      "finite": 65515,
+      "radius": 6810,
+      "self_removed": 13,
+      "self_filter": 6797,
+      "voxel": 6797,
+      "sor": 6557,
+      "output": 6557,
+      "frame": 135,
+      "stamp_ns": 1792739327127329593,
+      "center_xyz": [
+        20.17889999974068,
+        21.56270000020777,
+        3.942
+      ],
+      "pose_time_difference_sec": 0.0035824090000000004,
+      "max_joint_time_difference_sec": 0.00218095,
+      "processing_sec": 0.04271701304242015,
+      "residual_model_points": 0
+    },
+    {
+      "input": 64752,
+      "finite": 64752,
+      "radius": 6674,
+      "self_removed": 13,
+      "self_filter": 6661,
+      "voxel": 6661,
+      "sor": 6424,
+      "output": 6424,
+      "frame": 136,
+      "stamp_ns": 1792739327526449840,
+      "center_xyz": [
+        20.180900000068505,
+        21.565699999768185,
+        3.943000000163913
+      ],
+      "pose_time_difference_sec": 0.004302181,
+      "max_joint_time_difference_sec": 0.0013142240000000001,
+      "processing_sec": 0.04203969892114401,
+      "residual_model_points": 0
+    },
+    {
+      "input": 62763,
+      "finite": 62763,
+      "radius": 6606,
+      "self_removed": 12,
+      "self_filter": 6594,
+      "voxel": 6594,
+      "sor": 6359,
+      "output": 6359,
+      "frame": 137,
+      "stamp_ns": 1792739327784125430,
+      "center_xyz": [
+        20.180900000068505,
+        21.56770000009601,
+        3.9440000003278257
+      ],
+      "pose_time_difference_sec": 0.006506816,
+      "max_joint_time_difference_sec": 0.000988841,
+      "processing_sec": 0.04131171596236527,
+      "residual_model_points": 0
+    },
+    {
+      "input": 64743,
+      "finite": 64743,
+      "radius": 6681,
+      "self_removed": 8,
+      "self_filter": 6673,
+      "voxel": 6673,
+      "sor": 6427,
+      "output": 6427,
+      "frame": 138,
+      "stamp_ns": 1792739328255006548,
+      "center_xyz": [
+        20.184899999792833,
+        21.57669999970858,
+        3.942
+      ],
+      "pose_time_difference_sec": 0.004553267000000001,
+      "max_joint_time_difference_sec": 0.000139082,
+      "processing_sec": 0.04536943486891687,
+      "residual_model_points": 0
+    },
+    {
+      "input": 63670,
+      "finite": 63670,
+      "radius": 6607,
+      "self_removed": 9,
+      "self_filter": 6598,
+      "voxel": 6598,
+      "sor": 6372,
+      "output": 6372,
+      "frame": 139,
+      "stamp_ns": 1792739328611446525,
+      "center_xyz": [
+        20.18690000012066,
+        21.57169999982034,
+        3.9459999997243287
+      ],
+      "pose_time_difference_sec": 0.0013485270000000002,
+      "max_joint_time_difference_sec": 0.001716892,
+      "processing_sec": 0.041495885932818055,
+      "residual_model_points": 0
+    },
+    {
+      "input": 64548,
+      "finite": 64548,
+      "radius": 6578,
+      "self_removed": 9,
+      "self_filter": 6569,
+      "voxel": 6569,
+      "sor": 6346,
+      "output": 6346,
+      "frame": 140,
+      "stamp_ns": 1792739329067494395,
+      "center_xyz": [
+        20.198900000224967,
+        21.57669999970858,
+        3.949000000216067
+      ],
+      "pose_time_difference_sec": 0.0030916290000000003,
+      "max_joint_time_difference_sec": 0.002215157,
+      "processing_sec": 0.04103401396423578,
+      "residual_model_points": 0
+    },
+    {
+      "input": 65276,
+      "finite": 65276,
+      "radius": 6646,
+      "self_removed": 11,
+      "self_filter": 6635,
+      "voxel": 6635,
+      "sor": 6417,
+      "output": 6417,
+      "frame": 141,
+      "stamp_ns": 1792739329471803475,
+      "center_xyz": [
+        20.203900000113208,
+        21.570699999656426,
+        3.9320000002235176
+      ],
+      "pose_time_difference_sec": 0.001260305,
+      "max_joint_time_difference_sec": 0.0016655740000000002,
+      "processing_sec": 0.04387160204350948,
+      "residual_model_points": 0
+    },
+    {
+      "input": 66847,
+      "finite": 66847,
+      "radius": 6786,
+      "self_removed": 12,
+      "self_filter": 6774,
+      "voxel": 6774,
+      "sor": 6553,
+      "output": 6553,
+      "frame": 142,
+      "stamp_ns": 1792739329856481216,
+      "center_xyz": [
+        20.211900000493188,
+        21.54570000021522,
+        3.943000000163913
+      ],
+      "pose_time_difference_sec": 0.006343915,
+      "max_joint_time_difference_sec": 0.001378349,
+      "processing_sec": 0.04247872089035809,
+      "residual_model_points": 0
+    },
+    {
+      "input": 63929,
+      "finite": 63929,
+      "radius": 6783,
+      "self_removed": 13,
+      "self_filter": 6770,
+      "voxel": 6770,
+      "sor": 6557,
+      "output": 6557,
+      "frame": 143,
+      "stamp_ns": 1792739330153870377,
+      "center_xyz": [
+        20.23589999977048,
+        21.548699999775636,
+        3.922999999679625
+      ],
+      "pose_time_difference_sec": 0.0032729210000000003,
+      "max_joint_time_difference_sec": 0.001252513,
+      "processing_sec": 0.04369245399720967,
+      "residual_model_points": 0
+    },
+    {
+      "input": 66794,
+      "finite": 66794,
+      "radius": 6938,
+      "self_removed": 12,
+      "self_filter": 6926,
+      "voxel": 6926,
+      "sor": 6725,
+      "output": 6725,
+      "frame": 144,
+      "stamp_ns": 1792739330572706053,
+      "center_xyz": [
+        20.223899999666173,
+        21.531699999783086,
+        3.9289999997317793
+      ],
+      "pose_time_difference_sec": 0.002549018,
+      "max_joint_time_difference_sec": 0.002397817,
+      "processing_sec": 0.044444586150348186,
+      "residual_model_points": 0
+    },
+    {
+      "input": 65815,
+      "finite": 65815,
+      "radius": 7108,
+      "self_removed": 8,
+      "self_filter": 7100,
+      "voxel": 7100,
+      "sor": 7000,
+      "output": 7000,
+      "frame": 145,
+      "stamp_ns": 1792739330916098685,
+      "center_xyz": [
+        20.225899999994,
+        21.536699999671328,
+        3.9469999998882415
+      ],
+      "pose_time_difference_sec": 0.005957303000000001,
+      "max_joint_time_difference_sec": 0.0009921350000000001,
+      "processing_sec": 0.04554232698865235,
+      "residual_model_points": 0
+    },
+    {
+      "input": 65270,
+      "finite": 65270,
+      "radius": 7182,
+      "self_removed": 10,
+      "self_filter": 7172,
+      "voxel": 7172,
+      "sor": 7042,
+      "output": 7042,
+      "frame": 146,
+      "stamp_ns": 1792739331332666142,
+      "center_xyz": [
+        20.237900000098307,
+        21.526699999894845,
+        3.9480000000521542
+      ],
+      "pose_time_difference_sec": 0.00027352100000000004,
+      "max_joint_time_difference_sec": 0.002068767,
+      "processing_sec": 0.04432704206556082,
+      "residual_model_points": 0
+    },
+    {
+      "input": 65592,
+      "finite": 65592,
+      "radius": 7231,
+      "self_removed": 4,
+      "self_filter": 7227,
+      "voxel": 7227,
+      "sor": 7062,
+      "output": 7062,
+      "frame": 147,
+      "stamp_ns": 1792739331749100838,
+      "center_xyz": [
+        20.23589999977048,
+        21.52870000022267,
+        3.942
+      ],
+      "pose_time_difference_sec": 0.0015065850000000002,
+      "max_joint_time_difference_sec": 0.000573771,
+      "processing_sec": 0.04529729182831943,
+      "residual_model_points": 0
+    },
+    {
+      "input": 67858,
+      "finite": 67858,
+      "radius": 7363,
+      "self_removed": 4,
+      "self_filter": 7359,
+      "voxel": 7359,
+      "sor": 7179,
+      "output": 7179,
+      "frame": 148,
+      "stamp_ns": 1792739332156899025,
+      "center_xyz": [
+        20.231900000046153,
+        21.530700000550496,
+        3.931000000059605
+      ],
+      "pose_time_difference_sec": 0.0062765930000000004,
+      "max_joint_time_difference_sec": 0.001753124,
+      "processing_sec": 0.04542465298436582,
+      "residual_model_points": 0
+    },
+    {
+      "input": 67645,
+      "finite": 67645,
+      "radius": 7322,
+      "self_removed": 5,
+      "self_filter": 7317,
+      "voxel": 7317,
+      "sor": 7127,
+      "output": 7127,
+      "frame": 149,
+      "stamp_ns": 1792739332562321591,
+      "center_xyz": [
+        20.23390000037398,
+        21.538699999999153,
+        3.9380000002756717
+      ],
+      "pose_time_difference_sec": 0.008274828,
+      "max_joint_time_difference_sec": 0.0026352470000000003,
+      "processing_sec": 0.04494004603475332,
+      "residual_model_points": 0
+    },
+    {
+      "input": 67032,
+      "finite": 67032,
+      "radius": 7180,
+      "self_removed": 4,
+      "self_filter": 7176,
+      "voxel": 7176,
+      "sor": 6963,
+      "output": 6963,
+      "frame": 150,
+      "stamp_ns": 1792739332857213128,
+      "center_xyz": [
+        20.244900000314374,
+        21.546700000379133,
+        3.923999999843538
+      ],
+      "pose_time_difference_sec": 0.007062710000000001,
+      "max_joint_time_difference_sec": 0.002066074,
+      "processing_sec": 0.047925722086802125,
+      "residual_model_points": 0
+    },
+    {
+      "input": 68491,
+      "finite": 68491,
+      "radius": 7047,
+      "self_removed": 4,
+      "self_filter": 7043,
+      "voxel": 7043,
+      "sor": 6820,
+      "output": 6820,
+      "frame": 151,
+      "stamp_ns": 1792739333277909059,
+      "center_xyz": [
+        20.240899999658723,
+        21.54269999972348,
+        3.9200000001192095
+      ],
+      "pose_time_difference_sec": 0.007326910000000001,
+      "max_joint_time_difference_sec": 0.00144256,
+      "processing_sec": 0.04426629189401865,
+      "residual_model_points": 0
+    },
+    {
+      "input": 68178,
+      "finite": 68178,
+      "radius": 6895,
+      "self_removed": 4,
+      "self_filter": 6891,
+      "voxel": 6891,
+      "sor": 6681,
+      "output": 6681,
+      "frame": 152,
+      "stamp_ns": 1792739333612690362,
+      "center_xyz": [
+        20.239900000426132,
+        21.547700000543045,
+        3.929999999895692
+      ],
+      "pose_time_difference_sec": 0.002132925,
+      "max_joint_time_difference_sec": 0.00245347,
+      "processing_sec": 0.044149504974484444,
+      "residual_model_points": 0
+    },
+    {
+      "input": 66651,
+      "finite": 66651,
+      "radius": 6807,
+      "self_removed": 3,
+      "self_filter": 6804,
+      "voxel": 6804,
+      "sor": 6584,
+      "output": 6584,
+      "frame": 153,
+      "stamp_ns": 1792739333911194455,
+      "center_xyz": [
+        20.239900000426132,
+        21.544700000051307,
+        3.931000000059605
+      ],
+      "pose_time_difference_sec": 0.001037453,
+      "max_joint_time_difference_sec": 0.00155374,
+      "processing_sec": 0.042856415966525674,
+      "residual_model_points": 0
+    },
+    {
+      "input": 66111,
+      "finite": 66111,
+      "radius": 6797,
+      "self_removed": 4,
+      "self_filter": 6793,
+      "voxel": 6793,
+      "sor": 6586,
+      "output": 6586,
+      "frame": 154,
+      "stamp_ns": 1792739334320131948,
+      "center_xyz": [
+        20.237900000098307,
+        21.536699999671328,
+        3.928000000499189
+      ],
+      "pose_time_difference_sec": 0.010062775000000001,
+      "max_joint_time_difference_sec": 0.00011209900000000001,
+      "processing_sec": 0.04239202197641134,
+      "residual_model_points": 0
+    },
+    {
+      "input": 67512,
+      "finite": 67512,
+      "radius": 6844,
+      "self_removed": 4,
+      "self_filter": 6840,
+      "voxel": 6840,
+      "sor": 6634,
+      "output": 6634,
+      "frame": 155,
+      "stamp_ns": 1792739334787695911,
+      "center_xyz": [
+        20.237900000098307,
+        21.538699999999153,
+        3.9320000002235176
+      ],
+      "pose_time_difference_sec": 0.00243039,
+      "max_joint_time_difference_sec": 0.0016317640000000002,
+      "processing_sec": 0.04332055198028684,
+      "residual_model_points": 0
+    },
+    {
+      "input": 67170,
+      "finite": 67170,
+      "radius": 6812,
+      "self_removed": 4,
+      "self_filter": 6808,
+      "voxel": 6808,
+      "sor": 6584,
+      "output": 6584,
+      "frame": 156,
+      "stamp_ns": 1792739335222465272,
+      "center_xyz": [
+        20.23390000037398,
+        21.534700000274825,
+        3.935999999947846
+      ],
+      "pose_time_difference_sec": 0.008124885,
+      "max_joint_time_difference_sec": 0.0018886220000000002,
+      "processing_sec": 0.04168213694356382,
+      "residual_model_points": 0
+    },
+    {
+      "input": 67575,
+      "finite": 67575,
+      "radius": 6750,
+      "self_removed": 4,
+      "self_filter": 6746,
+      "voxel": 6746,
+      "sor": 6523,
+      "output": 6523,
+      "frame": 157,
+      "stamp_ns": 1792739335632903527,
+      "center_xyz": [
+        20.23390000037398,
+        21.535700000438737,
+        3.943000000163913
+      ],
+      "pose_time_difference_sec": 0.000643797,
+      "max_joint_time_difference_sec": 0.0031168510000000003,
+      "processing_sec": 0.041739658918231726,
+      "residual_model_points": 0
+    },
+    {
+      "input": 68488,
+      "finite": 68488,
+      "radius": 6764,
+      "self_removed": 4,
+      "self_filter": 6760,
+      "voxel": 6760,
+      "sor": 6532,
+      "output": 6532,
+      "frame": 158,
+      "stamp_ns": 1792739335990310720,
+      "center_xyz": [
+        20.229899999718327,
+        21.533700000110912,
+        3.9440000003278257
+      ],
+      "pose_time_difference_sec": 0.000129906,
+      "max_joint_time_difference_sec": 0.0005224,
+      "processing_sec": 0.042350827949121594,
+      "residual_model_points": 0
+    },
+    {
+      "input": 67406,
+      "finite": 67406,
+      "radius": 6764,
+      "self_removed": 4,
+      "self_filter": 6760,
+      "voxel": 6760,
+      "sor": 6535,
+      "output": 6535,
+      "frame": 159,
+      "stamp_ns": 1792739336337271235,
+      "center_xyz": [
+        20.23390000037398,
+        21.532699999947,
+        3.942
+      ],
+      "pose_time_difference_sec": 0.004642819,
+      "max_joint_time_difference_sec": 0.00199856,
+      "processing_sec": 0.043008938897401094,
+      "residual_model_points": 0
+    },
+    {
+      "input": 66898,
+      "finite": 66898,
+      "radius": 6758,
+      "self_removed": 1,
+      "self_filter": 6757,
+      "voxel": 6757,
+      "sor": 6523,
+      "output": 6523,
+      "frame": 160,
+      "stamp_ns": 1792739336687699141,
+      "center_xyz": [
+        20.23390000037398,
+        21.533700000110912,
+        3.9440000003278257
+      ],
+      "pose_time_difference_sec": 0.00241056,
+      "max_joint_time_difference_sec": 0.001697425,
+      "processing_sec": 0.04338419996201992,
+      "residual_model_points": 0
+    },
+    {
+      "input": 65995,
+      "finite": 65995,
+      "radius": 6740,
+      "self_removed": 1,
+      "self_filter": 6739,
+      "voxel": 6739,
+      "sor": 6502,
+      "output": 6502,
+      "frame": 161,
+      "stamp_ns": 1792739337054555718,
+      "center_xyz": [
+        20.231900000046153,
+        21.532699999947,
+        3.9349999997839333
+      ],
+      "pose_time_difference_sec": 0.004357817,
+      "max_joint_time_difference_sec": 0.0005492310000000001,
+      "processing_sec": 0.04394507501274347,
+      "residual_model_points": 0
+    },
+    {
+      "input": 65455,
+      "finite": 65455,
+      "radius": 6729,
+      "self_removed": 1,
+      "self_filter": 6728,
+      "voxel": 6728,
+      "sor": 6477,
+      "output": 6477,
+      "frame": 162,
+      "stamp_ns": 1792739337389720548,
+      "center_xyz": [
+        20.231900000046153,
+        21.535700000438737,
+        3.9320000002235176
+      ],
+      "pose_time_difference_sec": 0.0008808970000000001,
+      "max_joint_time_difference_sec": 8.1267e-05,
+      "processing_sec": 0.04325619502924383,
+      "residual_model_points": 0
+    }
+  ],
+  "elapsed_sec": 14.11466315202415,
+  "validation_scope": "Consistency with the specified collision model; physical robot recall and false-removal rates need labelled data."
+}

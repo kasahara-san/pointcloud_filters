@@ -1,0 +1,141 @@
+{
+  "mode": "pointcloud2",
+  "domain": "221",
+  "input_count": 163,
+  "outputs": [
+    {
+      "elapsed_sec": 13.91519458196126,
+      "points": 5462,
+      "stamp_ns": 1792739284497137195,
+      "frame": "map"
+    },
+    {
+      "elapsed_sec": 22.515354281989858,
+      "points": 5585,
+      "stamp_ns": 1792739294364908875,
+      "frame": "map"
+    },
+    {
+      "elapsed_sec": 32.51382311200723,
+      "points": 5890,
+      "stamp_ns": 1792739304340907146,
+      "frame": "map"
+    },
+    {
+      "elapsed_sec": 42.51487165200524,
+      "points": 5885,
+      "stamp_ns": 1792739314413609532,
+      "frame": "map"
+    },
+    {
+      "elapsed_sec": 52.519954612944275,
+      "points": 6325,
+      "stamp_ns": 1792739324499594733,
+      "frame": "map"
+    },
+    {
+      "elapsed_sec": 62.51687328983098,
+      "points": 5768,
+      "stamp_ns": 1792739334320131948,
+      "frame": "map"
+    },
+    {
+      "elapsed_sec": 72.55745566799305,
+      "points": 5812,
+      "stamp_ns": 1792739337389720548,
+      "frame": "map"
+    }
+  ],
+  "removed": [
+    {
+      "elapsed_sec": 13.930278192041442,
+      "points": 968,
+      "stamp_ns": 1792739284497137195,
+      "frame": "map"
+    },
+    {
+      "elapsed_sec": 22.530031218891963,
+      "points": 980,
+      "stamp_ns": 1792739294364908875,
+      "frame": "map"
+    },
+    {
+      "elapsed_sec": 32.52663943800144,
+      "points": 819,
+      "stamp_ns": 1792739304340907146,
+      "frame": "map"
+    },
+    {
+      "elapsed_sec": 42.52881921082735,
+      "points": 789,
+      "stamp_ns": 1792739314413609532,
+      "frame": "map"
+    },
+    {
+      "elapsed_sec": 52.53331601782702,
+      "points": 715,
+      "stamp_ns": 1792739324499594733,
+      "frame": "map"
+    },
+    {
+      "elapsed_sec": 62.532115251990035,
+      "points": 848,
+      "stamp_ns": 1792739334320131948,
+      "frame": "map"
+    },
+    {
+      "elapsed_sec": 72.57118362886831,
+      "points": 816,
+      "stamp_ns": 1792739337389720548,
+      "frame": "map"
+    }
+  ],
+  "headers": [],
+  "markers": [],
+  "assertions": [],
+  "launch_pid": 1519858,
+  "first_input_sec": 5.029395358869806,
+  "last_input_sec": 65.27439346699975,
+  "sigint_elapsed_sec": 77.6872048098594,
+  "launch_returncode": 0,
+  "events": [
+    {
+      "kind": "filter_ready",
+      "elapsed_sec": 2.556446359027177
+    },
+    {
+      "kind": "bag_started",
+      "elapsed_sec": 2.561633895849809
+    },
+    {
+      "kind": "bag_finished_cleanly",
+      "elapsed_sec": 65.6470864159055
+    }
+  ],
+  "checks": {
+    "ready_before_bag_started": true,
+    "bag_finished_cleanly": true,
+    "all_163_inputs_received": true,
+    "at_least_five_outputs": true,
+    "removed_count_matches_outputs": true,
+    "actual_robot_points_removed": true,
+    "map_frame_preserved": true,
+    "launch_clean_shutdown": true
+  },
+  "failures": [],
+  "elapsed_sec": 78.661473804852,
+  "configuration": {
+    "model_origin_xyz": [
+      -0.17,
+      0.3,
+      -3.21
+    ],
+    "model_origin_rpy": [
+      0.0,
+      0.0,
+      0.0
+    ],
+    "self_filter_padding": 0.3,
+    "note": "Provisional fit authorized for this recording, not surveyed calibration"
+  }
+}

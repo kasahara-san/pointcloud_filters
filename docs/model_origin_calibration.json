@@ -1,0 +1,485 @@
+{
+  "bag": "/home/kasahara/SIP_PROJECTS/ros2_tms_ws/src/pointcloud_filters/rosbag/rosbag2_2026_10_25-08_46_47",
+  "training_frame": 0,
+  "method": "Point-to-triangle body/crawler distances; bounded xyz/yaw soft_l1 fit",
+  "region": {
+    "radius_xy_m": 3.0,
+    "minimum_cloud_z_m": 0.8
+  },
+  "fits": [
+    {
+      "initial_z_m": -3.7,
+      "xyz_m": [
+        -0.18472428871195679,
+        0.30665777839968594,
+        -3.2169912976949693
+      ],
+      "rpy_rad": [
+        0.0,
+        0.0,
+        -0.0014014976876521826
+      ],
+      "cost": 21.054861937818973,
+      "evaluations": 53,
+      "success": true,
+      "surface_distances": {
+        "count": 1058,
+        "median_m": 0.1033594124019146,
+        "p90_m": 0.5813248395919801,
+        "clipped_mean_m": 0.17650271607666607,
+        "within_015m": 623,
+        "within_030m": 809
+      }
+    },
+    {
+      "initial_z_m": -3.4,
+      "xyz_m": [
+        -0.18465831390634968,
+        0.3066325518221225,
+        -3.216984664060267
+      ],
+      "rpy_rad": [
+        0.0,
+        0.0,
+        -0.0013357627274274248
+      ],
+      "cost": 21.0548542383287,
+      "evaluations": 37,
+      "success": true,
+      "surface_distances": {
+        "count": 1058,
+        "median_m": 0.10344139486551285,
+        "p90_m": 0.5814178168773652,
+        "clipped_mean_m": 0.17650227293459136,
+        "within_015m": 623,
+        "within_030m": 809
+      }
+    },
+    {
+      "initial_z_m": -3.0,
+      "xyz_m": [
+        -0.15619548399935373,
+        0.30463253911565885,
+        -3.207379814247143
+      ],
+      "rpy_rad": [
+        0.0,
+        0.0,
+        0.003065272439777633
+      ],
+      "cost": 21.058720518722087,
+      "evaluations": 16,
+      "success": true,
+      "surface_distances": {
+        "count": 1058,
+        "median_m": 0.10223080217838287,
+        "p90_m": 0.5773727416992189,
+        "clipped_mean_m": 0.17552654934022868,
+        "within_015m": 629,
+        "within_030m": 812
+      }
+    },
+    {
+      "initial_z_m": -2.5,
+      "xyz_m": [
+        -0.1634056853358098,
+        0.30134545026620413,
+        -3.2029117972039174
+      ],
+      "rpy_rad": [
+        0.0,
+        0.0,
+        0.0037478587147282074
+      ],
+      "cost": 21.053647547619782,
+      "evaluations": 18,
+      "success": true,
+      "surface_distances": {
+        "count": 1058,
+        "median_m": 0.10079585388302803,
+        "p90_m": 0.5782876431941988,
+        "clipped_mean_m": 0.17538568167015386,
+        "within_015m": 627,
+        "within_030m": 810
+      }
+    }
+  ],
+  "best_estimated_origin_xyz": [
+    -0.1634056853358098,
+    0.30134545026620413,
+    -3.2029117972039174
+  ],
+  "best_estimated_origin_rpy": [
+    0.0,
+    0.0,
+    0.0037478587147282074
+  ],
+  "validation": [
+    {
+      "frame_index": 0,
+      "stamp_ns": 1792739277144854378,
+      "candidate": "uncorrected",
+      "cloud_frame": "map",
+      "surface_distances": {
+        "count": 1058,
+        "median_m": 2.2557239532470703,
+        "p90_m": 3.018609547615051,
+        "clipped_mean_m": 0.49208765924821957,
+        "within_015m": 5,
+        "within_030m": 26
+      },
+      "padding_checks": [
+        {
+          "padding_m": 0.15,
+          "removed": 5,
+          "central_high_candidates": 256,
+          "central_high_retained": 251,
+          "removed_z_below_03m": 0,
+          "removed_z_below_08m": 0
+        },
+        {
+          "padding_m": 0.25,
+          "removed": 16,
+          "central_high_candidates": 256,
+          "central_high_retained": 240,
+          "removed_z_below_03m": 0,
+          "removed_z_below_08m": 0
+        },
+        {
+          "padding_m": 0.3,
+          "removed": 26,
+          "central_high_candidates": 256,
+          "central_high_retained": 230,
+          "removed_z_below_03m": 0,
+          "removed_z_below_08m": 0
+        }
+      ]
+    },
+    {
+      "frame_index": 0,
+      "stamp_ns": 1792739277144854378,
+      "candidate": "configured",
+      "cloud_frame": "map",
+      "surface_distances": {
+        "count": 1058,
+        "median_m": 0.1023653969168663,
+        "p90_m": 0.5789324402809145,
+        "clipped_mean_m": 0.1760168927399694,
+        "within_015m": 631,
+        "within_030m": 808
+      },
+      "padding_checks": [
+        {
+          "padding_m": 0.15,
+          "removed": 657,
+          "central_high_candidates": 256,
+          "central_high_retained": 96,
+          "removed_z_below_03m": 0,
+          "removed_z_below_08m": 0
+        },
+        {
+          "padding_m": 0.25,
+          "removed": 788,
+          "central_high_candidates": 256,
+          "central_high_retained": 43,
+          "removed_z_below_03m": 0,
+          "removed_z_below_08m": 0
+        },
+        {
+          "padding_m": 0.3,
+          "removed": 839,
+          "central_high_candidates": 256,
+          "central_high_retained": 29,
+          "removed_z_below_03m": 0,
+          "removed_z_below_08m": 0
+        }
+      ]
+    },
+    {
+      "frame_index": 0,
+      "stamp_ns": 1792739277144854378,
+      "candidate": "estimated",
+      "cloud_frame": "map",
+      "surface_distances": {
+        "count": 1058,
+        "median_m": 0.10079585388302803,
+        "p90_m": 0.5782876431941988,
+        "clipped_mean_m": 0.17538568167015386,
+        "within_015m": 627,
+        "within_030m": 810
+      },
+      "padding_checks": [
+        {
+          "padding_m": 0.15,
+          "removed": 653,
+          "central_high_candidates": 256,
+          "central_high_retained": 97,
+          "removed_z_below_03m": 0,
+          "removed_z_below_08m": 0
+        },
+        {
+          "padding_m": 0.25,
+          "removed": 787,
+          "central_high_candidates": 256,
+          "central_high_retained": 44,
+          "removed_z_below_03m": 0,
+          "removed_z_below_08m": 0
+        },
+        {
+          "padding_m": 0.3,
+          "removed": 840,
+          "central_high_candidates": 256,
+          "central_high_retained": 28,
+          "removed_z_below_03m": 0,
+          "removed_z_below_08m": 0
+        }
+      ]
+    },
+    {
+      "frame_index": 81,
+      "stamp_ns": 1792739306172328125,
+      "candidate": "uncorrected",
+      "cloud_frame": "map",
+      "surface_distances": {
+        "count": 1106,
+        "median_m": 2.2629464864730835,
+        "p90_m": 3.0547808408737183,
+        "clipped_mean_m": 0.4920565661507748,
+        "within_015m": 5,
+        "within_030m": 24
+      },
+      "padding_checks": [
+        {
+          "padding_m": 0.15,
+          "removed": 5,
+          "central_high_candidates": 267,
+          "central_high_retained": 262,
+          "removed_z_below_03m": 0,
+          "removed_z_below_08m": 0
+        },
+        {
+          "padding_m": 0.25,
+          "removed": 21,
+          "central_high_candidates": 267,
+          "central_high_retained": 246,
+          "removed_z_below_03m": 0,
+          "removed_z_below_08m": 0
+        },
+        {
+          "padding_m": 0.3,
+          "removed": 24,
+          "central_high_candidates": 267,
+          "central_high_retained": 243,
+          "removed_z_below_03m": 0,
+          "removed_z_below_08m": 0
+        }
+      ]
+    },
+    {
+      "frame_index": 81,
+      "stamp_ns": 1792739306172328125,
+      "candidate": "configured",
+      "cloud_frame": "map",
+      "surface_distances": {
+        "count": 1106,
+        "median_m": 0.11669553443789482,
+        "p90_m": 0.7168449461460114,
+        "clipped_mean_m": 0.1938090356401596,
+        "within_015m": 626,
+        "within_030m": 795
+      },
+      "padding_checks": [
+        {
+          "padding_m": 0.15,
+          "removed": 663,
+          "central_high_candidates": 267,
+          "central_high_retained": 101,
+          "removed_z_below_03m": 0,
+          "removed_z_below_08m": 0
+        },
+        {
+          "padding_m": 0.25,
+          "removed": 797,
+          "central_high_candidates": 267,
+          "central_high_retained": 49,
+          "removed_z_below_03m": 0,
+          "removed_z_below_08m": 0
+        },
+        {
+          "padding_m": 0.3,
+          "removed": 833,
+          "central_high_candidates": 267,
+          "central_high_retained": 39,
+          "removed_z_below_03m": 0,
+          "removed_z_below_08m": 0
+        }
+      ]
+    },
+    {
+      "frame_index": 81,
+      "stamp_ns": 1792739306172328125,
+      "candidate": "estimated",
+      "cloud_frame": "map",
+      "surface_distances": {
+        "count": 1106,
+        "median_m": 0.11763384193181992,
+        "p90_m": 0.7163809835910797,
+        "clipped_mean_m": 0.1932795699983692,
+        "within_015m": 622,
+        "within_030m": 798
+      },
+      "padding_checks": [
+        {
+          "padding_m": 0.15,
+          "removed": 658,
+          "central_high_candidates": 267,
+          "central_high_retained": 101,
+          "removed_z_below_03m": 0,
+          "removed_z_below_08m": 0
+        },
+        {
+          "padding_m": 0.25,
+          "removed": 795,
+          "central_high_candidates": 267,
+          "central_high_retained": 48,
+          "removed_z_below_03m": 0,
+          "removed_z_below_08m": 0
+        },
+        {
+          "padding_m": 0.3,
+          "removed": 836,
+          "central_high_candidates": 267,
+          "central_high_retained": 37,
+          "removed_z_below_03m": 0,
+          "removed_z_below_08m": 0
+        }
+      ]
+    },
+    {
+      "frame_index": 162,
+      "stamp_ns": 1792739337389720548,
+      "candidate": "uncorrected",
+      "cloud_frame": "map",
+      "surface_distances": {
+        "count": 1037,
+        "median_m": 2.2873284816741943,
+        "p90_m": 3.027892017364502,
+        "clipped_mean_m": 0.49383822745906697,
+        "within_015m": 1,
+        "within_030m": 19
+      },
+      "padding_checks": [
+        {
+          "padding_m": 0.15,
+          "removed": 1,
+          "central_high_candidates": 239,
+          "central_high_retained": 238,
+          "removed_z_below_03m": 0,
+          "removed_z_below_08m": 0
+        },
+        {
+          "padding_m": 0.25,
+          "removed": 16,
+          "central_high_candidates": 239,
+          "central_high_retained": 223,
+          "removed_z_below_03m": 0,
+          "removed_z_below_08m": 0
+        },
+        {
+          "padding_m": 0.3,
+          "removed": 19,
+          "central_high_candidates": 239,
+          "central_high_retained": 220,
+          "removed_z_below_03m": 0,
+          "removed_z_below_08m": 0
+        }
+      ]
+    },
+    {
+      "frame_index": 162,
+      "stamp_ns": 1792739337389720548,
+      "candidate": "configured",
+      "cloud_frame": "map",
+      "surface_distances": {
+        "count": 1037,
+        "median_m": 0.10980331152677536,
+        "p90_m": 0.6344077110290527,
+        "clipped_mean_m": 0.18168499002039581,
+        "within_015m": 610,
+        "within_030m": 786
+      },
+      "padding_checks": [
+        {
+          "padding_m": 0.15,
+          "removed": 639,
+          "central_high_candidates": 239,
+          "central_high_retained": 93,
+          "removed_z_below_03m": 0,
+          "removed_z_below_08m": 0
+        },
+        {
+          "padding_m": 0.25,
+          "removed": 765,
+          "central_high_candidates": 239,
+          "central_high_retained": 37,
+          "removed_z_below_03m": 0,
+          "removed_z_below_08m": 0
+        },
+        {
+          "padding_m": 0.3,
+          "removed": 816,
+          "central_high_candidates": 239,
+          "central_high_retained": 24,
+          "removed_z_below_03m": 0,
+          "removed_z_below_08m": 0
+        }
+      ]
+    },
+    {
+      "frame_index": 162,
+      "stamp_ns": 1792739337389720548,
+      "candidate": "estimated",
+      "cloud_frame": "map",
+      "surface_distances": {
+        "count": 1037,
+        "median_m": 0.11311791092157364,
+        "p90_m": 0.6327751159667969,
+        "clipped_mean_m": 0.18101331923132308,
+        "within_015m": 607,
+        "within_030m": 787
+      },
+      "padding_checks": [
+        {
+          "padding_m": 0.15,
+          "removed": 637,
+          "central_high_candidates": 239,
+          "central_high_retained": 93,
+          "removed_z_below_03m": 0,
+          "removed_z_below_08m": 0
+        },
+        {
+          "padding_m": 0.25,
+          "removed": 765,
+          "central_high_candidates": 239,
+          "central_high_retained": 35,
+          "removed_z_below_03m": 0,
+          "removed_z_below_08m": 0
+        },
+        {
+          "padding_m": 0.3,
+          "removed": 815,
+          "central_high_candidates": 239,
+          "central_high_retained": 23,
+          "removed_z_below_03m": 0,
+          "removed_z_below_08m": 0
+        }
+      ]
+    }
+  ],
+  "limitations": [
+    "The region and search bounds are provisional choices for the supplied recording.",
+    "High and low height bands are geometric proxies, not labelled robot/ground truth.",
+    "Only visible body/crawler are fitted; occlusion or mesh mismatch may leave returns.",
+    "This report does not alter GNSS measurements, parameters, or robot geometry."
+  ]
+}

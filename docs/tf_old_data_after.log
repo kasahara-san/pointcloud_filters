@@ -1,0 +1,7 @@
+1792913543.355542 [223]    python3: selected interface "lo" is not multicast-capable: disabling multicast
+[INFO] [1792913543.427924940] [pointcloud_filter]: /tf_repro/cloud -> /tf_repro/filtered, output_format=pointcloud2, mesh_resolution=3, period=10.000s (wall time), parameters=FilterParameters(radius_m=10.0, voxel_size=0.1, sor_mean_k=20, sor_stddev_mul=2.0)
+[INFO] [1792913543.428396377] [pointcloud_filter]: XY center: /tf_repro/pose (geometry_msgs/msg/PoseStamped); max_pose_time_diff_sec=0.5
+[INFO] [1792913543.428821400] [pointcloud_filter]: self_filter=False; joint_states=/zx200/joint_states; missing pose frame=world; padding=0.15m; scale=1.0
+[INFO] [1792913543.429225154] [pointcloud_filter]: base->CAD origin: xyz=[0.0, 0.0, 0.0]m rpy=[0.0, 0.0, 0.0]rad
+[INFO] [1792913543.429471594] [pointcloud_filter]: TF input: /tf_static; use_dynamic_tf=False
+[INFO] [1792913543.429701494] [pointcloud_filter]: Ready for point clouds.

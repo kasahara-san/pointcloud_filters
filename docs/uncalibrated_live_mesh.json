@@ -1,0 +1,198 @@
+{
+  "mode": "mesh",
+  "domain": "222",
+  "input_count": 163,
+  "outputs": [
+    {
+      "elapsed_sec": 13.740722695132717,
+      "vertices": 2479,
+      "triangles": 4599
+    },
+    {
+      "elapsed_sec": 23.715207027969882,
+      "vertices": 2466,
+      "triangles": 4558
+    },
+    {
+      "elapsed_sec": 33.719251823145896,
+      "vertices": 2454,
+      "triangles": 4423
+    },
+    {
+      "elapsed_sec": 43.71830836404115,
+      "vertices": 2423,
+      "triangles": 4404
+    },
+    {
+      "elapsed_sec": 53.745103592053056,
+      "vertices": 2500,
+      "triangles": 4572
+    },
+    {
+      "elapsed_sec": 63.746703742071986,
+      "vertices": 2466,
+      "triangles": 4593
+    },
+    {
+      "elapsed_sec": 73.6913029551506,
+      "vertices": 2423,
+      "triangles": 4498
+    }
+  ],
+  "removed": [
+    {
+      "elapsed_sec": 13.74712987896055,
+      "points": 31,
+      "stamp_ns": 1792739284497137195,
+      "frame": "map"
+    },
+    {
+      "elapsed_sec": 23.72115562413819,
+      "points": 2,
+      "stamp_ns": 1792739294364908875,
+      "frame": "map"
+    },
+    {
+      "elapsed_sec": 33.72499138908461,
+      "points": 2,
+      "stamp_ns": 1792739304653762959,
+      "frame": "map"
+    },
+    {
+      "elapsed_sec": 43.72416461305693,
+      "points": 12,
+      "stamp_ns": 1792739314413609532,
+      "frame": "map"
+    },
+    {
+      "elapsed_sec": 53.75701022008434,
+      "points": 11,
+      "stamp_ns": 1792739324499594733,
+      "frame": "map"
+    },
+    {
+      "elapsed_sec": 63.754175449954346,
+      "points": 4,
+      "stamp_ns": 1792739334320131948,
+      "frame": "map"
+    },
+    {
+      "elapsed_sec": 73.69731865799986,
+      "points": 1,
+      "stamp_ns": 1792739337389720548,
+      "frame": "map"
+    }
+  ],
+  "headers": [
+    {
+      "stamp_ns": 1792739284497137195,
+      "frame": "map"
+    },
+    {
+      "stamp_ns": 1792739294364908875,
+      "frame": "map"
+    },
+    {
+      "stamp_ns": 1792739304653762959,
+      "frame": "map"
+    },
+    {
+      "stamp_ns": 1792739314413609532,
+      "frame": "map"
+    },
+    {
+      "stamp_ns": 1792739324499594733,
+      "frame": "map"
+    },
+    {
+      "stamp_ns": 1792739334320131948,
+      "frame": "map"
+    },
+    {
+      "stamp_ns": 1792739337389720548,
+      "frame": "map"
+    }
+  ],
+  "markers": [
+    {
+      "stamp_ns": 1792739284497137195,
+      "frame": "map",
+      "action": 0,
+      "points": 13797
+    },
+    {
+      "stamp_ns": 1792739294364908875,
+      "frame": "map",
+      "action": 0,
+      "points": 13674
+    },
+    {
+      "stamp_ns": 1792739304653762959,
+      "frame": "map",
+      "action": 0,
+      "points": 13269
+    },
+    {
+      "stamp_ns": 1792739314413609532,
+      "frame": "map",
+      "action": 0,
+      "points": 13212
+    },
+    {
+      "stamp_ns": 1792739324499594733,
+      "frame": "map",
+      "action": 0,
+      "points": 13716
+    },
+    {
+      "stamp_ns": 1792739334320131948,
+      "frame": "map",
+      "action": 0,
+      "points": 13779
+    },
+    {
+      "stamp_ns": 1792739337389720548,
+      "frame": "map",
+      "action": 0,
+      "points": 13494
+    }
+  ],
+  "assertions": [],
+  "launch_pid": 1517490,
+  "first_input_sec": 5.854859901126474,
+  "last_input_sec": 66.09893504204229,
+  "sigint_elapsed_sec": 78.48309467313811,
+  "launch_returncode": 0,
+  "events": [
+    {
+      "kind": "filter_ready",
+      "elapsed_sec": 3.4414313689339906
+    },
+    {
+      "kind": "bag_started",
+      "elapsed_sec": 3.4426025869324803
+    },
+    {
+      "kind": "bag_finished_cleanly",
+      "elapsed_sec": 66.46182916709222
+    }
+  ],
+  "checks": {
+    "ready_before_bag_started": true,
+    "bag_finished_cleanly": true,
+    "all_163_inputs_received": true,
+    "at_least_five_outputs": true,
+    "removed_count_matches_outputs": true,
+    "actual_robot_points_removed": true,
+    "map_frame_preserved": true,
+    "launch_clean_shutdown": true,
+    "mesh_headers_match_outputs": true,
+    "mesh_markers_match_outputs": true,
+    "mesh_header_stamps_match_removed": true,
+    "mesh_marker_stamps_match_headers": true,
+    "reconstructed_surfaces": true,
+    "marker_triangle_counts": true
+  },
+  "failures": [],
+  "elapsed_sec": 79.44892653310671
+}

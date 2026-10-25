@@ -2,8 +2,8 @@
 <?xml-model href="http://download.ros.org/schema/package_format3.xsd" schematypens="http://www.w3.org/2001/XMLSchema"?>
 <package format="3">
   <name>pointcloud_filters</name>
-  <version>0.3.0</version>
-  <description>Crop around the backhoe position and publish PointCloud2 or Mesh.</description>
+  <version>0.4.0</version>
+  <description>Remove articulated ZX200 self points and publish local PointCloud2 or Mesh.</description>
   <maintainer email="kasahara.yuichiro.res@gmail.com">common</maintainer>
   <license>TODO: License declaration</license>
 
@@ -14,6 +14,9 @@
   <exec_depend>rcl_interfaces</exec_depend>
   <exec_depend>rclpy</exec_depend>
   <exec_depend>tf2_ros_py</exec_depend>
+  <exec_depend>tf2_msgs</exec_depend>
+  <exec_depend>rosbag2_transport</exec_depend>
+  <exec_depend>rosbag2_py</exec_depend>
   <exec_depend>sensor_msgs</exec_depend>
   <exec_depend>sensor_msgs_py</exec_depend>
   <exec_depend>shape_msgs</exec_depend>
@@ -25,6 +28,7 @@
   <exec_depend>python3-numpy</exec_depend>
   <exec_depend>python3-scipy</exec_depend>
   <exec_depend>python3-open3d</exec_depend>
+  <exec_depend>python3-matplotlib</exec_depend>
 
   <test_depend>ament_copyright</test_depend>
   <test_depend>ament_flake8</test_depend>

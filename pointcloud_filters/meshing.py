@@ -31,7 +31,7 @@ class MeshConverter:
                 'or install python3-open3d.') from error
         self._o3d = open3d
 
-    def convert(self, points):
+    def convert(self, points, excluded=None, exclusion_step=0.075):
         """Return Mesh and stage counts; degenerate inputs yield an empty Mesh."""
         points = np.asarray(points, dtype=np.float64)
         if points.ndim != 2 or points.shape[1] != 3:
@@ -45,6 +45,11 @@ class MeshConverter:
         cloud = o3d.geometry.PointCloud(o3d.utility.Vector3dVector(points))
         cloud = cloud.voxel_down_sample(self.voxel_size)
         sampled = np.asarray(cloud.points)
+        if excluded is not None and len(sampled):
+            if not np.isfinite(exclusion_step) or exclusion_step <= 0:
+                raise ValueError('exclusion_step must be finite and > 0')
+            cloud = cloud.select_by_index(np.flatnonzero(~excluded(sampled)))
+            sampled = np.asarray(cloud.points)
         stats['mesh_sampled'] = len(sampled)
         if len(sampled) < 3:
             return Mesh(), stats
@@ -84,6 +89,10 @@ class MeshConverter:
         surface.remove_triangles_by_mask(
             np.any(edges > 3.0 * spacing, axis=1)
             | (areas_twice <= np.finfo(float).eps * spacing * spacing))
+        if excluded is not None and len(surface.triangles):
+            corners = np.asarray(surface.vertices)[np.asarray(surface.triangles)]
+            surface.remove_triangles_by_mask(
+                _excluded_triangles(corners, excluded, exclusion_step))
         if not len(surface.triangles):
             return Mesh(), stats
 
@@ -97,3 +106,26 @@ class MeshConverter:
                             for triangle in np.asarray(surface.triangles)]
         stats.update(vertices=len(result.vertices), triangles=len(result.triangles))
         return result, stats
+
+
+def _excluded_triangles(corners, excluded, step):
+    """Reject faces spanning the robot, sampling edges and interiors at <=step."""
+    lengths = np.linalg.norm(corners - np.roll(corners, 1, axis=1), axis=2).max(axis=1)
+    divisions = np.maximum(1, np.ceil(lengths / step).astype(int))
+    removed = np.zeros(len(corners), dtype=bool)
+    for count in np.unique(divisions):
+        indices = np.flatnonzero(divisions == count)
+        weights = np.array([(i / count, j / count, 1 - (i + j) / count)
+                            for i in range(count + 1) for j in range(count + 1 - i)])
+        # Odd divisions miss edge midpoints, and divisions not divisible by
+        # three miss the centroid. Always inspect these independent probes.
+        weights = np.vstack((weights, [
+            [.5, .5, 0.], [.5, 0., .5], [0., .5, .5], [1. / 3, 1. / 3, 1. / 3]]))
+        # Bound temporary arrays even for large, high-resolution surfaces.
+        batch = max(1, 100_000 // len(weights))
+        for start in range(0, len(indices), batch):
+            selected = indices[start:start + batch]
+            queries = np.einsum('ij,kjl->kil', weights, corners[selected])
+            hits = excluded(queries.reshape(-1, 3))
+            removed[selected] = np.asarray(hits).reshape(len(selected), -1).any(axis=1)
+    return removed

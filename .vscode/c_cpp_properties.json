@@ -1,0 +1,34 @@
+{
+  "configurations": [
+    {
+      "browse": {
+        "databaseFilename": "${default}",
+        "limitSymbolsToIncludedHeaders": false
+      },
+      "includePath": [
+        "/home/kasahara/SIP_PROJECTS/ros2_tms_ws/install/zx200_control/include/**",
+        "/home/kasahara/SIP_PROJECTS/ros2_tms_ws/install/zx120_control_hardware/include/**",
+        "/home/kasahara/SIP_PROJECTS/ros2_tms_ws/install/tms_ts_subtask/include/**",
+        "/home/kasahara/SIP_PROJECTS/ros2_tms_ws/install/tms_msg_ur/include/**",
+        "/home/kasahara/SIP_PROJECTS/ros2_tms_ws/install/tms_msg_ts/include/**",
+        "/home/kasahara/SIP_PROJECTS/ros2_tms_ws/install/tms_msg_rp/include/**",
+        "/home/kasahara/SIP_PROJECTS/ros2_tms_ws/install/tms_msg_db/include/**",
+        "/home/kasahara/SIP_PROJECTS/ros2_tms_ws/install/tms_if_input_msgs/include/**",
+        "/home/kasahara/SIP_PROJECTS/ros2_tms_ws/install/sensing_msgs/include/**",
+        "/home/kasahara/SIP_PROJECTS/ros2_tms_ws/install/segmenter_ros/include/**",
+        "/home/kasahara/SIP_PROJECTS/ros2_tms_ws/install/robot_filters/include/**",
+        "/home/kasahara/SIP_PROJECTS/ros2_tms_ws/install/machinery_task_msgs/include/**",
+        "/home/kasahara/SIP_PROJECTS/ros2_tms_ws/install/ic120_msgs/include/**",
+        "/home/kasahara/SIP_PROJECTS/ros2_tms_ws/install/com3_msgs/include/**",
+        "/opt/ros/humble/include/**",
+        "/usr/include/**"
+      ],
+      "name": "ROS",
+      "intelliSenseMode": "gcc-x64",
+      "compilerPath": "/usr/bin/gcc",
+      "cStandard": "gnu11",
+      "cppStandard": "c++14"
+    }
+  ],
+  "version": 4
+}

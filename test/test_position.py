@@ -9,7 +9,8 @@ import pytest
 from std_msgs.msg import Header
 from tf2_ros import Buffer, TransformException
 
-from pointcloud_filters.position import position_in_cloud_frame
+from pointcloud_filters.position import (
+    model_origin_matrix, pose_matrix_in_cloud_frame, position_in_cloud_frame)
 
 
 def _pose(frame='map', seconds=100):
@@ -96,3 +97,46 @@ def test_nonfinite_position_is_rejected():
     pose.pose.position.x = float('nan')
     with pytest.raises(ValueError, match='finite'):
         position_in_cloud_frame(pose, _header(), None)
+
+
+def test_world_map_inverse_and_pose_orientation_are_composed():
+    """Use the inverse world->map TF with the full measured base pose."""
+    buffer = Buffer()
+    transform = TransformStamped()
+    transform.header.frame_id, transform.child_frame_id = 'world', 'map'
+    transform.transform.translation.x = 10000.0
+    transform.transform.translation.y = 20000.0
+    transform.transform.translation.z = 28.558
+    transform.transform.rotation.z = math.sqrt(.5)
+    transform.transform.rotation.w = math.sqrt(.5)
+    buffer.set_transform_static(transform, 'test')
+    pose = _pose(frame='')
+    pose.pose.position.x = 9997.0
+    pose.pose.position.y = 20002.0
+    pose.pose.position.z = 32.496
+    pose.pose.orientation.z = 1.0
+    pose.pose.orientation.w = 0.0
+    matrix = pose_matrix_in_cloud_frame(pose, _header(), buffer)
+    np.testing.assert_allclose(matrix[:3, 3], [2., 3., 3.938], atol=1e-9)
+    np.testing.assert_allclose(
+        matrix[:3, :3], [[0., -1., 0.], [1., 0., 0.], [0., 0., 1.]], atol=1e-9)
+    assert pose.header.frame_id == ''
+
+
+def test_invalid_orientation_rejected_for_robot_geometry():
+    """A zero quaternion cannot define the orientation of the articulated model."""
+    pose = _pose()
+    pose.pose.orientation.w = 0.0
+    with pytest.raises(ValueError):
+        pose_matrix_in_cloud_frame(pose, _header(), None)
+
+
+def test_explicit_cad_origin_uses_base_axes_and_preserves_base_position():
+    """A calibrated model offset rotates with the measured base, not world axes."""
+    pose = _pose()
+    pose.pose.orientation.z, pose.pose.orientation.w = math.sqrt(.5), math.sqrt(.5)
+    base = pose_matrix_in_cloud_frame(pose, _header(), None)
+    model = base @ model_origin_matrix([0., 1., -2.], [0., 0., math.pi / 2])
+    np.testing.assert_allclose(base[:3, 3], [2., 3., 4.])
+    np.testing.assert_allclose(model[:3, 3], [1., 3., 2.])
+    np.testing.assert_allclose(model[:3, :3], np.diag([-1., -1., 1.]), atol=1e-10)

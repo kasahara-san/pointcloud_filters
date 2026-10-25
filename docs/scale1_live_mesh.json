@@ -1,0 +1,212 @@
+{
+  "mode": "mesh",
+  "domain": "222",
+  "input_count": 163,
+  "outputs": [
+    {
+      "elapsed_sec": 12.992368324892595,
+      "vertices": 2253,
+      "triangles": 4188
+    },
+    {
+      "elapsed_sec": 22.555714923888445,
+      "vertices": 2313,
+      "triangles": 4307
+    },
+    {
+      "elapsed_sec": 32.527590297861025,
+      "vertices": 2318,
+      "triangles": 4256
+    },
+    {
+      "elapsed_sec": 42.544822692871094,
+      "vertices": 2246,
+      "triangles": 4089
+    },
+    {
+      "elapsed_sec": 52.531918491004035,
+      "vertices": 2305,
+      "triangles": 4203
+    },
+    {
+      "elapsed_sec": 62.534883479820564,
+      "vertices": 2264,
+      "triangles": 4213
+    },
+    {
+      "elapsed_sec": 72.56447141291574,
+      "vertices": 2245,
+      "triangles": 4131
+    }
+  ],
+  "removed": [
+    {
+      "elapsed_sec": 12.998272713972256,
+      "points": 968,
+      "stamp_ns": 1792739284497137195,
+      "frame": "map"
+    },
+    {
+      "elapsed_sec": 22.56120159290731,
+      "points": 980,
+      "stamp_ns": 1792739294364908875,
+      "frame": "map"
+    },
+    {
+      "elapsed_sec": 32.53306831698865,
+      "points": 836,
+      "stamp_ns": 1792739304653762959,
+      "frame": "map"
+    },
+    {
+      "elapsed_sec": 42.55077311792411,
+      "points": 789,
+      "stamp_ns": 1792739314413609532,
+      "frame": "map"
+    },
+    {
+      "elapsed_sec": 52.538527976954356,
+      "points": 715,
+      "stamp_ns": 1792739324499594733,
+      "frame": "map"
+    },
+    {
+      "elapsed_sec": 62.54047693894245,
+      "points": 848,
+      "stamp_ns": 1792739334320131948,
+      "frame": "map"
+    },
+    {
+      "elapsed_sec": 72.56994669698179,
+      "points": 816,
+      "stamp_ns": 1792739337389720548,
+      "frame": "map"
+    }
+  ],
+  "headers": [
+    {
+      "stamp_ns": 1792739284497137195,
+      "frame": "map"
+    },
+    {
+      "stamp_ns": 1792739294364908875,
+      "frame": "map"
+    },
+    {
+      "stamp_ns": 1792739304653762959,
+      "frame": "map"
+    },
+    {
+      "stamp_ns": 1792739314413609532,
+      "frame": "map"
+    },
+    {
+      "stamp_ns": 1792739324499594733,
+      "frame": "map"
+    },
+    {
+      "stamp_ns": 1792739334320131948,
+      "frame": "map"
+    },
+    {
+      "stamp_ns": 1792739337389720548,
+      "frame": "map"
+    }
+  ],
+  "markers": [
+    {
+      "stamp_ns": 1792739284497137195,
+      "frame": "map",
+      "action": 0,
+      "points": 12564
+    },
+    {
+      "stamp_ns": 1792739294364908875,
+      "frame": "map",
+      "action": 0,
+      "points": 12921
+    },
+    {
+      "stamp_ns": 1792739304653762959,
+      "frame": "map",
+      "action": 0,
+      "points": 12768
+    },
+    {
+      "stamp_ns": 1792739314413609532,
+      "frame": "map",
+      "action": 0,
+      "points": 12267
+    },
+    {
+      "stamp_ns": 1792739324499594733,
+      "frame": "map",
+      "action": 0,
+      "points": 12609
+    },
+    {
+      "stamp_ns": 1792739334320131948,
+      "frame": "map",
+      "action": 0,
+      "points": 12639
+    },
+    {
+      "stamp_ns": 1792739337389720548,
+      "frame": "map",
+      "action": 0,
+      "points": 12393
+    }
+  ],
+  "assertions": [],
+  "launch_pid": 1519941,
+  "first_input_sec": 4.670911606866866,
+  "last_input_sec": 64.91994047979824,
+  "sigint_elapsed_sec": 77.30584452487528,
+  "launch_returncode": 0,
+  "events": [
+    {
+      "kind": "filter_ready",
+      "elapsed_sec": 2.263862042920664
+    },
+    {
+      "kind": "bag_started",
+      "elapsed_sec": 2.2650668299756944
+    },
+    {
+      "kind": "bag_finished_cleanly",
+      "elapsed_sec": 65.28346775495447
+    }
+  ],
+  "checks": {
+    "ready_before_bag_started": true,
+    "bag_finished_cleanly": true,
+    "all_163_inputs_received": true,
+    "at_least_five_outputs": true,
+    "removed_count_matches_outputs": true,
+    "actual_robot_points_removed": true,
+    "map_frame_preserved": true,
+    "launch_clean_shutdown": true,
+    "mesh_headers_match_outputs": true,
+    "mesh_markers_match_outputs": true,
+    "mesh_header_stamps_match_removed": true,
+    "mesh_marker_stamps_match_headers": true,
+    "reconstructed_surfaces": true,
+    "marker_triangle_counts": true
+  },
+  "failures": [],
+  "elapsed_sec": 78.32968100300059,
+  "configuration": {
+    "model_origin_xyz": [
+      -0.17,
+      0.3,
+      -3.21
+    ],
+    "model_origin_rpy": [
+      0.0,
+      0.0,
+      0.0
+    ],
+    "self_filter_padding": 0.3,
+    "note": "Provisional fit authorized for this recording, not surveyed calibration"
+  }
+}

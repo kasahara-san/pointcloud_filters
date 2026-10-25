@@ -5,7 +5,7 @@ import pytest
 from rclpy.serialization import deserialize_message, serialize_message
 from shape_msgs.msg import Mesh
 
-from pointcloud_filters.meshing import MeshConverter, mesh_voxel_size
+from pointcloud_filters.meshing import _excluded_triangles, MeshConverter, mesh_voxel_size
 
 
 def _assert_valid_mesh(message):
@@ -65,6 +65,41 @@ def test_disconnected_mesh_patches_are_preserved():
     assert np.count_nonzero(vertices[:, 0] < 3.0) > 50
     assert np.count_nonzero(vertices[:, 0] > 4.0) > 10
     assert np.all(np.ptp(vertices[faces, 0], axis=1) < 1.0)
+
+
+def test_mesh_cannot_fill_removed_robot_region():
+    """Reject triangles bridging a robot-sized gap even when their vertices are safe."""
+    coordinates = np.arange(-10, 11) * .1
+    x, y = np.meshgrid(coordinates[coordinates != 0], coordinates)
+    points = np.column_stack((x.ravel(), y.ravel(), np.zeros(x.size)))
+
+    def excluded(queries):
+        return np.abs(queries[:, 0]) < .06
+
+    converter = MeshConverter(5)
+    original, _ = converter.convert(points)
+    vertices, faces = _assert_valid_mesh(original)
+    crosses = (vertices[faces, 0].min(axis=1) < 0) & (vertices[faces, 0].max(axis=1) > 0)
+    assert crosses.any()
+    filtered, _ = converter.convert(points, excluded=excluded, exclusion_step=.025)
+    vertices, faces = _assert_valid_mesh(filtered)
+    assert not excluded(vertices).any()
+    crosses = (vertices[faces, 0].min(axis=1) < 0) & (vertices[faces, 0].max(axis=1) > 0)
+    assert not crosses.any()
+
+
+@pytest.mark.parametrize('probe', [
+    [.5, 0, 0], [0, .5, 0], [.5, .5, 0], [1. / 3, 1. / 3, 0]])
+def test_midpoints_and_centroid_are_checked_between_grid_samples(probe):
+    """An odd five-division grid must not miss robot hits between its samples."""
+    triangle = np.array([[0., 0., 0.], [1., 0., 0.], [0., 1., 0.]])
+    triangles = np.array([triangle, triangle + [3., 0., 0.]])
+
+    def excluded(queries):
+        return np.linalg.norm(queries - probe, axis=1) < 1e-8
+
+    np.testing.assert_array_equal(
+        _excluded_triangles(triangles, excluded, step=.3), [True, False])
 
 
 @pytest.mark.parametrize('points', [

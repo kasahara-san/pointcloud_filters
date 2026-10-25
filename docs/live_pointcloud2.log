@@ -1,0 +1,34 @@
+    0.326 [INFO] [launch]: All log files can be found below /tmp/pcf-gui-validation/2026-10-25-16-46-22-020338-kasahara-PC-1529082
+    0.326 [INFO] [launch]: Default logging verbosity is set to INFO
+    0.382 [INFO] [pointcloud_filter-1]: process started with pid [1529084]
+    0.382 [INFO] [rviz2-2]: process started with pid [1529086]
+    1.121 [rviz2-2] [INFO] [1792914382.816425829] [rviz2]: Stereo is NOT SUPPORTED
+    1.121 [rviz2-2] [INFO] [1792914382.816492349] [rviz2]: OpenGl version: 4.6 (GLSL 4.6)
+    1.144 [rviz2-2] [INFO] [1792914382.839346633] [rviz2]: Stereo is NOT SUPPORTED
+    2.247 [pointcloud_filter-1] [INFO] [1792914383.942084789] [pointcloud_filter]: /merged_pointcloud -> /pcf_validation/filtered, output_format=pointcloud2, mesh_resolution=3, period=10.000s (wall time), parameters=FilterParameters(radius_m=10.0, voxel_size=0.1, sor_mean_k=20, sor_stddev_mul=2.0)
+    2.247 [pointcloud_filter-1] [INFO] [1792914383.942651464] [pointcloud_filter]: XY center: /zx200/global_pose (geometry_msgs/msg/PoseStamped); max_pose_time_diff_sec=0.5
+    2.248 [pointcloud_filter-1] [INFO] [1792914383.943113210] [pointcloud_filter]: self_filter=True; joint_states=/zx200/joint_states; missing pose frame=world; padding=0.3m; scale=1.3
+    2.248 [pointcloud_filter-1] [INFO] [1792914383.943535751] [pointcloud_filter]: base->CAD origin: xyz=[-0.17, 0.3, -3.21]m rpy=[0.0, 0.0, 0.0]rad
+    2.248 [pointcloud_filter-1] [INFO] [1792914383.943813606] [pointcloud_filter]: TF input: /tf_static; use_dynamic_tf=False
+    2.249 [pointcloud_filter-1] [INFO] [1792914383.944165353] [pointcloud_filter]: Ready for point clouds.
+    2.250 [INFO] [ros2-3]: process started with pid [1529159]
+    2.539 [ros2-3] stdin is not a terminal device. Keyboard handling disabled.[INFO] [1792914384.233983050] [rosbag2_storage]: Opened database '/home/kasahara/SIP_PROJECTS/ros2_tms_ws/src/pointcloud_filters/rosbag/rosbag2_2026_10_25-08_46_47/rosbag2_2026_10_25-08_46_47_0.db3' for READ_ONLY.
+    3.170 [ros2-3] [INFO] [1792914384.234028696] [rosbag2_player]: Set rate to 1
+    3.170 [ros2-3] [INFO] [1792914384.237738443] [rosbag2_player]: Sleep 2000000000 ns
+    4.543 [ros2-3] [INFO] [1792914386.238136658] [rosbag2_storage]: Opened database '/home/kasahara/SIP_PROJECTS/ros2_tms_ws/src/pointcloud_filters/rosbag/rosbag2_2026_10_25-08_46_47/rosbag2_2026_10_25-08_46_47_0.db3' for READ_ONLY.
+    4.549 [rviz2-2] [WARN] [1792914386.244404822] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+    4.549 [rviz2-2] [WARN] [1792914386.244449732] [rviz2]: Detected jump back in time. Resetting RViz.
+   12.213 [pointcloud_filter-1] [INFO] [1792914393.908432918] [pointcloud_filter]: points: input=64534 finite=64534 radius=6616 self_removed=1222 voxel=5394 sor=5270 output=5270; center_xy=(20.234, 21.543);  processing=0.054s
+   22.207 [pointcloud_filter-1] [INFO] [1792914403.901953302] [pointcloud_filter]: points: input=65064 finite=65064 radius=6758 self_removed=1267 voxel=5491 sor=5364 output=5364; center_xy=(20.232, 21.537);  processing=0.047s
+   32.205 [pointcloud_filter-1] [INFO] [1792914413.900040841] [pointcloud_filter]: points: input=65056 finite=65056 radius=6918 self_removed=1102 voxel=5816 sor=5692 output=5692; center_xy=(20.232, 21.537);  processing=0.045s
+   42.205 [pointcloud_filter-1] [INFO] [1792914423.900756302] [pointcloud_filter]: points: input=66585 finite=66585 radius=6892 self_removed=1085 voxel=5807 sor=5660 output=5660; center_xy=(20.185, 21.570);  processing=0.047s
+   52.207 [pointcloud_filter-1] [INFO] [1792914433.902519141] [pointcloud_filter]: points: input=67980 finite=67980 radius=7300 self_removed=965 voxel=6335 sor=6148 output=6148; center_xy=(20.183, 21.564);  processing=0.048s
+   62.207 [pointcloud_filter-1] [INFO] [1792914443.902106743] [pointcloud_filter]: points: input=66111 finite=66111 radius=6797 self_removed=1128 voxel=5669 sor=5596 output=5596; center_xy=(20.238, 21.537);  processing=0.047s
+   65.241 [INFO] [ros2-3]: process has finished cleanly [pid 1529159]
+   72.204 [pointcloud_filter-1] [INFO] [1792914453.899041461] [pointcloud_filter]: points: input=65455 finite=65455 radius=6729 self_removed=1069 voxel=5660 sor=5550 output=5550; center_xy=(20.232, 21.536);  processing=0.045s
+   77.261 [WARNING] [launch]: user interrupted with ctrl-c (SIGINT)
+   77.262 [INFO] [rviz2-2]: sending signal 'SIGINT' to process[rviz2-2]
+   77.262 [INFO] [pointcloud_filter-1]: sending signal 'SIGINT' to process[pointcloud_filter-1]
+   77.262 [rviz2-2] [INFO] [1792914458.957339269] [rclcpp]: signal_handler(signum=2)
+   77.546 [INFO] [rviz2-2]: process has finished cleanly [pid 1529086]
+   77.692 [INFO] [pointcloud_filter-1]: process has finished cleanly [pid 1529084]

@@ -2,8 +2,26 @@ pointcloud_filter:
   ros__parameters:
     input_topic: /merged_pointcloud
     pose_topic: /zx200/global_pose
+    # The supplied GNSS PoseStamped has an empty frame_id. Only empty IDs use this.
+    pose_frame: world
+    joint_states_topic: /zx200/joint_states
     # Maximum pose/cloud header stamp difference. 0 disables the check.
-    max_pose_time_diff_sec: 2.0
+    max_pose_time_diff_sec: 0.5
+    max_joint_time_diff_sec: 0.5
+    state_history_sec: 30.0
+    # The bundled bag needs only static world->map; pose/joints are separate topics.
+    use_dynamic_tf: false
+    self_filter: true
+    # 0.30 m covers residual CAD/pose alignment error in the bundled recording.
+    self_filter_padding: 0.30
+    # Enlarge each link around its collision bounds center; keep joint origins fixed.
+    self_filter_scale: 1.50
+    # Empty selects the bundled robot/zx200.urdf (no external description needed).
+    robot_description_path: ''
+    # Provisional fit for the bundled October 25 bag, NOT a surveyed calibration.
+    # Measured base_link -> CAD model root, expressed in measured base axes.
+    model_origin_xyz: [-0.17, 0.30, -3.21]
+    model_origin_rpy: [0.0, 0.0, 0.0]
     output_topic: /merged_pointcloud_filtered
     # pointcloud2: sensor_msgs/msg/PointCloud2; mesh: shape_msgs/msg/Mesh
     output_format: pointcloud2
