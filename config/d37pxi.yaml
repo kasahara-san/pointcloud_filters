@@ -5,7 +5,6 @@ pointcloud_filter:
     pose_frame: map
     joint_states_topic: /d37pxi/joint_states
     joint_name_map: ['lift:lift_joint', 'tilt:tilt_joint', 'angle:angle_joint']
-    sensor_mode: onboard
     sensor_frame: hesai_lidar
     # Provisional base_link <- LiDAR, fitted from the November 20 recording.
     # Recalibrate after relocating the sensor. XYZ [m], fixed XYZ RPY [rad].
@@ -19,7 +18,6 @@ pointcloud_filter:
     max_pose_time_diff_sec: 0.5
     max_joint_time_diff_sec: 0.5
     state_history_sec: 30.0
-    use_dynamic_tf: false
     self_filter: true
     # Prioritize excluding self returns, including CAD/mounting mismatch.
     # Grow each collision about its own center without moving joint origins.
@@ -27,7 +25,8 @@ pointcloud_filter:
     self_filter_scale: 1.20
     # Close unmodelled/open CAD cavities independently for each articulated link.
     self_filter_geometry: convex_hull
-    robot_description_path: 'd37pxi'
+    # Empty uses the bundled D37PXi URDF.
+    robot_description_path: ''
     model_origin_xyz: [0.0, 0.0, 0.0]
     model_origin_rpy: [0.0, 0.0, 0.0]
     output_topic: /d37pxi/lidar_points_filtered

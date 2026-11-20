@@ -15,8 +15,6 @@ setup(
         ('share/' + package_name + '/config', glob('config/*.yaml')),
         ('share/' + package_name + '/launch', glob('launch/*.launch.py')),
         ('share/' + package_name + '/rviz', glob('rviz/*.rviz')),
-        ('share/' + package_name + '/robot', glob('robot/*.*') + glob('robot/LICENSE')),
-        ('share/' + package_name + '/robot/meshes', glob('robot/meshes/*')),
         ('share/' + package_name + '/robot/d37pxi', glob('robot/d37pxi/*.*')
          + glob('robot/d37pxi/LICENSE')),
         ('share/' + package_name + '/robot/d37pxi/meshes', glob('robot/d37pxi/meshes/*')),
@@ -28,7 +26,7 @@ setup(
     zip_safe=True,
     maintainer='common',
     maintainer_email='kasahara.yuichiro.res@gmail.com',
-    description='Filter onboard D37PXi or external ZX200 clouds using articulated meshes.',
+    description='Filter D37PXi onboard LiDAR clouds using measured articulated geometry.',
     license='TODO: License declaration',
     tests_require=['pytest'],
     entry_points={

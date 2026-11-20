@@ -299,7 +299,7 @@ class SelfFilter:
                 self.collisions[-1].mesh_scale = mesh_scale
         if not self.collisions:
             raise ValueError('Robot URDF has no collision meshes')
-        # Joints on collision-free leaves (for example bucket_end_joint) are optional.
+        # Joints with no collision-bearing descendants are optional.
         needed_links = {collision.link for collision in self.collisions}
         changed = True
         while changed:

@@ -19,7 +19,7 @@ Visualization Manager:
     Name: Input point cloud (gray)
     Enabled: false
     Topic:
-      Value: /merged_pointcloud
+      Value: /lidar_points
       Depth: 1
       History Policy: Keep Last
       Reliability Policy: Best Effort
@@ -37,7 +37,7 @@ Visualization Manager:
     Name: Filtered point cloud (green)
     Enabled: true
     Topic:
-      Value: /merged_pointcloud_filtered
+      Value: /d37pxi/lidar_points_filtered
       Depth: 1
       History Policy: Keep Last
       Reliability Policy: Reliable
@@ -55,7 +55,7 @@ Visualization Manager:
     Name: Removed robot points (red)
     Enabled: false
     Topic:
-      Value: /merged_pointcloud_filtered/self_removed
+      Value: /d37pxi/lidar_points_filtered/self_removed
       Depth: 1
       History Policy: Keep Last
       Reliability Policy: Reliable
@@ -75,7 +75,7 @@ Visualization Manager:
     Value: true
     Namespaces: {}
     Topic:
-      Value: /merged_pointcloud_filtered/robot_model
+      Value: /d37pxi/lidar_points_filtered/robot_model
       Depth: 1
       History Policy: Keep Last
       Reliability Policy: Reliable

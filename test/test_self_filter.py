@@ -1,7 +1,5 @@
 """Validate measured-angle FK and actual mesh surfaces, interiors and padding."""
 
-from pathlib import Path
-
 import numpy as np
 import pytest
 from scipy.spatial.transform import Rotation
@@ -240,23 +238,3 @@ def test_invalid_growth_scale_is_rejected_before_loading_geometry(scale):
     """Only finite enlargement factors can configure a removal model."""
     with pytest.raises(ValueError, match='self_filter_scale'):
         SelfFilter('/nonexistent/model.urdf', scale=scale)
-
-
-def test_bundled_zx200_all_mesh_vertices_follow_real_bag_joint_angles(open3d_available):
-    """Check every shipped collision vertex at realistic measured machine posture."""
-    model = SelfFilter(Path(__file__).parents[1] / 'robot' / 'zx200.urdf')
-    joints = {'swing_joint': -3.1344, 'boom_joint': -0.7916,
-              'arm_joint': 1.646, 'bucket_joint': 0.004}
-    assert set(model.required_joints) == set(joints)
-    assert len(model.collisions) == 5
-    body = next(c for c in model.collisions if c.link == 'body_link')
-    # Lamp geometry has a nested scene translation; ignoring it gives zmax=3.415835.
-    assert body.upper[2] == pytest.approx(2.341788, abs=1e-6)
-    transforms = model.link_transforms(joints)
-    pose = np.eye(4)
-    pose[:3, 3] = [20.2339, 21.5367, 3.938]
-    pose[:3, :3] = Rotation.from_euler('xyz', [-0.005, -0.0075, 1.71878]).as_matrix()
-    for collision in model.collisions:
-        matrix = pose @ transforms[collision.link] @ collision.origin
-        points = collision.vertices @ matrix[:3, :3].T + matrix[:3, 3]
-        assert model.mask(points, pose, joints).all(), collision.link

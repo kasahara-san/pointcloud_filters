@@ -3,7 +3,7 @@
 <package format="3">
   <name>pointcloud_filters</name>
   <version>0.4.0</version>
-  <description>Filter onboard D37PXi or external ZX200 clouds using articulated meshes.</description>
+  <description>Filter D37PXi onboard LiDAR clouds using measured articulated geometry.</description>
   <maintainer email="kasahara.yuichiro.res@gmail.com">common</maintainer>
   <license>TODO: License declaration</license>
 
@@ -14,9 +14,6 @@
   <exec_depend>rcl_interfaces</exec_depend>
   <exec_depend>rclpy</exec_depend>
   <exec_depend>tf2_ros_py</exec_depend>
-  <exec_depend>tf2_msgs</exec_depend>
-  <exec_depend>rosbag2_transport</exec_depend>
-  <exec_depend>rosbag2_py</exec_depend>
   <exec_depend>sensor_msgs</exec_depend>
   <exec_depend>sensor_msgs_py</exec_depend>
   <exec_depend>shape_msgs</exec_depend>
@@ -28,7 +25,6 @@
   <exec_depend>python3-numpy</exec_depend>
   <exec_depend>python3-scipy</exec_depend>
   <exec_depend>python3-open3d</exec_depend>
-  <exec_depend>python3-matplotlib</exec_depend>
 
   <test_depend>ament_copyright</test_depend>
   <test_depend>ament_flake8</test_depend>

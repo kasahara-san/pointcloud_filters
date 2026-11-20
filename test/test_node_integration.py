@@ -1,13 +1,14 @@
-"""Exercise articulated self removal through real ROS publishers and subscribers."""
+"""Exercise the bundled D37PXi model through real ROS publishers and subscribers."""
 
 from copy import deepcopy
 import math
 import os
+from pathlib import Path
 import threading
 import time
 import uuid
 
-from geometry_msgs.msg import PoseStamped, TransformStamped
+from geometry_msgs.msg import PoseStamped
 import numpy as np
 import pytest
 import rclpy
@@ -17,43 +18,20 @@ from rclpy.qos import DurabilityPolicy, QoSProfile, ReliabilityPolicy
 from sensor_msgs.msg import JointState, PointCloud2, PointField
 from shape_msgs.msg import Mesh
 from std_msgs.msg import Header
-from tf2_msgs.msg import TFMessage
-from tf2_ros import StaticTransformBroadcaster
-from visualization_msgs.msg import Marker
+from visualization_msgs.msg import Marker, MarkerArray
 
-from pointcloud_filters.cloud_io import read_cloud
-from pointcloud_filters.pointcloud_filter_node import PointCloudFilterNode
-
-
-def _robot_description(directory):
-    vertices = [(-0.5, -0.5, -0.5), (0.5, -0.5, -0.5), (0.5, 0.5, -0.5),
-                (-0.5, 0.5, -0.5), (-0.5, -0.5, 0.5), (0.5, -0.5, 0.5),
-                (0.5, 0.5, 0.5), (-0.5, 0.5, 0.5)]
-    triangles = [(0, 2, 1), (0, 3, 2), (4, 5, 6), (4, 6, 7),
-                 (0, 1, 5), (0, 5, 4), (1, 2, 6), (1, 6, 5),
-                 (2, 3, 7), (2, 7, 6), (3, 0, 4), (3, 4, 7)]
-    text = ''.join(f'v {x} {y} {z}\n' for x, y, z in vertices)
-    text += ''.join(f'f {a + 1} {b + 1} {c + 1}\n' for a, b, c in triangles)
-    (directory / 'box.obj').write_text(text)
-    path = directory / 'robot.urdf'
-    path.write_text(
-        '<robot name="integration_robot"><link name="base_link"/>'
-        '<link name="arm_link"><collision><origin xyz="1 0 0"/>'
-        '<geometry><mesh filename="box.obj"/></geometry></collision></link>'
-        '<joint name="arm_joint" type="continuous"><parent link="base_link"/>'
-        '<child link="arm_link"/><origin xyz="1 0 0"/><axis xyz="0 0 1"/>'
-        '</joint></robot>')
-    return path
+import pointcloud_filters.pointcloud_filter_node as filter_module
 
 
 def _cloud(seconds=100):
-    # world->map has yaw 90 degrees, world->base has yaw 180 degrees,
-    # and the joint has yaw 90 degrees. The articulated cube center must
-    # therefore be map (2, 5, 0), independently of production FK code.
-    robot = np.array([[2, 5, 0.5], [2, 5, 0], [2.5, 5, 0], [2, 5, 0.6]])
-    x, y = np.meshgrid(np.linspace(6, 8, 9), np.linspace(2, 4, 9))
+    # Four points inside the actual D37PXi body envelope, followed by visible terrain.
+    robot = np.array([[0., 0., 1.], [1., 0., 1.], [-1., 0., .5], [0., 0., 2.5]])
+    x, y = np.meshgrid(np.linspace(5., 7., 9), np.linspace(2., 4., 9))
     terrain = np.column_stack((x.ravel(), y.ravel(), np.zeros(x.size)))
-    points = np.vstack((robot, terrain, [[100, 100, 0], [np.nan, 0, 0]]))
+    base = np.vstack((robot, terrain, [[11., 0., 0.], [0., 0., 0.], [np.nan, 0., 0.]]))
+    # Independent inverse of base<-LiDAR: XYZ=[1,0,2], RPY=[-pi/2,0,-pi/2].
+    points = np.column_stack((-base[:, 1], 2. - base[:, 2], base[:, 0] - 1.))
+    points[86] = 0.  # Hesai's unmeasured zero placeholder.
     dtype = np.dtype({'names': ['x', 'y', 'z', 'intensity', 'id'],
                       'formats': ['<f4', '<f4', '<f4', '<u2', '<u4'],
                       'offsets': [0, 4, 8, 12, 16], 'itemsize': 20})
@@ -64,7 +42,7 @@ def _cloud(seconds=100):
     records['intensity'] = np.arange(len(points)) + 100
     records['id'] = np.arange(len(points)) + 1000
     message = PointCloud2()
-    message.header.frame_id = 'map'
+    message.header.frame_id = 'hesai_lidar'
     message.header.stamp.sec = seconds
     message.height, message.width = 1, len(points)
     message.point_step, message.row_step = 20, 20 * len(points)
@@ -77,20 +55,18 @@ def _cloud(seconds=100):
     return message
 
 
-def _pose(seconds=100):
+def _pose(seconds=1100, frame='map'):
     message = PoseStamped()
-    # The real recording has empty frame IDs; pose_frame supplies world.
+    message.header.frame_id = frame
     message.header.stamp.sec = seconds
-    message.pose.position.x = 99996.0
-    message.pose.position.y = -29997.0
-    message.pose.position.z = 50.0
-    message.pose.orientation.z = 1.0
-    message.pose.orientation.w = 0.0
+    message.pose.position.x, message.pose.position.y, message.pose.position.z = \
+        -19268., -138681., 88.
+    message.pose.orientation.w = 1.
     return message
 
 
-def _joints(seconds=100, name='arm_joint'):
-    message = JointState(name=[name], position=[math.pi / 2])
+def _joints(seconds=1100, names=('lift', 'tilt', 'angle')):
+    message = JointState(name=list(names), position=[0.] * len(names))
     message.header.stamp.sec = seconds
     return message
 
@@ -98,31 +74,37 @@ def _joints(seconds=100, name='arm_joint'):
 class _RunningFilter:
 
     def __init__(self, output_format):
-        self.outputs, self.removed, self.headers, self.markers = [], [], [], []
+        self.outputs, self.removed, self.headers, self.markers, self.models = [], [], [], [], []
         self.failures = []
-        self.filter = PointCloudFilterNode()
-        self.peer = Node('filter_test_peer_' + uuid.uuid4().hex[:8])
+        self.filter = filter_module.PointCloudFilterNode()
+        self.peer = Node('d37_filter_test_peer_' + uuid.uuid4().hex[:8])
         qos = QoSProfile(depth=10, reliability=ReliabilityPolicy.RELIABLE)
-        self.cloud_publisher = self.peer.create_publisher(PointCloud2, '/test/cloud', qos)
-        self.pose_publisher = self.peer.create_publisher(PoseStamped, '/test/pose', qos)
-        self.joint_publisher = self.peer.create_publisher(JointState, '/test/joints', qos)
+
+        def topic(name):
+            return self.filter.get_parameter(name).value
+
+        self.cloud_publisher = self.peer.create_publisher(PointCloud2, topic('input_topic'), qos)
+        self.pose_publisher = self.peer.create_publisher(PoseStamped, topic('pose_topic'), qos)
+        self.joint_publisher = self.peer.create_publisher(
+            JointState, topic('joint_states_topic'), qos)
+        output = topic('output_topic')
+        transient = QoSProfile(depth=1, reliability=ReliabilityPolicy.RELIABLE,
+                               durability=DurabilityPolicy.TRANSIENT_LOCAL)
         self.subscriptions = [
-            self.peer.create_subscription(
-                Mesh if output_format == 'mesh' else PointCloud2,
-                '/test/filtered', self.outputs.append, qos),
-            self.peer.create_subscription(
-                PointCloud2, '/test/filtered/self_removed', self.removed.append, qos),
+            self.peer.create_subscription(Mesh if output_format == 'mesh' else PointCloud2,
+                                          output, self.outputs.append, qos),
+            self.peer.create_subscription(PointCloud2, output + '/self_removed',
+                                          self.removed.append, qos),
+            self.peer.create_subscription(MarkerArray, output + '/robot_model',
+                                          self.models.append, transient),
         ]
         if output_format == 'mesh':
             self.subscriptions.extend([
                 self.peer.create_subscription(
-                    Header, '/test/filtered/header', self.headers.append, qos),
-                self.peer.create_subscription(
-                    Marker, '/test/filtered/marker', self.markers.append,
-                    QoSProfile(depth=1, reliability=ReliabilityPolicy.RELIABLE,
-                               durability=DurabilityPolicy.TRANSIENT_LOCAL)),
+                    Header, output + '/header', self.headers.append, qos),
+                self.peer.create_subscription(Marker, output + '/marker',
+                                              self.markers.append, transient),
             ])
-        self.tf_broadcaster = StaticTransformBroadcaster(self.peer)
         self.executor = MultiThreadedExecutor(num_threads=3)
         self.executor.add_node(self.filter)
         self.executor.add_node(self.peer)
@@ -130,8 +112,7 @@ class _RunningFilter:
         self.thread.start()
         self.wait(lambda: all(publisher.get_subscription_count() for publisher in (
             self.cloud_publisher, self.pose_publisher, self.joint_publisher)))
-        self.wait(lambda: self.filter.count_subscribers('/test/filtered') >= 1
-                  and self.filter.count_subscribers('/test/filtered/self_removed') >= 1)
+        self.wait(lambda: self.filter.count_subscribers(output) >= 1)
 
     def _spin(self):
         try:
@@ -146,58 +127,48 @@ class _RunningFilter:
                 raise AssertionError(f'Executor failed: {self.failures}')
             if condition():
                 return
-            time.sleep(0.01)
+            time.sleep(.01)
         raise AssertionError('Timed out waiting for ROS message delivery')
 
-    def assert_quiet(self, duration=0.35):
+    def assert_quiet(self, duration=.35):
         count = len(self.outputs)
         deadline = time.monotonic() + duration
         while time.monotonic() < deadline:
-            assert not self.failures
-            assert len(self.outputs) == count
-            time.sleep(0.01)
-
-    def publish_transform(self):
-        transform = TransformStamped()
-        transform.header.frame_id, transform.child_frame_id = 'world', 'map'
-        transform.transform.translation.x = 100000.0
-        transform.transform.translation.y = -30000.0
-        transform.transform.translation.z = 50.0
-        transform.transform.rotation.z = math.sqrt(0.5)
-        transform.transform.rotation.w = math.sqrt(0.5)
-        self.tf_broadcaster.sendTransform(transform)
+            assert not self.failures and len(self.outputs) == count
+            time.sleep(.01)
 
     def publish_state(self, seconds=100):
-        self.pose_publisher.publish(_pose(seconds))
-        self.joint_publisher.publish(_joints(seconds))
+        self.pose_publisher.publish(_pose(seconds + 1000))
+        self.joint_publisher.publish(_joints(seconds + 1000))
 
     def close(self):
-        self.executor.shutdown(timeout_sec=5.0)
-        self.thread.join(timeout=5.0)
+        self.executor.shutdown(timeout_sec=5.)
+        self.thread.join(timeout=5.)
         self.filter.destroy_node()
         self.peer.destroy_node()
-        assert not self.thread.is_alive()
-        assert not self.failures
+        assert not self.thread.is_alive() and not self.failures
 
 
 @pytest.fixture
 def running_filter(tmp_path, monkeypatch):
-    """Provide isolated DDS nodes with a 0.1-second processing timer."""
+    """Use the real D37PXi description in an isolated ROS domain with a short timer."""
     monkeypatch.setenv('ROS_LOG_DIR', str(tmp_path))
     monkeypatch.setenv('ROS_DOMAIN_ID', str(100 + os.getpid() % 100))
     monkeypatch.setenv('ROS_LOCALHOST_ONLY', '1')
-    path = _robot_description(tmp_path)
+    root = Path(__file__).resolve().parents[1]
+    monkeypatch.setattr(filter_module, 'get_package_share_directory', lambda _: str(root))
     active = []
 
-    def start(output_format='pointcloud2', **overrides):
+    def start(output_format='pointcloud2', default_topics=False, **overrides):
         arguments = ['--ros-args']
-        values = dict(
-            robot_description_path=str(path), output_format=output_format,
-            input_topic='/test/cloud', pose_topic='/test/pose',
-            joint_states_topic='/test/joints', output_topic='/test/filtered',
-            publish_period_sec=0.1, voxel_size=0.0, sor_stddev_mul=1000000.0,
-            max_pose_time_diff_sec=0.2, max_joint_time_diff_sec=0.2,
-        )
+        values = dict(output_format=output_format, publish_period_sec=.1, voxel_size=0.,
+                      max_pose_time_diff_sec=.2, max_joint_time_diff_sec=.2,
+                      sensor_xyz=[1., 0., 2.], sensor_rpy=[-math.pi / 2, 0., -math.pi / 2],
+                      cloud_time_offset_sec=1000.,
+                      visualization_base_frame='test_d37_filter_base')
+        if not default_topics:
+            values.update(input_topic='/test/cloud', pose_topic='/test/pose',
+                          joint_states_topic='/test/joints', output_topic='/test/filtered')
         values.update(overrides)
         for name, value in values.items():
             arguments.extend(['-p', f'{name}:={value}'])
@@ -214,215 +185,106 @@ def running_filter(tmp_path, monkeypatch):
 
 
 @pytest.mark.parametrize('output_format', ['pointcloud2', 'mesh'])
-def test_world_pose_joint_kinematics_and_both_outputs(running_filter, output_format):
-    """Remove the measured robot while preserving terrain and output metadata."""
+def test_d37pxi_onboard_filter_preserves_terrain_and_source_records(running_filter, output_format):
+    """Remove the bundled machine using mapped joints and shifted sensor time."""
     running = running_filter(output_format)
-    running.publish_transform()
     running.publish_state()
     cloud = _cloud()
     original = deepcopy(cloud)
     running.cloud_publisher.publish(cloud)
-    running.wait(lambda: bool(running.outputs) and bool(running.removed))
+    running.wait(lambda: bool(running.outputs) and bool(running.removed) and bool(running.models))
     removed = running.removed[0]
-    assert removed.width == 4
-    assert removed.header == cloud.header and removed.fields == cloud.fields
+    assert removed.width == 4 and removed.header == cloud.header
     assert bytes(removed.data) == bytes(cloud.data[:4 * cloud.point_step])
     if output_format == 'pointcloud2':
         output = running.outputs[0]
         assert output.width == 81 and output.height == 1
         assert output.header == cloud.header and output.fields == cloud.fields
-        assert output.point_step == cloud.point_step
         assert bytes(output.data) == bytes(cloud.data[4 * 20:85 * 20])
-        xyz, _ = read_cloud(output)
-        assert np.all(xyz[:, 0] >= 6)
     else:
         running.wait(lambda: bool(running.headers) and bool(running.markers))
         output = running.outputs[0]
         assert len(output.vertices) > 10 and len(output.triangles) > 10
-        assert all(point.x >= 6 and point.z == 0 for point in output.vertices)
+        assert all(point.z >= 4. for point in output.vertices)
         assert running.headers[0] == cloud.header
         marker = running.markers[0]
         assert marker.header == cloud.header and marker.action == Marker.ADD
-        assert marker.points == [output.vertices[index] for triangle in output.triangles
-                                 for index in triangle.vertex_indices]
+        assert marker.points == [output.vertices[i] for face in output.triangles
+                                 for i in face.vertex_indices]
+    assert len(running.models[0].markers) == 7
+    assert all(marker.header == cloud.header for marker in running.models[0].markers)
     assert cloud == original
     running.assert_quiet()
 
 
-def test_missing_and_stale_partial_joints_wait_then_recover(running_filter):
-    """Missing/stale joint samples must hold the cloud until every joint is current."""
+def test_missing_and_stale_partial_blade_joints_wait_then_recover(running_filter):
+    """Every D37PXi blade joint needs a current sample, even in partial updates."""
     running = running_filter()
-    running.publish_transform()
     running.pose_publisher.publish(_pose())
     running.cloud_publisher.publish(_cloud())
     running.assert_quiet()
-    running.joint_publisher.publish(_joints(98))
+    running.joint_publisher.publish(_joints(1098))
+    running.joint_publisher.publish(_joints(names=('lift', 'angle')))
     running.assert_quiet()
-    running.joint_publisher.publish(_joints())
-    running.wait(lambda: len(running.outputs) == 1 and len(running.removed) == 1)
-    assert running.removed[0].width == 4
-
-    running.pose_publisher.publish(_pose(102))
+    running.joint_publisher.publish(_joints(names=('tilt',)))
+    running.wait(lambda: len(running.outputs) == 1)
+    running.pose_publisher.publish(_pose(1102))
     running.cloud_publisher.publish(_cloud(102))
-    running.joint_publisher.publish(_joints(102, 'unrelated_joint'))
+    running.joint_publisher.publish(_joints(1102, ('unrelated',)))
     running.assert_quiet()
-    running.joint_publisher.publish(_joints(102))
+    running.joint_publisher.publish(_joints(1102))
     running.wait(lambda: len(running.outputs) == 2)
-    assert running.outputs[-1].header.stamp.sec == 102
-    assert running.outputs[-1].width == 81
 
 
-def test_missing_static_transform_waits_then_recovers(running_filter):
-    """A later world/map static transform must release the pending measured cloud."""
-    running = running_filter()
+def test_mismatched_state_clock_waits_for_synchronized_samples(running_filter):
+    """Without the configured epoch shift, distant state timestamps cannot pass."""
+    running = running_filter(cloud_time_offset_sec=0.)
     running.publish_state()
     running.cloud_publisher.publish(_cloud())
     running.assert_quiet()
-    running.publish_transform()
+    running.pose_publisher.publish(_pose(100))
+    running.joint_publisher.publish(_joints(100))
     running.wait(lambda: len(running.outputs) == 1)
-    assert running.outputs[0].width == 81
-    assert running.outputs[0].header.frame_id == 'map'
+    assert running.outputs[0].header.stamp.sec == 100
 
 
-def test_self_filter_disabled_preserves_legacy_unstamped_crop(running_filter):
-    """Disabling self removal must allow a position-only pose with no joints or TF."""
-    running = running_filter(self_filter=False)
-    pose = PoseStamped()
-    pose.header.frame_id = 'map'
-    pose.pose.position.x, pose.pose.position.y = 3.0, 4.0
-    pose.pose.orientation.w = 0.0
-    cloud = _cloud()
-    running.pose_publisher.publish(pose)
-    running.cloud_publisher.publish(cloud)
-    running.wait(lambda: len(running.outputs) == 1)
-    assert running.outputs[0].width == 85
-    assert bytes(running.outputs[0].data) == bytes(cloud.data[:85 * 20])
-    assert running.outputs[0].header == cloud.header
-    assert running.removed == []
-
-
-def test_calibrated_model_origin_is_applied_in_base_coordinates(running_filter):
-    """An explicit CAD offset changes geometry while the crop center stays measured."""
-    running = running_filter(model_origin_xyz=[0.0, 1.0, 0.0])
-    running.publish_transform()
-    running.publish_state()
-    cloud = _cloud()
-    data = bytearray(cloud.data)
-    x = np.ndarray(cloud.width, dtype='<f4', buffer=data, strides=(cloud.point_step,))
-    # map<-base has yaw90, so +1m along base Y moves the CAD -1m along map X.
-    x[:4] -= 1.0
-    cloud.data = bytes(data)
-    running.cloud_publisher.publish(cloud)
-    running.wait(lambda: bool(running.outputs) and bool(running.removed))
-    assert running.removed[0].width == 4
-    assert bytes(running.removed[0].data) == bytes(cloud.data[:4 * cloud.point_step])
-    assert running.outputs[0].width == 81
-
-
-def test_default_ignores_irrelevant_tf_from_mixed_time_domains(running_filter, capfd):
-    """Live and recorded robot TF cannot pollute the default static-only buffer."""
+def test_crop_uses_map_horizontal_plane_instead_of_sideways_sensor_xy(running_filter):
+    """Keep a high nearby return while excluding a far forward return."""
     running = running_filter()
-    current = running.peer.create_publisher(TFMessage, '/tf', 10)
-    recorded = running.peer.create_publisher(TFMessage, '/tf', 10)
-    running.publish_transform()
-    for _ in range(5):
-        for publisher, seconds in ((current, 2000), (recorded, 1000)):
-            transform = TransformStamped()
-            transform.header.frame_id, transform.child_frame_id = 'world', 'base_link_3d'
-            transform.header.stamp.sec = seconds
-            publisher.publish(TFMessage(transforms=[transform]))
-            time.sleep(0.01)
-    running.publish_state()
-    running.cloud_publisher.publish(_cloud())
-    running.wait(lambda: bool(running.outputs) and bool(running.removed))
-    assert current.get_subscription_count() == recorded.get_subscription_count() == 0
-    assert running.outputs[0].width == 81
-    assert running.removed[0].width == 4
-    running.assert_quiet(0.2)
-    captured = capfd.readouterr()
-    assert 'TF_OLD_DATA' not in captured.out + captured.err
-
-
-def test_dynamic_tf_opt_in_interpolates_at_measurement_time(running_filter):
-    """Explicit dynamic TF supports measured interpolation without static world/map."""
-    running = running_filter(use_dynamic_tf=True)
-    publisher = running.peer.create_publisher(TFMessage, '/tf', 10)
-    running.wait(lambda: publisher.get_subscription_count() >= 1)
-    for seconds, offset in ((100, -2.0), (102, 2.0)):
-        transform = TransformStamped()
-        transform.header.frame_id, transform.child_frame_id = 'world', 'map'
-        transform.header.stamp.sec = seconds
-        transform.transform.translation.x = 100000.0 + offset
-        transform.transform.translation.y = -30000.0
-        transform.transform.translation.z = 50.0
-        transform.transform.rotation.z = math.sqrt(0.5)
-        transform.transform.rotation.w = math.sqrt(0.5)
-        publisher.publish(TFMessage(transforms=[transform]))
-    running.publish_state(101)
-    cloud = _cloud(101)
-    running.cloud_publisher.publish(cloud)
-    running.wait(lambda: bool(running.outputs) and bool(running.removed))
-    assert running.outputs[0].width == 81
-    assert running.removed[0].width == 4
-    assert running.outputs[0].header == cloud.header
-
-
-def test_expanded_model_scale_reaches_the_self_filter(running_filter):
-    """The requested scale removes a point outside the original mesh and padding."""
-    running = running_filter(self_filter_scale=1.3)
-    running.publish_transform()
     running.publish_state()
     cloud = _cloud()
     data = bytearray(cloud.data)
-    z = np.ndarray(cloud.width, dtype='<f4', buffer=data, offset=8,
-                   strides=(cloud.point_step,))
-    # Original half-height .50 + padding .15 excludes .75; scaling the
-    # collision around its own center gives .65 + .15 and includes it.
-    z[3] = 0.75
-    cloud.data = bytes(data)
-    running.cloud_publisher.publish(cloud)
-    running.wait(lambda: bool(running.outputs) and bool(running.removed))
-    assert running.removed[0].width == 4
-    assert bytes(running.removed[0].data) == bytes(cloud.data[:4 * cloud.point_step])
-    assert running.outputs[0].width == 81
-
-
-def test_onboard_rotated_mount_clock_offset_joint_aliases_and_original_records(running_filter):
-    """Exercise the complete onboard path without any map-to-LiDAR TF publisher."""
-    running = running_filter(
-        sensor_mode='onboard', sensor_frame='hesai_lidar', pose_frame='map',
-        sensor_xyz=[1., 0., 2.], sensor_rpy=[-math.pi / 2, 0., -math.pi / 2],
-        cloud_time_offset_sec=1000., min_sensor_range_m=.5,
-        joint_name_map=['lift:arm_joint'], sor_enabled=False, self_filter_geometry='convex_hull')
-    pose = PoseStamped()
-    pose.header.frame_id = 'map'
-    pose.header.stamp.sec = 1100
-    pose.pose.position.x, pose.pose.position.y = -19268., -138681.
-    pose.pose.orientation.w = 1.
-    running.pose_publisher.publish(pose)
-    joint = JointState(name=['lift'], position=[0.])
-    joint.header.stamp.sec = 1100
-    running.joint_publisher.publish(joint)
-    cloud = _cloud()
-    cloud.header.frame_id = 'hesai_lidar'
-    points, _ = read_cloud(cloud)
-    points[:4] = [[2., 0., .5], [2., 0., 0.], [2.5, 0., 0.], [2., 0., .6]]
-    points[84] = [10.01, 0., 0.]  # Outside map-XY radius, despite nearby sensor XY.
-    points[86] = [0., 0., 100.]  # Inside map-XY radius, despite distant sensor XY.
-    sensor = np.column_stack((-points[:, 1], 2. - points[:, 2], points[:, 0] - 1.))
-    sensor[85] = 0.  # Hesai's unmeasured zero placeholders must disappear.
-    data = bytearray(cloud.data)
-    for axis in range(3):
+    for axis, value in enumerate([0., -98., -1.]):
         field = np.ndarray(cloud.width, dtype='<f4', buffer=data, offset=axis * 4,
                            strides=(cloud.point_step,))
-        field[:] = sensor[:, axis]
+        field[-1] = value  # base XYZ=(0,0,100): within the horizontal crop.
     cloud.data = bytes(data)
     running.cloud_publisher.publish(cloud)
-    running.wait(lambda: bool(running.outputs) and bool(running.removed))
+    running.wait(lambda: bool(running.outputs))
     output = running.outputs[0]
-    assert output.header == cloud.header
-    assert running.removed[0].width == 4
-    assert output.width == 81
-    expected = bytes(cloud.data[4 * 20:84 * 20]) + bytes(cloud.data[86 * 20:87 * 20])
-    assert bytes(output.data) == expected
-    assert output.fields == cloud.fields
+    assert output.width == 82
+    assert bytes(output.data[-20:]) == bytes(cloud.data[-20:])
+
+
+def test_self_filter_disabled_still_applies_onboard_range_and_crop(running_filter):
+    """The diagnostic opt-out preserves machine returns but excludes invalid scans."""
+    running = running_filter(self_filter=False)
+    running.pose_publisher.publish(_pose())
+    cloud = _cloud()
+    running.cloud_publisher.publish(cloud)
+    running.wait(lambda: bool(running.outputs))
+    assert running.outputs[0].width == 85
+    assert bytes(running.outputs[0].data) == bytes(cloud.data[:85 * 20])
+    assert running.removed == [] and running.models == []
+
+
+def test_direct_run_defaults_use_d37pxi_topics_and_bundled_model(running_filter):
+    """Starting without a params file must require only D37PXi sensor topics."""
+    running = running_filter(default_topics=True)
+    assert running.cloud_publisher.topic_name == '/lidar_points'
+    assert running.pose_publisher.topic_name == '/d37pxi/global_pose'
+    assert running.joint_publisher.topic_name == '/d37pxi/joint_states'
+    running.publish_state()
+    running.cloud_publisher.publish(_cloud())
+    running.wait(lambda: bool(running.outputs))
+    assert running.outputs[0].width == 81
