@@ -136,6 +136,27 @@ def test_open_mesh_uses_surface_distance_without_inventing_interior(tmp_path, op
     np.testing.assert_array_equal(model.mask(
         [[0, 0, 0], [1, 0, 0], [1.05, 0, 0], [1.2, 0, 0]], np.eye(4), {}),
         [False, True, True, False])
+    filled = SelfFilter(path, padding=.1, geometry='convex_hull')
+    np.testing.assert_array_equal(filled.mask(
+        [[0, 0, 0], [1, 0, 0], [1.05, 0, 0], [1.2, 0, 0]], np.eye(4), {}),
+        [True, True, True, False])
+
+
+def test_convex_envelopes_leave_space_between_separate_collision_meshes(
+        tmp_path, open3d_available):
+    """Filling two open boxes must not fill the unoccupied gap between them."""
+    _write_dae(tmp_path / 'open.dae', CUBE_VERTICES, CUBE_TRIANGLES[4:])
+    path = tmp_path / 'separate.urdf'
+    path.write_text('''<robot name="separate"><link name="base_link">
+<collision><origin xyz="-3 0 0"/><geometry><mesh filename="open.dae"/></geometry></collision>
+<collision><origin xyz="3 0 0"/><geometry><mesh filename="open.dae"/></geometry></collision>
+</link></robot>''')
+    model = SelfFilter(path, padding=.1, geometry='convex_hull')
+    np.testing.assert_array_equal(model.mask(
+        [[-3, 0, 0], [3, 0, 0], [0, 0, 0], [4.2, 0, 0]], np.eye(4), {}),
+        [True, True, False, False])
+    with pytest.raises(ValueError, match='self_filter_geometry'):
+        SelfFilter(path, geometry='unknown')
 
 
 def test_scale_uses_each_collision_center_and_keeps_padding_in_metres(tmp_path, open3d_available):

@@ -3,7 +3,7 @@
 <package format="3">
   <name>pointcloud_filters</name>
   <version>0.4.0</version>
-  <description>Remove articulated ZX200 self points and publish local PointCloud2 or Mesh.</description>
+  <description>Filter onboard D37PXi or external ZX200 clouds using articulated meshes.</description>
   <maintainer email="kasahara.yuichiro.res@gmail.com">common</maintainer>
   <license>TODO: License declaration</license>
 

@@ -17,6 +17,9 @@ setup(
         ('share/' + package_name + '/rviz', glob('rviz/*.rviz')),
         ('share/' + package_name + '/robot', glob('robot/*.*') + glob('robot/LICENSE')),
         ('share/' + package_name + '/robot/meshes', glob('robot/meshes/*')),
+        ('share/' + package_name + '/robot/d37pxi', glob('robot/d37pxi/*.*')
+         + glob('robot/d37pxi/LICENSE')),
+        ('share/' + package_name + '/robot/d37pxi/meshes', glob('robot/d37pxi/meshes/*')),
         ('share/' + package_name + '/scripts', glob('scripts/*.py')),
         ('share/' + package_name + '/docs', glob('docs/*')),
     ],
@@ -25,7 +28,7 @@ setup(
     zip_safe=True,
     maintainer='common',
     maintainer_email='kasahara.yuichiro.res@gmail.com',
-    description='Remove articulated ZX200 self points and publish local PointCloud2 or Mesh.',
+    description='Filter onboard D37PXi or external ZX200 clouds using articulated meshes.',
     license='TODO: License declaration',
     tests_require=['pytest'],
     entry_points={

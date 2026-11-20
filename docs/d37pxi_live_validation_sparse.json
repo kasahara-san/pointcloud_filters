@@ -1,0 +1,24 @@
+{
+  "duration_sec": 9.918043483000474,
+  "outputs_received": 20,
+  "checked_frames": [
+    {
+      "stamp_ns": 416508850000,
+      "points": 2727
+    },
+    {
+      "stamp_ns": 421423660000,
+      "points": 2725
+    }
+  ],
+  "bag_loops_observed": 0,
+  "errors": [],
+  "output_hz": 1.999300027592937,
+  "checks": [
+    "Original header and fields",
+    "All emitted point records occur byte-for-byte in matching input",
+    "Finite XYZ",
+    "Zero and near-sensor returns absent",
+    "Live output with 0.23 m voxel and stronger convex-hull filtering"
+  ]
+}

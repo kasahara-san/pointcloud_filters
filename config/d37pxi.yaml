@@ -1,0 +1,44 @@
+pointcloud_filter:
+  ros__parameters:
+    input_topic: /lidar_points
+    pose_topic: /d37pxi/global_pose
+    pose_frame: map
+    joint_states_topic: /d37pxi/joint_states
+    joint_name_map: ['lift:lift_joint', 'tilt:tilt_joint', 'angle:angle_joint']
+    sensor_mode: onboard
+    sensor_frame: hesai_lidar
+    # Provisional base_link <- LiDAR, fitted from the November 20 recording.
+    # Recalibrate after relocating the sensor. XYZ [m], fixed XYZ RPY [rad].
+    sensor_xyz: [0.8460634153, 0.1506703640, 2.7640916189]
+    sensor_rpy: [-1.5762309706, -0.0010623433, -1.5048309171]
+    # This recording uses LiDAR uptime, whereas pose/joints use UNIX time.
+    # Only state lookup is shifted. Original cloud headers/point fields are retained.
+    # Recording-specific: use 0.0 once the driver publishes synchronized UNIX stamps.
+    cloud_time_offset_sec: 1795148958.7430618
+    min_sensor_range_m: 0.5
+    max_pose_time_diff_sec: 0.5
+    max_joint_time_diff_sec: 0.5
+    state_history_sec: 30.0
+    use_dynamic_tf: false
+    self_filter: true
+    # Prioritize excluding self returns, including CAD/mounting mismatch.
+    # Grow each collision about its own center without moving joint origins.
+    self_filter_padding: 0.35
+    self_filter_scale: 1.20
+    # Close unmodelled/open CAD cavities independently for each articulated link.
+    self_filter_geometry: convex_hull
+    robot_description_path: 'd37pxi'
+    model_origin_xyz: [0.0, 0.0, 0.0]
+    model_origin_rpy: [0.0, 0.0, 0.0]
+    output_topic: /d37pxi/lidar_points_filtered
+    output_format: pointcloud2
+    mesh_resolution: 4
+    publish_period_sec: 0.5
+    radius_m: 10.0
+    voxel_size: 0.23
+    # Global SOR biases against sparse distant returns from a single onboard view.
+    sor_enabled: false
+    sor_mean_k: 20
+    sor_stddev_mul: 2.0
+    publish_model_markers: true
+    visualization_base_frame: d37pxi/filter_base

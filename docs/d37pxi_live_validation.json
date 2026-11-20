@@ -1,0 +1,56 @@
+{
+  "duration_sec": 51.36190991700005,
+  "outputs_received": 103,
+  "checked_frames": [
+    {
+      "stamp_ns": 469168248000,
+      "points": 14245
+    },
+    {
+      "stamp_ns": 474183167000,
+      "points": 14101
+    },
+    {
+      "stamp_ns": 479198377000,
+      "points": 13910
+    },
+    {
+      "stamp_ns": 484112912000,
+      "points": 14060
+    },
+    {
+      "stamp_ns": 489127853000,
+      "points": 14008
+    },
+    {
+      "stamp_ns": 494142931000,
+      "points": 13981
+    },
+    {
+      "stamp_ns": 499157945000,
+      "points": 14139
+    },
+    {
+      "stamp_ns": 504173133000,
+      "points": 14167
+    },
+    {
+      "stamp_ns": 509188271000,
+      "points": 14195
+    },
+    {
+      "stamp_ns": 514203512000,
+      "points": 14159
+    }
+  ],
+  "bag_loops_observed": 1,
+  "errors": [],
+  "output_hz": 1.999039077241537,
+  "checks": [
+    "Original header and fields",
+    "All emitted point records occur byte-for-byte in matching input",
+    "Finite XYZ",
+    "Zero and near-sensor returns absent",
+    "Publication resumes after bag loop"
+  ]
+}

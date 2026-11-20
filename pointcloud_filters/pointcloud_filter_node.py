@@ -1,4 +1,4 @@
-"""Periodically crop the latest PointCloud2 around the backhoe's XY position."""
+"""Filter the latest external or onboard cloud around the measured machine."""
 
 from copy import deepcopy
 from dataclasses import asdict
@@ -8,7 +8,7 @@ import threading
 import time
 
 from ament_index_python.packages import get_package_share_directory
-from geometry_msgs.msg import PoseStamped
+from geometry_msgs.msg import PoseStamped, TransformStamped
 import numpy as np
 from rcl_interfaces.msg import ParameterDescriptor
 import rclpy
@@ -20,18 +20,20 @@ from rclpy.qos import DurabilityPolicy, QoSProfile, ReliabilityPolicy
 from sensor_msgs.msg import JointState, PointCloud2
 from shape_msgs.msg import Mesh
 from std_msgs.msg import Header
-from tf2_ros import Buffer, TransformException
-from visualization_msgs.msg import Marker
+from tf2_ros import Buffer, StaticTransformBroadcaster, TransformException
+from visualization_msgs.msg import Marker, MarkerArray
+from scipy.spatial.transform import Rotation
 
 from pointcloud_filters.cloud_io import read_cloud, select_cloud
 from pointcloud_filters.filtering import FilterParameters, filter_indices
 from pointcloud_filters.meshing import MeshConverter, mesh_voxel_size
+from pointcloud_filters.onboard import OnboardGeometry, synchronized_header
 from pointcloud_filters.position import (
     model_origin_matrix, pose_matrix_in_cloud_frame, position_in_cloud_frame)
 from pointcloud_filters.self_filter import SelfFilter
 from pointcloud_filters.state_history import stamp_ns, StateHistory
 from pointcloud_filters.tf_listener import FilterTransformListener
-from pointcloud_filters.visualization import mesh_marker
+from pointcloud_filters.visualization import mesh_marker, robot_markers
 
 
 class PointCloudFilterNode(Node):
@@ -46,8 +48,14 @@ class PointCloudFilterNode(Node):
                         joint_states_topic='/zx200/joint_states',
                         max_pose_time_diff_sec=0.5, max_joint_time_diff_sec=0.5,
                         state_history_sec=30.0, self_filter=True,
+                        sensor_mode='external', sensor_frame='hesai_lidar',
+                        sensor_xyz=[0.0, 0.0, 0.0], sensor_rpy=[0.0, 0.0, 0.0],
+                        min_sensor_range_m=0.0, cloud_time_offset_sec=0.0,
+                        joint_name_map=[''], publish_model_markers=False,
+                        visualization_base_frame='d37pxi/filter_base',
                         use_dynamic_tf=False,
                         self_filter_padding=0.15, self_filter_scale=1.0,
+                        self_filter_geometry='mesh',
                         robot_description_path='',
                         model_origin_xyz=[0.0, 0.0, 0.0], model_origin_rpy=[0.0, 0.0, 0.0],
                         output_topic='/merged_pointcloud_filtered',
@@ -69,15 +77,34 @@ class PointCloudFilterNode(Node):
         if not math.isfinite(self._max_joint_time_diff) or self._max_joint_time_diff < 0:
             raise ValueError('max_joint_time_diff_sec must be finite and >= 0')
         self._pose_frame = values['pose_frame']
+        if values['sensor_mode'] not in ('external', 'onboard'):
+            raise ValueError('sensor_mode must be external or onboard')
+        self._onboard = (OnboardGeometry(
+            values['sensor_frame'], values['sensor_xyz'], values['sensor_rpy'],
+            values['min_sensor_range_m']) if values['sensor_mode'] == 'onboard' else None)
+        self._cloud_time_offset = values['cloud_time_offset_sec']
+        if not math.isfinite(self._cloud_time_offset):
+            raise ValueError('cloud_time_offset_sec must be finite')
+        self._joint_name_map = {}
+        for entry in values['joint_name_map']:
+            if not entry:
+                continue
+            source, separator, target = entry.partition(':')
+            if not separator or not source or not target:
+                raise ValueError('joint_name_map entries must be input_name:urdf_name')
+            self._joint_name_map[source] = target
         self._base_from_model = model_origin_matrix(
             values['model_origin_xyz'], values['model_origin_rpy'])
         self._self_filter = None
         if values['self_filter']:
-            robot_path = values['robot_description_path'] or os.path.join(
-                get_package_share_directory('pointcloud_filters'), 'robot', 'zx200.urdf')
+            robot_path = values['robot_description_path']
+            if robot_path in ('', 'd37pxi'):
+                robot_path = os.path.join(
+                    get_package_share_directory('pointcloud_filters'), 'robot',
+                    'd37pxi/d37pxi.urdf' if robot_path == 'd37pxi' else 'zx200.urdf')
             self._self_filter = SelfFilter(
                 robot_path, padding=values['self_filter_padding'],
-                scale=values['self_filter_scale'])
+                scale=values['self_filter_scale'], geometry=values['self_filter_geometry'])
         self._output_format = values['output_format']
         if self._output_format not in ('pointcloud2', 'mesh'):
             raise ValueError('output_format must be pointcloud2 or mesh')
@@ -121,6 +148,25 @@ class PointCloudFilterNode(Node):
         self._removed_publisher = (self.create_publisher(
             PointCloud2, output_topic + '/self_removed', output_qos)
             if self._self_filter else None)
+        self._model_publisher = None
+        self._view_broadcaster = None
+        if values['publish_model_markers'] and self._self_filter:
+            self._model_publisher = self.create_publisher(
+                MarkerArray, output_topic + '/robot_model',
+                QoSProfile(depth=1, durability=DurabilityPolicy.TRANSIENT_LOCAL))
+        if self._onboard:
+            # A distinct visualization frame avoids competing with machine TF.
+            self._view_broadcaster = StaticTransformBroadcaster(self)
+            view = TransformStamped()
+            view.header.frame_id = values['sensor_frame']
+            view.child_frame_id = values['visualization_base_frame']
+            matrix = self._onboard.cloud_from_base
+            t, q = matrix[:3, 3], Rotation.from_matrix(matrix[:3, :3]).as_quat()
+            view.transform.translation.x, view.transform.translation.y, \
+                view.transform.translation.z = map(float, t)
+            view.transform.rotation.x, view.transform.rotation.y, \
+                view.transform.rotation.z, view.transform.rotation.w = map(float, q)
+            self._view_broadcaster.sendTransform(view)
         self._marker_publisher = None
         if self._mesh_converter:
             self._header_publisher = self.create_publisher(
@@ -147,12 +193,17 @@ class PointCloudFilterNode(Node):
             f"self_filter={values['self_filter']}; "
             f"joint_states={values['joint_states_topic']}; "
             f"missing pose frame={self._pose_frame}; padding={values['self_filter_padding']}m; "
-            f"scale={values['self_filter_scale']}")
+            f"scale={values['self_filter_scale']}; geometry={values['self_filter_geometry']}")
         self.get_logger().info(
             f"base->CAD origin: xyz={values['model_origin_xyz']}m "
             f"rpy={values['model_origin_rpy']}rad")
         self.get_logger().info(
             f"TF input: /tf_static; use_dynamic_tf={values['use_dynamic_tf']}")
+        if self._onboard:
+            self.get_logger().info(
+                f"Onboard base_link<-LiDAR: xyz={values['sensor_xyz']} "
+                f"rpy={values['sensor_rpy']}; clock offset={self._cloud_time_offset:.9f}s; "
+                f"joint map={self._joint_name_map}")
         if self._header_publisher:
             self.get_logger().info(
                 f'Mesh coordinates use the input frame; metadata topic: '
@@ -176,6 +227,9 @@ class PointCloudFilterNode(Node):
 
     def _receive_joints(self, message):
         try:
+            if self._joint_name_map:
+                message = deepcopy(message)
+                message.name = [self._joint_name_map.get(name, name) for name in message.name]
             with self._lock:
                 self._state_history.add_joints(message)
         except ValueError as error:
@@ -195,15 +249,19 @@ class PointCloudFilterNode(Node):
         started = time.monotonic()
         try:
             with self._lock:
-                timestamp = stamp_ns(message.header.stamp)
+                state_header = synchronized_header(message.header, self._cloud_time_offset)
+                timestamp = stamp_ns(state_header.stamp)
                 pose = self._state_history.pose_at(
                     timestamp, self._max_pose_time_diff, allow_unstamped=not self._self_filter)
                 joints = (self._state_history.joints_at(
                     timestamp, self._self_filter.required_joints, self._max_joint_time_diff)
                     if self._self_filter else {})
-            if self._self_filter:
+            if self._onboard:
+                self._onboard.check_frame(message.header)
+                cloud_from_base = self._onboard.cloud_from_base
+            elif self._self_filter:
                 cloud_from_base = pose_matrix_in_cloud_frame(
-                    pose, message.header, self._tf_buffer, self._max_pose_time_diff,
+                    pose, state_header, self._tf_buffer, self._max_pose_time_diff,
                     self._pose_frame)
             else:
                 pose = deepcopy(pose)
@@ -211,7 +269,7 @@ class PointCloudFilterNode(Node):
                     pose.header.frame_id = self._pose_frame
                 cloud_from_base = np.eye(4)
                 cloud_from_base[:3, 3] = position_in_cloud_frame(
-                    pose, message.header, self._tf_buffer, self._max_pose_time_diff)
+                    pose, state_header, self._tf_buffer, self._max_pose_time_diff)
             center = cloud_from_base[:3, 3]
             cloud_from_model = cloud_from_base @ self._base_from_model
         except (ValueError, TransformException) as error:
@@ -222,17 +280,23 @@ class PointCloudFilterNode(Node):
                 self._latest_cloud = None
         try:
             xyz, records = read_cloud(message)
+            processing_xyz = xyz
+            if self._onboard:
+                processing_xyz = self._onboard.map_offsets(xyz, pose, self._pose_frame)
+                processing_xyz[~self._onboard.valid_returns(xyz)] = np.nan
+                center = np.zeros(3)
             self_mask = None
             if self._self_filter:
                 self_mask = np.zeros(len(xyz), dtype=bool)
                 candidates = np.flatnonzero(
-                    np.isfinite(xyz).all(axis=1)
-                    & (np.hypot(xyz[:, 0] - center[0], xyz[:, 1] - center[1])
+                    np.isfinite(processing_xyz).all(axis=1)
+                    & (np.hypot(processing_xyz[:, 0] - center[0],
+                                processing_xyz[:, 1] - center[1])
                        <= self._parameters_config.radius_m))
                 self_mask[candidates] = self._self_filter.mask(
                     xyz[candidates], cloud_from_model, joints)
             indices, stats = filter_indices(
-                xyz, center[:2], self._parameters_config, self_mask)
+                processing_xyz, center[:2], self._parameters_config, self_mask)
             if self._mesh_converter:
                 excluded = (lambda points: self._self_filter.mask(
                     points, cloud_from_model, joints)) if self._self_filter else None
@@ -253,6 +317,9 @@ class PointCloudFilterNode(Node):
         if self._removed_publisher:
             self._removed_publisher.publish(select_cloud(
                 message, records, np.flatnonzero(self_mask)))
+        if self._model_publisher:
+            self._model_publisher.publish(robot_markers(
+                self._self_filter, cloud_from_model, joints, message.header))
         elapsed = time.monotonic() - started
         mesh_summary = (
             f" mesh_sampled={stats['mesh_sampled']} vertices={stats['vertices']} "

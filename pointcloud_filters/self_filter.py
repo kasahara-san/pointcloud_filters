@@ -228,16 +228,19 @@ class _Collision:
 class SelfFilter:
     """Apply all URDF collision meshes at measured joint angles in the cloud frame."""
 
-    def __init__(self, urdf_path, padding=0.15, scale=1.0):
+    def __init__(self, urdf_path, padding=0.15, scale=1.0, geometry='mesh'):
         """Load geometry once; grow each collision about its own bounding-box center."""
         if not np.isfinite(padding) or padding < 0:
             raise ValueError('self_filter_padding must be finite and >= 0')
         if not np.isfinite(scale) or scale < 1:
             raise ValueError('self_filter_scale must be finite and >= 1')
+        if geometry not in ('mesh', 'convex_hull'):
+            raise ValueError('self_filter_geometry must be mesh or convex_hull')
         import open3d as o3d
 
         self.padding = float(padding)
         self.scale = float(scale)
+        self.geometry = geometry
         path = Path(urdf_path)
         root = ET.parse(path).getroot()
         links = {link.get('name') for link in root.findall('link')}
@@ -282,9 +285,18 @@ class SelfFilter:
                     legacy = o3d.io.read_triangle_mesh(str(mesh_path))
                     vertices, triangles = np.asarray(legacy.vertices), np.asarray(legacy.triangles)
                 mesh_scale = _numbers(mesh.get('scale', '1 1 1'), 3)
+                vertices = vertices * mesh_scale
+                if self.geometry == 'convex_hull':
+                    # Fill open CAD cavities per link, preserving articulation and
+                    # the space between separate links. Never hull the whole robot.
+                    hull, _ = o3d.geometry.PointCloud(
+                        o3d.utility.Vector3dVector(vertices)).compute_convex_hull()
+                    vertices, triangles = np.asarray(hull.vertices), np.asarray(hull.triangles)
                 self.collisions.append(_Collision(
                     o3d, link.get('name'), _origin(collision.find('origin')),
-                    vertices * mesh_scale, triangles))
+                    vertices, triangles))
+                self.collisions[-1].mesh_resource = mesh_path.resolve().as_uri()
+                self.collisions[-1].mesh_scale = mesh_scale
         if not self.collisions:
             raise ValueError('Robot URDF has no collision meshes')
         # Joints on collision-free leaves (for example bucket_end_joint) are optional.

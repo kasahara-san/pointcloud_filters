@@ -21,6 +21,12 @@ def launcher(monkeypatch, tmp_path):
     module = importlib.util.module_from_spec(spec)
     spec.loader.exec_module(module)
     monkeypatch.setattr(module, 'get_package_share_directory', lambda _: str(root))
+    # Launch construction needs a recording location, not the external multi-GB bag.
+    bag = tmp_path / 'rosbag2_2026_10_25-08_46_47'
+    bag.mkdir()
+    (bag / 'metadata.yaml').touch()
+    resolve = module.resolve_bag_path
+    monkeypatch.setattr(module, 'resolve_bag_path', lambda value: resolve(value or str(bag)))
     return module
 
 

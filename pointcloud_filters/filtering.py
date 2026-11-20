@@ -15,6 +15,7 @@ class FilterParameters:
     voxel_size: float = 0.1
     sor_mean_k: int = 20
     sor_stddev_mul: float = 2.0
+    sor_enabled: bool = True
 
     def __post_init__(self):
         """Reject invalid configuration before processing any messages."""
@@ -59,7 +60,7 @@ def filter_indices(points, center_xy, parameters, self_mask=None):
         # Keep an original point (including its attributes) from each voxel.
         indices = indices[np.sort(first)]
     stats['voxel'] = len(indices)
-    if len(indices) >= 3:
+    if parameters.sor_enabled and len(indices) >= 3:
         candidates = points[indices]
         k = min(parameters.sor_mean_k, len(indices) - 1)
         distances, _ = cKDTree(candidates).query(candidates, k=k + 1)

@@ -1,0 +1,214 @@
+{
+  "xyz": [
+    0.846063415315749,
+    0.15067036401055978,
+    2.764091618919395
+  ],
+  "rpy": [
+    -1.5762309706167472,
+    -0.0010623433144265806,
+    -1.5048309170606238
+  ],
+  "initial": [
+    0.3,
+    0.0,
+    2.85,
+    -1.5707963267948966,
+    0.0,
+    -1.5707963267948966
+  ],
+  "training_count": 2776,
+  "validation": [
+    {
+      "index": 0,
+      "count": 907,
+      "median": 0.02723361924290657,
+      "p90": 0.1423875093460083
+    },
+    {
+      "index": 107,
+      "count": 909,
+      "median": 0.027760889381170273,
+      "p90": 0.14791672229766845
+    },
+    {
+      "index": 214,
+      "count": 949,
+      "median": 0.018555818125605583,
+      "p90": 0.07491535395383843
+    },
+    {
+      "index": 321,
+      "count": 989,
+      "median": 0.018548384308815002,
+      "p90": 0.0882623761892319
+    },
+    {
+      "index": 428,
+      "count": 963,
+      "median": 0.017166119068861008,
+      "p90": 0.07062912881374368
+    },
+    {
+      "index": 535,
+      "count": 935,
+      "median": 0.013693287968635559,
+      "p90": 0.057914276421070124
+    },
+    {
+      "index": 642,
+      "count": 918,
+      "median": 0.017947740852832794,
+      "p90": 0.058515526726841946
+    },
+    {
+      "index": 750,
+      "count": 944,
+      "median": 0.017224068753421307,
+      "p90": 0.05382244661450386
+    },
+    {
+      "index": 857,
+      "count": 959,
+      "median": 0.019384851679205894,
+      "p90": 0.07237585932016373
+    },
+    {
+      "index": 964,
+      "count": 927,
+      "median": 0.018934838473796844,
+      "p90": 0.0710628479719162
+    },
+    {
+      "index": 1071,
+      "count": 931,
+      "median": 0.022182609885931015,
+      "p90": 0.07384529709815979
+    },
+    {
+      "index": 1178,
+      "count": 944,
+      "median": 0.021887305192649364,
+      "p90": 0.08150899112224583
+    },
+    {
+      "index": 1285,
+      "count": 935,
+      "median": 0.024007799103856087,
+      "p90": 0.07752838581800461
+    },
+    {
+      "index": 1392,
+      "count": 945,
+      "median": 0.019529730081558228,
+      "p90": 0.07628984600305558
+    },
+    {
+      "index": 1500,
+      "count": 925,
+      "median": 0.019473692402243614,
+      "p90": 0.07738262414932252
+    }
+  ],
+  "parent_link": "base_link",
+  "sensor_frame": "hesai_lidar",
+  "method": "Observed-point-to-triangle bounded soft_l1 fit, all seven meshes at measured joints",
+  "training_frames": [
+    0,
+    750,
+    1500
+  ],
+  "units": {
+    "xyz": "metres",
+    "rpy": "fixed XYZ Euler radians"
+  },
+  "roi_sensor_axes": {
+    "abs_x_max_m": 2.0,
+    "y_m": [
+      0.25,
+      2.5
+    ],
+    "z_m": [
+      -0.5,
+      3.4
+    ],
+    "voxel_m": 0.08
+  },
+  "clock_offset_sec": 1795148958.7430618,
+  "clock_offset_source": "Median recorded timestamp minus LiDAR header stamp over 15 evenly spaced scans; variation 148.14 ms",
+  "limitations": [
+    "Provisional mounting estimate from this recording, not a surveyed extrinsic calibration",
+    "Only observed elevated returns are fitted; hidden mesh surfaces contribute no residual",
+    "No labelled ground or self-point ground truth"
+  ],
+  "reproduced_fit": {
+    "training_frames": [
+      0,
+      750,
+      1500
+    ],
+    "method": "Bounded observed-point-to-triangle soft_l1 fit, three initializations",
+    "best": {
+      "xyz": [
+        0.8456390945388418,
+        0.1502121058091793,
+        2.764160730836437
+      ],
+      "rpy": [
+        -1.5760285260436868,
+        -0.0007447134785365008,
+        -1.5046984312767862
+      ],
+      "cost": 2.7392718929902884,
+      "success": true,
+      "evaluations": 69
+    },
+    "fits": [
+      {
+        "xyz": [
+          0.8456390945388418,
+          0.1502121058091793,
+          2.764160730836437
+        ],
+        "rpy": [
+          -1.5760285260436868,
+          -0.0007447134785365008,
+          -1.5046984312767862
+        ],
+        "cost": 2.7392718929902884,
+        "success": true,
+        "evaluations": 69
+      },
+      {
+        "xyz": [
+          0.8474010677118732,
+          0.13986938503994623,
+          2.765402632913713
+        ],
+        "rpy": [
+          -1.5767806957255115,
+          0.0024047214790521906,
+          -1.503143374875466
+        ],
+        "cost": 2.740441467927578,
+        "success": true,
+        "evaluations": 20
+      },
+      {
+        "xyz": [
+          0.8473593206865604,
+          0.1399110325999441,
+          2.7653784954797618
+        ],
+        "rpy": [
+          -1.5767514928721338,
+          0.0023937672945041136,
+          -1.5031673544918778
+        ],
+        "cost": 2.740426413674698,
+        "success": true,
+        "evaluations": 19
+      }
+    ]
+  }
+}

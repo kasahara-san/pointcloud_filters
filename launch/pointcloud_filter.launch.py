@@ -36,19 +36,22 @@ def _rviz_node(context, overrides):
     values = _configured_values(context, overrides)
     config = LaunchConfiguration('rviz_config').perform(context)
     if not config:
-        filename = ('pointcloud_filter_mesh.rviz' if values['output_format'] == 'mesh'
-                    else 'pointcloud_filter.rviz')
+        prefix = 'd37pxi' if values.get('sensor_mode') == 'onboard' else 'pointcloud_filter'
+        filename = prefix + ('_mesh.rviz' if values['output_format'] == 'mesh' else '.rviz')
         config = os.path.join(
             get_package_share_directory('pointcloud_filters'), 'rviz', filename)
+    tf_remaps = [('/tf', '/d37pxi/filter_visualization_tf')] if (
+        values.get('sensor_mode') == 'onboard') else []
     return Node(
         package='rviz2', executable='rviz2', name='pointcloud_filter_rviz', output='screen',
         arguments=['-d', config, '-f', LaunchConfiguration('fixed_frame')],
         parameters=[{'use_sim_time': overrides['use_sim_time']}],
-        remappings=[('/merged_pointcloud', values['input_topic']),
-                    ('/merged_pointcloud_filtered', values['output_topic']),
-                    ('/merged_pointcloud_filtered/self_removed',
-                     values['output_topic'] + '/self_removed'),
-                    ('/merged_pointcloud_filtered/marker', values['output_topic'] + '/marker')])
+        remappings=tf_remaps + [
+            ('/merged_pointcloud', values['input_topic']),
+            ('/merged_pointcloud_filtered', values['output_topic']),
+            ('/merged_pointcloud_filtered/self_removed', values['output_topic'] + '/self_removed'),
+            ('/merged_pointcloud_filtered/robot_model', values['output_topic'] + '/robot_model'),
+            ('/merged_pointcloud_filtered/marker', values['output_topic'] + '/marker')])
 
 
 def _bag_after_ready(filter_node, player):
@@ -81,8 +84,10 @@ def _launch_node(context):
     }
     types = dict(mesh_resolution=int, radius_m=float, self_filter_padding=float,
                  publish_period_sec=float, self_filter_scale=float)
-    for name in ('output_format', 'mesh_resolution', 'output_topic', 'pose_topic', 'radius_m',
+    for name in ('input_topic', 'output_format', 'mesh_resolution', 'output_topic',
+                 'pose_topic', 'radius_m',
                  'joint_states_topic', 'self_filter', 'self_filter_padding',
+                 'self_filter_geometry',
                  'robot_description_path', 'publish_period_sec', 'use_dynamic_tf',
                  'self_filter_scale'):
         value = LaunchConfiguration(name).perform(context)
@@ -155,6 +160,9 @@ def generate_launch_description():
             'mesh_resolution', default_value='', choices=['', '1', '2', '3', '4', '5'],
             description='Mesh resolution: 1 coarse, 5 fine; empty uses params_file.'),
         DeclareLaunchArgument(
+            'input_topic', default_value='',
+            description='Input PointCloud2 topic; empty uses params_file.'),
+        DeclareLaunchArgument(
             'output_topic', default_value='',
             description='Output topic; empty uses params_file.'),
         DeclareLaunchArgument(
@@ -175,6 +183,9 @@ def generate_launch_description():
         DeclareLaunchArgument(
             'self_filter_padding', default_value='',
             description='Padding around robot geometry in metres; empty uses params_file.'),
+        DeclareLaunchArgument(
+            'self_filter_geometry', default_value='', choices=['', 'mesh', 'convex_hull'],
+            description='Per-link mesh or conservative convex hull; empty uses params_file.'),
         DeclareLaunchArgument(
             'self_filter_scale', default_value='',
             description='Per-link geometry enlargement, >=1; empty uses params_file.'),

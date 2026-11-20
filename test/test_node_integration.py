@@ -385,3 +385,44 @@ def test_expanded_model_scale_reaches_the_self_filter(running_filter):
     assert running.removed[0].width == 4
     assert bytes(running.removed[0].data) == bytes(cloud.data[:4 * cloud.point_step])
     assert running.outputs[0].width == 81
+
+
+def test_onboard_rotated_mount_clock_offset_joint_aliases_and_original_records(running_filter):
+    """Exercise the complete onboard path without any map-to-LiDAR TF publisher."""
+    running = running_filter(
+        sensor_mode='onboard', sensor_frame='hesai_lidar', pose_frame='map',
+        sensor_xyz=[1., 0., 2.], sensor_rpy=[-math.pi / 2, 0., -math.pi / 2],
+        cloud_time_offset_sec=1000., min_sensor_range_m=.5,
+        joint_name_map=['lift:arm_joint'], sor_enabled=False, self_filter_geometry='convex_hull')
+    pose = PoseStamped()
+    pose.header.frame_id = 'map'
+    pose.header.stamp.sec = 1100
+    pose.pose.position.x, pose.pose.position.y = -19268., -138681.
+    pose.pose.orientation.w = 1.
+    running.pose_publisher.publish(pose)
+    joint = JointState(name=['lift'], position=[0.])
+    joint.header.stamp.sec = 1100
+    running.joint_publisher.publish(joint)
+    cloud = _cloud()
+    cloud.header.frame_id = 'hesai_lidar'
+    points, _ = read_cloud(cloud)
+    points[:4] = [[2., 0., .5], [2., 0., 0.], [2.5, 0., 0.], [2., 0., .6]]
+    points[84] = [10.01, 0., 0.]  # Outside map-XY radius, despite nearby sensor XY.
+    points[86] = [0., 0., 100.]  # Inside map-XY radius, despite distant sensor XY.
+    sensor = np.column_stack((-points[:, 1], 2. - points[:, 2], points[:, 0] - 1.))
+    sensor[85] = 0.  # Hesai's unmeasured zero placeholders must disappear.
+    data = bytearray(cloud.data)
+    for axis in range(3):
+        field = np.ndarray(cloud.width, dtype='<f4', buffer=data, offset=axis * 4,
+                           strides=(cloud.point_step,))
+        field[:] = sensor[:, axis]
+    cloud.data = bytes(data)
+    running.cloud_publisher.publish(cloud)
+    running.wait(lambda: bool(running.outputs) and bool(running.removed))
+    output = running.outputs[0]
+    assert output.header == cloud.header
+    assert running.removed[0].width == 4
+    assert output.width == 81
+    expected = bytes(cloud.data[4 * 20:84 * 20]) + bytes(cloud.data[86 * 20:87 * 20])
+    assert bytes(output.data) == expected
+    assert output.fields == cloud.fields
